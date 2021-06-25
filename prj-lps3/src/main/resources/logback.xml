@@ -1,0 +1,43 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="TIME_BASED_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/srd.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/srd.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>15</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread]%logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.seer" level="DEBUG"/>
+    <logger name="org.opentcs" level="INFO"/>
+
+    <logger name="io.socket" level="DEBUG"/>
+
+    <logger name="org.eclipse.jetty.server" level="WARN"/>
+
+    <root level="WARN">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="TIME_BASED_FILE"/>
+    </root>
+
+    <appender name="DEADLOCK_LOG" class="ch.qos.logback.core.FileAppender">
+        <file>logs/srd-deadlock.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread] [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.seer.srd.route.deadlock" level="DEBUG">
+        <appender-ref ref="DEADLOCK_LOG"/>
+    </logger>
+
+</configuration>

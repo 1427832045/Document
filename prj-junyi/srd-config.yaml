@@ -1,0 +1,409 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-junyi
+mongoMainDatabase: srd-junyi
+uiPath: D:\Projects\GitProjects\pure-seer-ui\custom\junyi\dist
+commAdapterIO: Tcp
+vehicleSimulation: Tcp
+
+syncVehiclesDetails: true
+
+dispatcher:
+  # 空闲机器人不自动停靠
+  parkIdleVehicles: false
+  # 空闲机器人不自动充电
+  rechargeIdleVehicles: false
+
+# # SRD-K 访问 MES 的 baseUrl
+mesUrl: http://localhost:7100/api/ext/mock/
+
+# # 切换岗位和工位的确认密码，默认值为123456
+password: 123456
+
+# # 需要进行 补位操作 的库区列表
+bufferForPopUpTask: ["G-A", "G-B"]
+
+# # # true:启用自动补位功能； false:禁用自动补位功能； 默认值为false
+enablePopupTask: false
+
+operator:
+  workTypes:
+    - id: P010
+      label: P010
+    - id: P020
+      label: P020
+    - id: P030
+      label: P030
+#    - id: LoadModule
+#      label: 模组入壳工位
+    - id: FixModule
+      label: 模组固定工位
+    - id: LoadHighVolCable
+      label: 高压铜线安装工位
+
+    - id: BoardTest
+      label: 水冷板检测/返修工位
+    - id: LoadWire
+      label: 线束安装工位
+    - id: P090
+      label: P090
+    - id: P100
+      label: P100
+
+    - id: LoadTopShell
+      label: 上壳体安装工位
+#    - id: FixScrew
+#      label: 螺丝紧固工位
+    - id: AirTightnessTest
+      label: 气密性检测工位
+    - id: P130
+      label: P130
+    - id: PACK
+      label: PACK下线工位
+
+    - id: Special
+      label: 特殊
+
+  workStations:
+    - id: P010-WS
+      label: P010工位
+      type: P010
+    - id: P020-WS
+      label: P020工位
+      type: P020
+    - id: P030-WS
+      label: P030工位
+      type: P030
+    - id: FixModule-WS
+      label: 模组固定工位
+      type: FixModule
+    - id: LoadHighVolCable-WS
+      label: 高压铜线安装工位
+      type: LoadHighVolCable
+
+    - id: BoardTest-WS
+      label: 水冷板检测
+      type: BoardTest
+    - id: LoadWire-WS
+      label: 线束安装工位
+      type: LoadWire
+    - id: P090-WS
+      label: P090工位
+      type: P090
+    - id: P100-WS
+      label: P100工位
+      type: P100
+
+    - id: LoadTopShell-WS
+      label: 上壳体安装工位
+      type: LoadTopShell
+    - id: FixScrew-WS
+      label: 螺丝紧固工位
+      type: FixScrew
+    - id: AirTightnessTest-WS
+      label: 气密性检测工位
+      type: AirTightnessTest
+    - id: P130-WS
+      label: P130工位
+      type: P130
+    - id: PACK-WS
+      label: PACK下线工位
+      type: PACK
+    - id: Special
+      label: 特殊
+      type: Special
+
+  orders:
+    # #【P010】
+    - menuId: P010-Call
+      label: 呼叫AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: l1-to-p010
+      disabled: false
+      workTypes: [P010]
+      tip: 呼叫AGV
+      confirmMessage: 确定要【呼叫AGV】吗？
+    - menuId: P010-Finished
+      label: 放行AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: p010-finished
+      disabled: false
+      workTypes: [P010]
+      tip: 放行AGV
+      confirmMessage: 确定要【放行AGV】吗？
+
+    # #【P020】
+    - menuId: P020-Call
+      label: 呼叫AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: p010-to-p020
+      disabled: false
+      workTypes: [P020]
+      tip: P020 呼叫AGV
+      confirmMessage: 确定要【呼叫AGV】吗？
+    - menuId: P020-Finished
+      label: P020 放行AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: p020-finished
+      disabled: false
+      workTypes: [P020]
+      tip: P020 放行AGV
+      confirmMessage: 确定要【放行AGV】吗？
+
+    # #【P030】
+    - menuId: P030-Call
+      label: 呼叫AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: p020-to-p030
+      disabled: false
+      workTypes: [P030]
+      tip: 呼叫AGV
+      confirmMessage: 确定要【呼叫AGV】吗？
+    - menuId: P030-Finished
+      label: 放行AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: p030-finished
+      disabled: false
+      workTypes: [P030]
+      tip: 放行AGV
+      confirmMessage: 确定要【放行AGV】吗？
+    - menuId: TP030-Call
+      label: 返修
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: p030-to-tp030
+      disabled: false
+      workTypes: [P030]
+      tip: 返修
+      confirmMessage: 确定要执行【返修】吗？
+    - menuId: TP030-Finished
+      label: 返修放行
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: tp030-to-p030
+      disabled: false
+      workTypes: [P030]
+      tip: 返修放行
+      confirmMessage: 确定要执行【返修放行】吗？
+
+    # #【模组固定工位】
+    - menuId: FixModule-Call
+      label: 呼叫AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: fix-module
+      disabled: false
+      workTypes: [FixModule]
+      tip: 呼叫AGV
+      confirmMessage: 确定要执行【呼叫AGV】吗？
+    - menuId: FixModule-Finished
+      label: 放行AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: fix-module-finished
+      disabled: false
+      workTypes: [FixModule]
+      tip: 放行AGV
+      confirmMessage: 确定要【放行AGV】吗？
+
+    # # 【高压铜线安装工位】
+    - menuId: LoadHighVolCable-Call
+      label: 呼叫AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: load-high-vol-cable
+      disabled: false
+      workTypes: [LoadHighVolCable]
+      tip: 呼叫AGV
+      confirmMessage: 确定要执行【呼叫AGV】吗？
+    - menuId: LoadHighVolCable-Finished
+      label: 放行AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: load-high-vol-cable-finished
+      disabled: false
+      workTypes: [LoadHighVolCable]
+      tip: 放行AGV
+      confirmMessage: 确定要【放行AGV】吗？
+
+    # # 【水冷板检测工位】
+    - menuId: BoardTest-Call
+      label: 呼叫AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: board-test
+      disabled: false
+      workTypes: [BoardTest]
+      tip: 呼叫AGV
+      confirmMessage: 确定要【呼叫AGV】吗？
+    - menuId: BoardTest-Finished
+      label: 放行AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: board-test-finished
+      disabled: false
+      workTypes: [BoardTest]
+      tip: 放行AGV
+      confirmMessage: 确定要【放行AGV】吗？
+
+    # # 【线束安装工位】
+    - menuId: LoadWire-Call
+      label: 呼叫AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: load-wire
+      disabled: false
+      workTypes: [LoadWire]
+      tip: 呼叫AGV
+      confirmMessage: 确定要【呼叫AGV】吗？
+    - menuId: LoadWire-Finished
+      label: 放行AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: load-wire-finished
+      disabled: false
+      workTypes: [LoadWire]
+      tip: 放行AGV
+      confirmMessage: 确定要【放行AGV】吗？
+
+    # #【P090】
+    - menuId: P090-Call
+      label: 呼叫AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: f1-to-p090
+      disabled: false
+      workTypes: [P090]
+      tip: 呼叫AGV
+      confirmMessage: 确定要【呼叫AGV】吗？
+    - menuId: P090-Finished
+      label: 放行AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: p090-finished
+      disabled: false
+      workTypes: [P090]
+      tip: 放行AGV
+      confirmMessage: 确定要【放行AGV】吗？
+
+    # #【P100】
+    - menuId: P100-Call
+      label: 呼叫AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: p090-to-p100
+      disabled: false
+      workTypes: [P100]
+      tip: 呼叫AGV
+      confirmMessage: 确定要【呼叫AGV】吗？
+    - menuId: P100-Finished
+      label: 放行AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: p100-finished
+      disabled: false
+      workTypes: [P100]
+      tip: 放行AGV
+      confirmMessage: 确定要【放行AGV】吗？
+
+    # # 【上壳体安装工位】
+    - menuId: LoadTopShell-Call
+      label: 呼叫AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: load-top-shell
+      disabled: false
+      workTypes: [LoadTopShell]
+      tip: 呼叫AGV
+      confirmMessage: 确定要【呼叫AGV】吗？
+    - menuId: LoadTopShell-Finished
+      label: 放行AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: load-top-shell-finished
+      disabled: false
+      workTypes: [LoadTopShell]
+      tip: 放行AGV
+      confirmMessage: 确定要【放行AGV】吗？
+
+    # # 【气密性检测工位】
+    - menuId: AirTightnessTest-Call
+      label: 呼叫AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: air-tightness-test
+      disabled: false
+      workTypes: [AirTightnessTest]
+      tip: 呼叫AGV
+      confirmMessage: 确定要【呼叫AGV】吗？
+    - menuId: AirTightnessTest-Finished
+      label: 放行AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: air-tightness-test-finished
+      disabled: false
+      workTypes: [AirTightnessTest]
+      tip: 放行AGV
+      confirmMessage: 确定要【放行AGV】吗？
+
+    # #【P130】
+    - menuId: P130-Call
+      label: 呼叫AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: j1-to-p130
+      disabled: false
+      workTypes: [P130]
+      tip: 呼叫AGV
+      confirmMessage: 确定要【呼叫AGV】吗？
+    - menuId: P130-Finished
+      label: 放行AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: p130-finished
+      disabled: false
+      workTypes: [P130]
+      tip: 放行AGV
+      confirmMessage: 确定要【放行AGV】吗？
+
+    # # 【PACK下线工位】
+    - menuId: PACK-Call
+      label: 呼叫AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: pack
+      disabled: false
+      workTypes: [PACK]
+      tip: 呼叫AGV
+      confirmMessage: 确定要【呼叫AGV】吗？
+    - menuId: PACK-Finished
+      label: 放行AGV
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: pack-finished
+      disabled: false
+      workTypes: [PACK]
+      tip: 放行AGV
+      confirmMessage: 确定要【放行AGV】吗？
+
+    # # 【启用缓存区的补位功能】
+    - menuId: PopupTaskEnable
+      label: 启用/禁用【自动补位】功能
+      menuItemBackground: "#319deb"
+      menuItemTextColor: black
+      robotTaskDef: enable-popup-task
+      disabled: false
+      workTypes: [Special]
+      tip: 启用/禁用充放电测试工位缓存区域的【自动补位】功能
+      confirmMessage: 确定要【操作补位功能】吗？
+
+  taskNotice:
+    scope: by-work-type
+    noticeType: alert
+    when:
+      - created

@@ -1,0 +1,689 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-hongJiang
+mongoMainDatabase: srd-hongJiang
+#uiPath: E:/gitrepo/seer-ui/level2/dist
+uiPath: E:/gitrepo/seer-ui/custom/hongjiang/dist
+commAdapterIO: Http
+vehicleSimulation: Http
+#startFromDB: false
+
+userConfig:
+  - workStation: admin1
+    pwd: admin11
+  - workStation: CJ01-DJ01
+    pwd: 123
+    relatives: ["CJ01-DJ02", "CJ01-DJ03"]
+  - workStation: CJ01-LZ01
+    pwd: 123
+    relatives: ["CJ01-LZ02", "CJ01-LZ03"]
+
+operator:
+  customConfig:
+    checkPassword: true
+  orders:
+    - menuId: cutter
+      label: 刀具请求任务
+      menuItemBackground: "rgb(131, 175, 155)"
+      menuItemTextColor: white
+      robotTaskDef: cutter
+      workTypes: ["DJ"]
+      confirmMessage: 确定发起【刀具请求】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options: &DJ
+            - value: ""
+              label: ""
+            - value: CJ01-DJ01
+              label: CJ01-DJ01
+            - value: CJ01-DJ02
+              label: CJ01-DJ02
+            - value: CJ01-DJ03
+              label: CJ01-DJ03
+            - value: CJ01-DJ04
+              label: CJ01-DJ04
+            - value: CJ01-DJ05
+              label: CJ01-DJ05
+            - value: CJ01-DJ06
+              label: CJ01-DJ06
+            - value: CJ01-DJ07
+              label: CJ01-DJ07
+            - value: CJ01-DJ08
+              label: CJ01-DJ08
+            - value: CJ01-DJ09
+              label: CJ01-DJ09
+            - value: CJ01-DJ10
+              label: CJ01-DJ10
+            - value: CJ02-DJ01
+              label: CJ02-DJ01
+            - value: CJ02-DJ02
+              label: CJ02-DJ02
+            - value: CJ02-DJ03
+              label: CJ02-DJ03
+            - value: CJ02-DJ04
+              label: CJ02-DJ04
+            - value: CJ02-DJ05
+              label: CJ02-DJ05
+            - value: CJ02-DJ06
+              label: CJ02-DJ06
+            - value: CJ02-DJ07
+              label: CJ02-DJ07
+            - value: CJ02-DJ08
+              label: CJ02-DJ08
+            - value: CJ02-DJ09
+              label: CJ02-DJ09
+            - value: CJ02-DJ10
+              label: CJ02-DJ10
+            - value: CJ03-DJ01
+              label: CJ03-DJ01
+            - value: CJ03-DJ02
+              label: CJ03-DJ02
+            - value: CJ03-DJ03
+              label: CJ03-DJ03
+            - value: CJ03-DJ04
+              label: CJ03-DJ04
+            - value: CJ03-DJ05
+              label: CJ03-DJ05
+            - value: CJ03-DJ06
+              label: CJ03-DJ06
+            - value: CJ03-DJ07
+              label: CJ03-DJ07
+            - value: CJ03-DJ08
+              label: CJ03-DJ08
+            - value: CJ03-DJ09
+              label: CJ03-DJ09
+            - value: CJ03-DJ10
+              label: CJ03-DJ10
+
+        - name: toType
+          input: select
+          label: 终点区域
+          options:
+            - value: ""
+              label: ""
+            - value: KF
+              label: 工具库
+
+    - menuId: cutterBackTrigger
+      label: 刀具返回任务
+      menuItemBackground: "rgb(131, 175, 155)"
+      menuItemTextColor: white
+      robotTaskDef: cutterBackTrigger
+      workTypes: ["KF"]
+      confirmMessage: 确定发起【刀具返回】任务吗?
+      params:
+        - name: to
+          input: select
+          label: 终点
+          options: *DJ
+
+    - menuId: CallEmptyTray
+      label: 呼叫空料架
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      robotTaskDef: CallEmptyTray
+      workTypes: ["LZ"]
+      confirmMessage: 确定下发【呼叫空料架】吗?
+      params:
+        - name: to
+          input: select
+          label: 请求位置
+          options: &LZ
+            - value: ""
+              label: ""
+            - value: CJ01-LZ01
+              label: CJ01-LZ01
+            - value: CJ01-LZ02
+              label: CJ01-LZ02
+            - value: CJ01-LZ03
+              label: CJ01-LZ03
+            - value: CJ01-LZ04
+              label: CJ01-LZ04
+            - value: CJ01-LZ05
+              label: CJ01-LZ05
+            - value: CJ01-LZ06
+              label: CJ01-LZ06
+            - value: CJ01-LZ07
+              label: CJ01-LZ07
+            - value: CJ01-LZ08
+              label: CJ01-LZ08
+            - value: CJ01-LZ09
+              label: CJ01-LZ09
+            - value: CJ01-LZ10
+              label: CJ01-LZ10
+            - value: CJ01-LZ11
+              label: CJ01-LZ11
+            - value: CJ01-LZ12
+              label: CJ01-LZ12
+            - value: CJ01-LZ13
+              label: CJ01-LZ13
+            - value: CJ01-LZ14
+              label: CJ01-LZ14
+            - value: CJ01-LZ15
+              label: CJ01-LZ15
+            - value: CJ01-LZ16
+              label: CJ01-LZ16
+            - value: CJ01-LZ17
+              label: CJ01-LZ17
+            - value: CJ01-LZ18
+              label: CJ01-LZ18
+            - value: CJ01-LZ19
+              label: CJ01-LZ19
+            - value: CJ01-LZ20
+              label: CJ01-LZ20
+            - value: CJ02-LZ01
+              label: CJ02-LZ01
+            - value: CJ02-LZ02
+              label: CJ02-LZ02
+            - value: CJ02-LZ03
+              label: CJ02-LZ03
+            - value: CJ02-LZ04
+              label: CJ02-LZ04
+            - value: CJ02-LZ05
+              label: CJ02-LZ05
+            - value: CJ03-LZ01
+              label: CJ03-LZ01
+            - value: CJ03-LZ02
+              label: CJ03-LZ02
+            - value: CJ03-LZ03
+              label: CJ03-LZ03
+            - value: CJ03-LZ04
+              label: CJ03-LZ04
+            - value: CJ03-LZ05
+              label: CJ03-LZ05
+
+    - menuId: BackEmptyTray
+      label: 空料架返回
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      robotTaskDef: BackEmptyTray
+      workTypes: ["LZ"]
+      confirmMessage: 确定下发【空料架返回】吗?
+      params:
+        - name: from
+          input: select
+          label: 请求位置
+          options: *LZ
+
+    - menuId: ProcessRandom
+      label: 工序流转运输
+      menuItemBackground: "rgb(39, 194, 126)"
+      menuItemTextColor: white
+      robotTaskDef: ProcessRandom
+      workTypes: ["LZ"]
+      confirmMessage: 确定发起【工序流转运输】吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options: *LZ
+
+        - name: to
+          input: select
+          label: 终点
+          options: *LZ
+
+    - menuId: Random
+      label: 任意运输
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      robotTaskDef: Random
+      confirmMessage: 确定下发【任意运输】吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options: &all
+            - value: ""
+              label: ""
+            - value: KF01
+              label: KF01
+            - value: KF02
+              label: KF02
+            - value: KF03
+              label: KF03
+            - value: KF04
+              label: KF04
+            - value: KF05
+              label: KF05
+            - value: CJ01-DJ01
+              label: CJ01-DJ01
+            - value: CJ01-DJ02
+              label: CJ01-DJ02
+            - value: CJ01-DJ03
+              label: CJ01-DJ03
+            - value: CJ01-DJ04
+              label: CJ01-DJ04
+            - value: CJ01-DJ05
+              label: CJ01-DJ05
+            - value: CJ01-DJ06
+              label: CJ01-DJ06
+            - value: CJ01-DJ07
+              label: CJ01-DJ07
+            - value: CJ01-DJ08
+              label: CJ01-DJ08
+            - value: CJ01-DJ09
+              label: CJ01-DJ09
+            - value: CJ01-DJ10
+              label: CJ01-DJ10
+            - value: CJ02-DJ01
+              label: CJ02-DJ01
+            - value: CJ02-DJ02
+              label: CJ02-DJ02
+            - value: CJ02-DJ03
+              label: CJ02-DJ03
+            - value: CJ02-DJ04
+              label: CJ02-DJ04
+            - value: CJ02-DJ05
+              label: CJ02-DJ05
+            - value: CJ02-DJ06
+              label: CJ02-DJ06
+            - value: CJ02-DJ07
+              label: CJ02-DJ07
+            - value: CJ02-DJ08
+              label: CJ02-DJ08
+            - value: CJ02-DJ09
+              label: CJ02-DJ09
+            - value: CJ02-DJ10
+              label: CJ02-DJ10
+            - value: CJ03-DJ01
+              label: CJ03-DJ01
+            - value: CJ03-DJ02
+              label: CJ03-DJ02
+            - value: CJ03-DJ03
+              label: CJ03-DJ03
+            - value: CJ03-DJ04
+              label: CJ03-DJ04
+            - value: CJ03-DJ05
+              label: CJ03-DJ05
+            - value: CJ03-DJ06
+              label: CJ03-DJ06
+            - value: CJ03-DJ07
+              label: CJ03-DJ07
+            - value: CJ03-DJ08
+              label: CJ03-DJ08
+            - value: CJ03-DJ09
+              label: CJ03-DJ09
+            - value: CJ03-DJ10
+              label: CJ03-DJ10
+            - value: CJ01-LZ01
+              label: CJ01-LZ01
+            - value: CJ01-LZ02
+              label: CJ01-LZ02
+            - value: CJ01-LZ03
+              label: CJ01-LZ03
+            - value: CJ01-LZ04
+              label: CJ01-LZ04
+            - value: CJ01-LZ05
+              label: CJ01-LZ05
+            - value: CJ01-LZ06
+              label: CJ01-LZ06
+            - value: CJ01-LZ07
+              label: CJ01-LZ07
+            - value: CJ01-LZ08
+              label: CJ01-LZ08
+            - value: CJ01-LZ09
+              label: CJ01-LZ09
+            - value: CJ01-LZ10
+              label: CJ01-LZ10
+            - value: CJ01-LZ11
+              label: CJ01-LZ11
+            - value: CJ01-LZ12
+              label: CJ01-LZ12
+            - value: CJ01-LZ13
+              label: CJ01-LZ13
+            - value: CJ01-LZ14
+              label: CJ01-LZ14
+            - value: CJ01-LZ15
+              label: CJ01-LZ15
+            - value: CJ01-LZ16
+              label: CJ01-LZ16
+            - value: CJ01-LZ17
+              label: CJ01-LZ17
+            - value: CJ01-LZ18
+              label: CJ01-LZ18
+            - value: CJ01-LZ19
+              label: CJ01-LZ19
+            - value: CJ01-LZ20
+              label: CJ01-LZ20
+            - value: CJ02-LZ01
+              label: CJ02-LZ01
+            - value: CJ02-LZ02
+              label: CJ02-LZ02
+            - value: CJ02-LZ03
+              label: CJ02-LZ03
+            - value: CJ02-LZ04
+              label: CJ02-LZ04
+            - value: CJ02-LZ05
+              label: CJ02-LZ05
+            - value: CJ03-LZ01
+              label: CJ03-LZ01
+            - value: CJ03-LZ02
+              label: CJ03-LZ02
+            - value: CJ03-LZ03
+              label: CJ03-LZ03
+            - value: CJ03-LZ04
+              label: CJ03-LZ04
+            - value: CJ03-LZ05
+              label: CJ03-LZ05
+            - value: EP-01
+              label: EP-01
+            - value: EP-02
+              label: EP-02
+            - value: EP-03
+              label: EP-03
+            - value: EP-04
+              label: EP-04
+            - value: EP-05
+              label: EP-05
+            - value: EP-06
+              label: EP-06
+            - value: EP-07
+              label: EP-07
+            - value: EP-08
+              label: EP-08
+            - value: EP-09
+              label: EP-09
+            - value: EP-10
+              label: EP-10
+            - value: EP-11
+              label: EP-11
+            - value: EP-12
+              label: EP-12
+            - value: EP-13
+              label: EP-13
+            - value: EP-14
+              label: EP-14
+            - value: EP-15
+              label: EP-15
+
+        - name: to
+          input: select
+          label: 终点
+          options: *all
+    - menuId: updateSite
+      label: 更新库位
+      menuItemBackground: "#0066cc"
+      menuItemTextColor: white
+      robotTaskDef: updateSite
+      tip: 更新库位
+      workTypes: ["admin"]
+      confirmMessage: 确定更新库位吗?
+      params:
+        - name: siteId
+          input: select
+          label: 库位名称
+          options: *all
+        - name: type
+          input: select
+          label: 更新类型
+          options:
+            - value: ""
+              label: ""
+            - value: "clear"
+              label: "清空"
+            - value: "fill"
+              label: "补充"
+  workTypes:
+    - id: ""
+      label: ""
+    - id: admin
+      label: 管理员
+    - id: KF
+      label: 刀具库工位
+    - id: DJ
+      label: 车间刀具工位
+    - id: LZ
+      label: 工序流转工位
+#    - id: EP
+#      label: 空料架工位
+
+  workStations:
+    - id: ""
+      label: ""
+      type: ""
+    - id: admin1
+      label: 管理员1
+      type: admin
+    - id: admin2
+      label: 管理员2
+      type: admin
+    - id: KF01
+      label: KF01
+      type: KF
+    - id: KF02
+      label: KF02
+      type: KF
+    - id: KF03
+      label: KF03
+      type: KF
+    - id: KF04
+      label: KF04
+      type: KF
+    - id: CJ01-DJ01
+      label: CJ01-DJ01
+      type: DJ
+    - id: CJ01-DJ02
+      label: CJ01-DJ02
+      type: DJ
+    - id: CJ01-DJ03
+      label: CJ01-DJ03
+      type: DJ
+    - id: CJ01-DJ04
+      label: CJ01-DJ04
+      type: DJ
+    - id: CJ01-DJ05
+      label: CJ01-DJ05
+      type: DJ
+    - id: CJ01-DJ06
+      label: CJ01-DJ06
+      type: DJ
+    - id: CJ01-DJ07
+      label: CJ01-DJ07
+      type: DJ
+    - id: CJ01-DJ08
+      label: CJ01-DJ08
+      type: DJ
+    - id: CJ01-DJ09
+      label: CJ01-DJ09
+      type: DJ
+    - id: CJ01-DJ10
+      label: CJ01-DJ10
+      type: DJ
+    - id: CJ02-DJ01
+      label: CJ02-DJ01
+      type: DJ
+    - id: CJ02-DJ02
+      label: CJ02-DJ02
+      type: DJ
+    - id: CJ02-DJ03
+      label: CJ02-DJ03
+      type: DJ
+    - id: CJ02-DJ04
+      label: CJ02-DJ04
+      type: DJ
+    - id: CJ02-DJ05
+      label: CJ02-DJ05
+      type: DJ
+    - id: CJ02-DJ06
+      label: CJ02-DJ06
+      type: DJ
+    - id: CJ02-DJ07
+      label: CJ02-DJ07
+      type: DJ
+    - id: CJ02-DJ08
+      label: CJ02-DJ08
+      type: DJ
+    - id: CJ02-DJ09
+      label: CJ02-DJ09
+      type: DJ
+    - id: CJ02-DJ10
+      label: CJ02-DJ10
+      type: DJ
+    - id: CJ03-DJ01
+      label: CJ03-DJ01
+      type: DJ
+    - id: CJ03-DJ02
+      label: CJ03-DJ02
+      type: DJ
+    - id: CJ03-DJ03
+      label: CJ03-DJ03
+      type: DJ
+    - id: CJ03-DJ04
+      label: CJ03-DJ04
+      type: DJ
+    - id: CJ03-DJ05
+      label: CJ03-DJ05
+      type: DJ
+    - id: CJ03-DJ06
+      label: CJ03-DJ06
+      type: DJ
+    - id: CJ03-DJ07
+      label: CJ03-DJ07
+      type: DJ
+    - id: CJ03-DJ08
+      label: CJ03-DJ08
+      type: DJ
+    - id: CJ03-DJ09
+      label: CJ03-DJ09
+      type: DJ
+    - id: CJ03-DJ10
+      label: CJ03-DJ10
+      type: DJ
+
+    - id: CJ01-LZ01
+      label: CJ01-LZ01
+      type: LZ
+    - id: CJ01-LZ02
+      label: CJ01-LZ02
+      type: LZ
+    - id: CJ01-LZ03
+      label: CJ01-LZ03
+      type: LZ
+    - id: CJ01-LZ04
+      label: CJ01-LZ04
+      type: LZ
+    - id: CJ01-LZ05
+      label: CJ01-LZ05
+      type: LZ
+    - id: CJ01-LZ06
+      label: CJ01-LZ06
+      type: LZ
+    - id: CJ01-LZ07
+      label: CJ01-LZ07
+      type: LZ
+    - id: CJ01-LZ08
+      label: CJ01-LZ08
+      type: LZ
+    - id: CJ01-LZ09
+      label: CJ01-LZ09
+      type: LZ
+    - id: CJ01-LZ10
+      label: CJ01-LZ10
+      type: LZ
+    - id: CJ01-LZ11
+      label: CJ01-LZ11
+      type: LZ
+    - id: CJ01-LZ12
+      label: CJ01-LZ12
+      type: LZ
+    - id: CJ01-LZ13
+      label: CJ01-LZ13
+      type: LZ
+    - id: CJ01-LZ14
+      label: CJ01-LZ14
+      type: LZ
+    - id: CJ01-LZ15
+      label: CJ01-LZ15
+      type: LZ
+    - id: CJ01-LZ16
+      label: CJ01-LZ16
+      type: LZ
+    - id: CJ01-LZ17
+      label: CJ01-LZ17
+      type: LZ
+    - id: CJ01-LZ18
+      label: CJ01-LZ18
+      type: LZ
+    - id: CJ01-LZ19
+      label: CJ01-LZ19
+      type: LZ
+    - id: CJ01-LZ20
+      label: CJ01-LZ20
+      type: LZ
+    - id: CJ02-LZ01
+      label: CJ02-LZ01
+      type: LZ
+    - id: CJ02-LZ02
+      label: CJ02-LZ02
+      type: LZ
+    - id: CJ02-LZ03
+      label: CJ02-LZ03
+      type: LZ
+    - id: CJ02-LZ04
+      label: CJ02-LZ04
+      type: LZ
+    - id: CJ02-LZ05
+      label: CJ02-LZ05
+      type: LZ
+    - id: CJ03-LZ01
+      label: CJ03-LZ01
+      type: LZ
+    - id: CJ03-LZ02
+      label: CJ03-LZ02
+      type: LZ
+    - id: CJ03-LZ03
+      label: CJ03-LZ03
+      type: LZ
+    - id: CJ03-LZ04
+      label: CJ03-LZ04
+      type: LZ
+    - id: CJ03-LZ05
+      label: CJ03-LZ05
+      type: LZ
+#    - id: EP-01
+#      label: EP-01
+#      type: EP
+#    - id: EP-02
+#      label: EP-02
+#      type: EP
+#    - id: EP-03
+#      label: EP-03
+#      type: EP
+#    - id: EP-04
+#      label: EP-04
+#      type: EP
+#    - id: EP-05
+#      label: EP-05
+#      type: EP
+#    - id: EP-06
+#      label: EP-06
+#      type: EP
+#    - id: EP-07
+#      label: EP-07
+#      type: EP
+#    - id: EP-08
+#      label: EP-08
+#      type: EP
+#    - id: EP-09
+#      label: EP-09
+#      type: EP
+#    - id: EP-10
+#      label: EP-10
+#      type: EP
+#    - id: EP-11
+#      label: EP-11
+#      type: EP
+#    - id: EP-12
+#      label: EP-12
+#      type: EP
+#    - id: EP-13
+#      label: EP-13
+#      type: EP
+#    - id: EP-14
+#      label: EP-14
+#      type: EP
+#    - id: EP-15
+#      label: EP-15
+#      type: EP

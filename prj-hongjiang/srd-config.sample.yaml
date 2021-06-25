@@ -1,0 +1,350 @@
+# SRD 配置文件示例
+# 以下所有配置项，如无特殊说明，可以不配，后面是默认值
+
+
+# SRD 服务器端口
+httpPort: 7100
+
+# SRD 对外提供服务的 URL 的前缀，如 http://<host>:<httpPort>/api
+#apiPrefix: api
+
+# 用户会话过期时间，单位分钟
+#sessionExpireMinutes: 100000
+
+# 数据库连接，必填，无默认值
+mongodbUrl: mongodb://localhost:27017/srd
+
+# 数据库名字，必填，无默认值
+mongoMainDatabase: srd
+
+# 上传文件存储目录，默认为当前工作目录+/upload
+#uploadDir:
+
+# 界面文件所在目录，默认为当前工作目录下的 ui 目录
+#uiPath:
+
+# 是否查询车的详情信息
+#syncVehiclesDetails: true
+
+# 查询车的详情信息的周期（毫秒）
+#syncVehiclesDetailsDelay: 1000L
+
+
+# 统计周期中，一天的实际段统计，分几个时间段，起止时间
+# 例如统计上下午两个班次的情况，时间分别为上午8点到11点半，下午2点到6点
+#statDayPartDefs:
+#  - label: 上午班次
+#    start: 08:00:00 # HH:mm:ss 格式
+#    end: 11:30:00
+#  - label: 下午班次
+#    start: 14:00:00
+#    end: 18:00:00
+
+
+# 任务优先级定义，必须从低到高排列
+#taskPriorities:
+#  - name: 低
+#    value: 10
+#  - name: 正常
+#    value: 100
+#  - name: 加急
+#    value: 200
+#  - name: 特急
+#    value: 300
+#
+#
+# 手持端，见独立手册
+#operator:
+#
+# 是否检查死锁
+#useDeadlock: false
+#
+# 重启是否恢复之前未执行完的运单、序列等
+#startFromDB: true
+
+
+# RoboRouteConfig 调度系统配置项
+# Kernel 常规配置
+#kernelApp:
+#  # 编辑模式切换是否自动保存场景文件
+#  saveModelOnTerminateModelling: false
+#  # 操作模式切换是否自动保存场景文件
+#  saveModelOnTerminateOperating: false
+#  # 路径锁定属性变化时是否自动更新场景拓扑
+#  updateRoutingTopologyOnPathLockChange: true
+
+# 设备服务器配置项
+#synchronizer:
+#  # 门服务器地址；不配置此项，将无法正常使用自动门的功能
+#  doorRoute: http://localhost:7100/api/
+#  # 电梯服务器地址；不配置此项，将无法正常使用电梯的功能
+#  liftRoute: http://localhost:7100/api/
+#  # 交通管制区服务器地址；不配置此项，将无法正常使用交通管制区的功能
+#  mutexZoneRoute: http://localhost:7100/api/
+#  # 备用设备服务器地址，适用于充电机，或者由客户根据我们的设备访问协议实现的设备服务器
+#  locationRoute: http://localhost:7100/api/
+
+## 自动门的配置，请在 synchronizer 中配置 mutexZoneRoute，否则。
+#doors:
+#  # 第一个自动门的名称
+#  D1:
+#    # 电控柜的IP
+#    host: 127.0.0.1
+#    # 端口号 默认为 502
+#    port: 502
+#    # 第一个控制柜的 slaveId, 默认值为0
+#    unitId: 0
+#    # 控制开门的地址 默认为 1280
+#    openAddr: 1280
+#    # 控制关门的地址 默认为 1281
+#    closeAddr: 1281
+#    # true: 这是个有开门到位信号的自动门， false: 这个门没有开门到位反馈
+#    feedback: false
+#    # 读取开门到位信号的地址，默认为 1024；只有当 feedback 为 true 时有效。
+#    openStatusAddr: 1024
+#    # 一定次数后，设置自动门状态为 OPEN，当 feedback 为 false 时有效
+#    delayForOpened: 5
+#    # 一段时间后取消写入开门信号，单位为 ms；0: 不清空
+#    delayForCancelOpen: 500
+#    # 一段时间后取消写入关门信号，单位为 ms；0: 不清空
+#    delayForCancelClose: 500
+#  # 第二个自动门的名称
+#  D2:
+#    host: 127.0.0.1
+#    port: 502
+#    unitId: 0
+#    openAddr: 1282
+#    closeAddr: 1283
+#    feedback: false
+#    openStatusAddr: 1025
+#    delayForOpened: 5
+#    delayForCancelOpen: 500
+#    delayForCancelClose: 500
+
+## 电梯的配置（列表）
+#lifts:
+#  # 第一个电梯的名称
+#  - name: wl1
+#    # 第一个电梯的 ip
+#    host: 127.0.0.1
+#    # 第一个电梯的端口号
+#    port: 61000
+#  # 第二个电梯
+#  - name: wl2
+#    host: 127.0.0.1
+#    port: 61000
+
+## 交通管制区域的配置
+#zones:
+#  # 第一个管制区域的名称，不能重名
+#  mz1:
+#    # 管制区域的控制柜
+#    boxes:
+#      # 第一个控制柜的名称，不能重名
+#      - boxId: box1
+#        # 第一个控制柜中 PLC 的 ip，根据现场情况配置
+#        host: 127.0.0.1
+#        # 第一个控制柜中 PLC 的端口号，默认值为502，必要时根据现场情况配置。
+#        port: 502
+#        # 第一个控制柜中 PLC 的 slaveId, 默认值为0，必要时根据现场情况配置。
+#        unitId: 0
+#        # 第一个控制柜 控制红灯亮/灭的地址，红灯亮-有机器人在此区域内；如果没有红灯，可以不配置此项。
+#        lightRedAddr:
+#          # PLC 地址编号，不是 DO 编号！！！
+#          addrNo: 1280
+#          # 写入数据的功能码。"05":对应的地址类型为【可读写线圈量】；"06":对应的地址类型为【可读写寄存器】
+#          funcNo: "05"
+#        # 第一个控制柜 控制绿灯亮/灭的地址，绿灯亮-此区域空闲；如果没有绿灯，可以不配置此项。
+#        lightGreenAddr:
+#          addrNo: 1281
+#          funcNo: "05"
+#        # 第一个控制柜 控制黄灯亮/灭的地址，黄灯亮-有人在此区域内；如果没有黄灯，可以不配置此项。
+#        lightYellowAddr:
+#          addrNo: 1282
+#          funcNo: "05"
+#        # 第一个控制柜 复位开关地址；如果没有复位开关，可以不配置此项。
+#        switchAddr:
+#          # PLC 地址编号，不是 DO 编号！！！
+#          addrNo: 1024
+#          # 读取数据的功能码。"01":读取【可读写线圈量】，"02":读取【只读线圈量】，"03":读取【可读写寄存器】，"04":读取【只读寄存器】，
+#          funcNo: "02"
+#      # 第2个控制柜的名称
+#      - boxId: box2
+#        host: 127.0.0.1
+#        port: 502
+#        lightRedAddr:
+#          addrNo: 1283
+#          funcNo: "05"
+#        lightGreenAddr:
+#          addrNo: 1284
+#          funcNo: "05"
+#        lightYellowAddr:
+#          addrNo: 1285
+#          funcNo: "05"
+#        switchAddr:
+#          addrNo: 1025
+#          funcNo: "02"
+#    # 参与交通管制的调度系统信息【系统名称：系统IP】；唯一的【系统名称】对应维艺的【系统IP】，未被记录相关信息的设备/系统，无法通过 API 参与交通管制
+#    involvedSystems:
+#      # 第一个参与交通管制的系统信息 self: 127.0.0.1 为服务器自身信息。 此项必填！！！
+#      self: 127.0.0.1
+#      # 第二个参与交通管制的系统信息
+#      sys1: 192.168.4.162
+#      # 第三个参与交通管制的系统信息
+#      sys3: 127.0.0.3
+#  # 第二个管制区域的名称，不能重名
+#  mz2:
+#    # 管制区域的控制柜
+#    boxes:
+#      # 第1个控制柜的名称，不能重名
+#      - boxId: box1
+#        host: 127.0.0.2
+#        port: 502
+#        lightRedAddr:
+#          addrNo: 1283
+#          funcNo: "05"
+#        lightGreenAddr:
+#          addrNo: 1284
+#          funcNo: "05"
+#        lightYellowAddr:
+#          addrNo: 1285
+#          funcNo: "05"
+#        switchAddr:
+#          addrNo: 1025
+#          funcNo: "02"
+#    involvedSystems:
+#      self: 127.0.0.1
+
+## 充电机的配置（列表）
+#chargers:
+#  # 充电机名称，需要配置在线路属性中
+#  - name: LOC-CP1
+#    # 充电机的 IP，视实际情况而定
+#    host: 127.0.0.1
+#    # 充电机的端口号，视实际情况而定
+#    port: 4001
+#    # 充电机所在的位置
+#    location: LM1
+#    # 充电机工作的最大电压，视实际情况而定，可设置为RoboShop上显示的【支持最大充电电压】的数值的10倍（此数值由充电机的通信协议规定）。
+#    maxVoltage: 292
+#    # 充电机工作的最大电流，视实际情况而定，可设置为RoboShop上显示的【支持最大充电电流】的数值的10倍（此数值由充电机的通信协议规定）。
+#    maxCurrent: 900
+
+## 最短路径配置
+#shortestPath:
+#  # 最短路径算法
+#  algorithm: DIJKSTRA
+#  # 最短路径算法条件
+#  edgeEvaluators: [DISTANCE, EXPLICIT_PROPERTIES]
+
+## 自动前往当前节点
+#routeToCurrentPosition: false
+## 从 MySQL 数据库和 redis 自动恢复(已弃用)
+#recoverEnabled: false
+## 自动恢复阈值(已弃用)
+#recoveryEvaluatorThreshold: 0.7
+
+## 调度配置
+#dispatcher:
+#  # 是否自动舍弃 UNROUTABLE 状态的运单
+#  dismissUnroutableTransportOrders: false
+#  # 是否分配冗余运单
+#  assignRedundantOrders: false
+#  # 重新规划路径的触发条件 拓扑图改变(默认)
+#  rerouteTrigger: TOPOLOGY_CHANGE
+#  # 无法重新规划路径时的策略 立即暂停 reroute (默认)
+#  reroutingImpossibleStrategy: PAUSE_IMMEDIATELY
+#  # 是否调度子工程
+#  dispatchForSubprojects: true
+#  # 空闲机器人是否自动停靠
+#  parkIdleVehicles: true
+#  # 自动停靠时是否考虑停靠点优先级
+#  considerParkingPositionPriorities: false
+#  # 是否将机器人重新自动停靠到优先级更高的停靠点
+#  reparkVehiclesToHigherPriorityPositions: false
+#  # 空闲机器人是否自动充电
+#  rechargeIdleVehicles: true
+#  # 机器人达到满电量阈值之前是否可以离开充电桩
+#  keepRechargingUntilFullyCharged: false
+#  # 机器人达到满电量阈值之后是否自动回停靠点
+#  parkVehicleWhenFullyCharged: true
+#  # 空闲机器人重新参与调度任务的间隔时间
+#  idleVehicleRedispatchingInterval: 5000
+#  # 运单优先级标准
+#  orderPriorities: ["BY_DEADLINE"]
+#  # 运单匹配机器人时运单的的优先级参考标准
+#  orderCandidatePriorities: ["BY_INITIAL_ROUTING_COSTS", "BY_DEADLINE"]
+#  # 运单派遣挑选机器人时机器人的优先级标准
+#  vehiclePriorities: ["BY_ENERGY_LEVEL", "IDLE_FIRST"]
+#  # 执行运单时挑选机器人的优先级参考标准
+#  vehicleCandidatePriorities: ["BY_INITIAL_ROUTING_COSTS", "BY_ENERGY_LEVEL"]
+#  # 运单风险截止日期
+#  deadlineAtRiskPeriod: 60000
+#  # 延迟生成充电和停靠运单，时间单位：ms
+#  parkAndRechargeDelayMs: 1000
+
+## 是否用 websocket 向外汇报运单状态
+# reportTransportOrderChanged: false
+
+## 是否为针对 rbk 3.3.x 以后的协议
+# newCommAdapter: false
+## 调度适配器种类，默认 Redis，可选：Redis、Http、Tcp、AioTcp(当 newCommAdapter 为 true 时)
+#commAdapterIO: Http
+## 命令队列长度
+#commandQueueCapacity: 2
+## 默认充电动作
+#rechargeOperation: "CHARGE"
+## 发送命令队列的长度
+#sentQueueCapacity: 2
+## 选择 Tcp 适配器时连接服务器的端口
+#vehicleAdapterTcpServerPort: 15400
+## srd 的别称，适用于 rbk 3.3.x，
+#srdNickName: srd
+## true:判断机器人是否被本系统占用时，同时判断从此机器人获取的 nick_name 和 此机器人占有者的 ip；
+## false:判断机器人是否被本系统占用时，只判断从此机器人获取的 nick_name，当机器人和 srd 不再同一个局域网时采用 false 。
+#checkWithOwnerIp: true
+
+
+## 当机器人在线路外恢复故障时，仍强制重发命令。
+# forceResend: true
+
+## 是否抢占当前无人占用的空闲机器人
+# autoOwnRobot：true
+
+## vehicleCommAdapter 中的两个超时参数，在 newCommAdapter: true 时无效
+# rbkStatusTimeout: 15
+# rbkAckTimeout: 10
+
+## 为 true 时，向 rbk 发送整条命令队列
+# sendCommandArrayToRbk: true
+
+## 是否使用KM算法分配任务
+# useKMAssign: true
+
+## TCP 仿真机器人是否 mock VehicleDetails。
+# mockVehicleDetails: false
+
+## 当为 true 时，机器人被阻挡后，调度会重新搜路。适用于 newCommAdapter: true 时生效
+# rerouteWhenBlock: false
+
+## redis 配置项
+#redis:
+#  # redis pool中允许的最大 jedis 实例个数
+#  maxTotal: 1000
+#  # redis pool中允许的最大空闲 jedis 实例个数
+#  maxIdle: 1000
+#  # 在使用 jedis 实例时是否均可用
+#  testOnBorrow: true
+#  # 当 redis pool 中无实例时是否阻塞
+#  blockWhenExhausted: true
+#  # 使用实例时的最大等待时间
+#  maxWaitMillis: 5000
+#  # redis 默认 IP
+#  ip: "localhost"
+#  # redis 默认端口
+#  port: 6379
+
+## 机器人仿真类型，可选：None、Http、Tcp
+#vehicleSimulation: None
+## 仿真的时间倍率
+# simulationTimeFactor: 1.0

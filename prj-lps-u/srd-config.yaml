@@ -1,0 +1,48 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-lps-u
+mongoMainDatabase: srd-lps-u
+uiPath: E:/project/lps/LPS/final/deploy/prj1-u/ui2-stats
+commAdapterIO: Http
+vehicleSimulation: Http
+urModbusHost: 127.0.0.1
+urModbusPort: 503
+
+bufferCheckInterval: 10000
+
+tcpPort: 7868
+
+modbusLines:
+  line11:
+    upHost: 127.0.0.1
+    upPort: 505
+    downHost: 127.0.0.1
+    downPort: 505
+    alertHost: 127.0.0.1
+    alertPort: 505
+  line12:
+    upHost: 127.0.0.1
+    upPort: 506
+    downHost: 127.0.0.1
+    downPort: 506
+    alertHost: 127.0.0.1
+    alertPort: 506
+
+bufferAddress:
+  urUpOperationAddr: 0
+  urDownOperationAddr: 1
+  matNumAddr: 2
+  bufferUpOperationAddr: 3
+  bufferDownOperationAddr: 4
+  errorCodeAddr: 5
+  bufferOneAddr: 6
+  checkAddr: 7
+  checkOKAddr: 8
+  lightAddr: 9
+
+productTypes:
+  - value: pt1
+    label: 产品类型1
+  - value: pt2
+    label: 产品类型2
+  - value: pt3
+    label: 产品类型3

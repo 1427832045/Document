@@ -1,0 +1,385 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-festo
+mongoMainDatabase: srd-festo
+uiPath: D:\Projects\GitProjects\pure-seer-ui\custom\festo-2021\dist
+#newCommAdapter: true
+#commAdapterIO: AioTcp
+commAdapterIO: Tcp
+vehicleSimulation: Tcp
+
+srdNickName: srdk_festo
+checkWithOwnerIp: false
+
+#commandQueueCapactity: 3
+#sentQueueCapacity: 3
+
+syncVehiclesDetails: true
+
+# # 已下发的任务上限，默认值是 4
+limitOfSentTasks4: 2
+
+# # 任务列表界面上的扩展字段
+robotTaskListExtraColumns:
+  - label: 任务类型
+    fieldPath: persistedVariables.type
+  - label: 空托盘任务的终点
+    fieldPath: persistedVariables.toSiteIdEmpty
+  - label: 满托盘任务的起点
+    fieldPath: persistedVariables.fromSiteIdFilled
+
+synchronizer:
+  mutexZoneRoute: http://localhost:7100/api/
+
+# 交通管制区域的标识
+zones:
+  # 交通管制区域的名称
+  mz1:
+    # 当前交通管制区域的电控柜上的按钮类型； true:非自锁按钮; false:自锁按钮（默认）。
+    resetBtn: true
+    # 一个交通管制区域可能有若干个电控柜，每个电控柜上有一个信号灯
+    boxes:
+      # 配置第一个电控柜
+      # 电控柜的名称
+      - boxId: box11
+        host: 127.0.0.1
+        port: 502
+        standAlone: true
+        lightRedAddr:
+          addrNo: 1280
+          funcNo: "05"
+        lightGreenAddr:
+          addrNo: 1281
+          funcNo: "05"
+        lightYellowAddr:
+          addrNo: 1282
+          funcNo: "05"
+        switchAddr:           # 复位开关对应的地址
+          addrNo: 1024
+          funcNo: "02"
+    involvedSystems:          # 参与交通管制的调度系统 sysId:ip
+      self: 127.0.0.1
+      srd_node: 192.168.4.64
+  mz2:
+    resetBtn: true
+    boxes:
+      - boxId: box21
+        standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      srd_node: 192.168.4.64
+
+
+
+## 调度配置
+dispatcher:
+  #  # 空闲机器人是否自动充电
+  rechargeIdleVehicles: false
+
+operator:
+  signIn: false
+  customConfig:
+    paths:
+      fill: complex-task
+      empty: complex-task
+    buttons:
+      # # ============= VSO1 ==============
+      - { siteId: VSO1-1-101, type: both }
+      - { siteId: VSO1-1-201, type: both }
+      - { siteId: VSO1-1-301, type: empty }
+      - { siteId: VSO1-1-302, type: empty }
+      - { siteId: VSO1-1-303, type: empty }
+
+      - { siteId: VSO1-2-101, type: both }
+      - { siteId: VSO1-2-102, type: both }
+      - { siteId: VSO1-2-201, type: both }
+      - { siteId: VSO1-2-202, type: both }
+      - { siteId: VSO1-2-203, type: both }
+      - { siteId: VSO1-2-301, type: empty }
+      - { siteId: VSO1-2-302, type: empty }
+
+      - { siteId: VSO1-3-101, type: both }
+      - { siteId: VSO1-3-201, type: both }
+
+      - { siteId: VSO1-4-101, type: both }
+      - { siteId: VSO1-4-102, type: both }
+      - { siteId: VSO1-4-201, type: both }
+      - { siteId: VSO1-4-202, type: both }
+
+      - { siteId: VSO1-5-101, type: both }
+      - { siteId: VSO1-5-201, type: both }
+      - { siteId: VSO1-5-202, type: both }
+
+      - { siteId: VSO1-6-101, type: both }
+      - { siteId: VSO1-6-201, type: both }
+      - { siteId: VSO1-6-301, type: empty }
+      - { siteId: VSO1-6-302, type: empty }
+
+      - { siteId: VSO1-7-101, type: both }
+      - { siteId: VSO1-7-102, type: both }
+      - { siteId: VSO1-7-201, type: both }
+      - { siteId: VSO1-7-202, type: both }
+      - { siteId: VSO1-7-301, type: empty }
+      - { siteId: VSO1-7-302, type: empty }
+
+      - { siteId: VSO1-8-101, type: both }
+      - { siteId: VSO1-8-201, type: both }
+      - { siteId: VSO1-8-301, type: empty }
+
+      - { siteId: VSO1-9-101, type: both }
+      - { siteId: VSO1-9-102, type: both }
+      - { siteId: VSO1-9-103, type: both }
+      - { siteId: VSO1-9-201, type: both }
+      - { siteId: VSO1-9-202, type: both }
+      - { siteId: VSO1-9-203, type: both }
+      - { siteId: VSO1-9-204, type: both }
+      - { siteId: VSO1-9-205, type: both }
+
+      - { siteId: VSO1-M-301, type: both }
+      - { siteId: VSO1-M-302, type: both }
+      - { siteId: VSO1-M-303, type: both }
+
+      # # ============= VSO2 ==============
+      - { siteId: VSO2-1-101, type: both }
+      - { siteId: VSO2-1-102, type: both }
+      - { siteId: VSO2-1-103, type: both }
+      - { siteId: VSO2-1-201, type: both }
+      - { siteId: VSO2-1-202, type: both }
+      - { siteId: VSO2-1-203, type: both }
+
+      - { siteId: VSO2-2-101, type: both }
+      - { siteId: VSO2-2-102, type: both }
+      - { siteId: VSO2-2-201, type: both }
+      - { siteId: VSO2-2-202, type: both }
+      - { siteId: VSO2-2-301, type: empty }
+
+      - { siteId: VSO2-3-101, type: both }
+      - { siteId: VSO2-3-201, type: both }
+      - { siteId: VSO2-3-202, type: both }
+
+      - { siteId: VSO2-4-101, type: both }
+      - { siteId: VSO2-4-102, type: both }
+      - { siteId: VSO2-4-103, type: both }
+      - { siteId: VSO2-4-104, type: both }
+      - { siteId: VSO2-4-105, type: both }
+      - { siteId: VSO2-4-201, type: both }
+      - { siteId: VSO2-4-202, type: both }
+      - { siteId: VSO2-4-203, type: both }
+      - { siteId: VSO2-4-204, type: both }
+      - { siteId: VSO2-4-205, type: both }
+
+      - { siteId: VSO2-5-101, type: both }
+      - { siteId: VSO2-5-201, type: both }
+
+      - { siteId: VSO2-6-101, type: both }
+      - { siteId: VSO2-6-201, type: both }
+      - { siteId: VSO2-6-202, type: both }
+      - { siteId: VSO2-6-203, type: both }
+
+      - { siteId: VSO2-7-101, type: both }
+      - { siteId: VSO2-7-102, type: both }
+      - { siteId: VSO2-7-103, type: both }
+      - { siteId: VSO2-7-201, type: both }
+      - { siteId: VSO2-7-202, type: both }
+      - { siteId: VSO2-7-203, type: both }
+      - { siteId: VSO2-7-204, type: both }
+      - { siteId: VSO2-7-205, type: both }
+
+      - { siteId: VSO2-M-301, type: both }
+      - { siteId: VSO2-M-302, type: both }
+
+      # # ============= VSO5 ==============
+      - { siteId: VSO5-1-101, type: both }
+      - { siteId: VSO5-1-201, type: both }
+      - { siteId: VSO5-1-202, type: both }
+      - { siteId: VSO5-1-203, type: both }
+      - { siteId: VSO5-1-204, type: both }
+      - { siteId: VSO5-1-205, type: both }
+      - { siteId: VSO5-1-301, type: empty }
+
+      - { siteId: VSO5-2-101, type: both }
+      - { siteId: VSO5-2-201, type: both }
+      - { siteId: VSO5-2-202, type: both }
+      - { siteId: VSO5-2-203, type: both }
+      - { siteId: VSO5-2-204, type: both }
+
+      - { siteId: VSO5-3-101, type: both }
+      - { siteId: VSO5-3-201, type: both }
+      - { siteId: VSO5-3-202, type: both }
+      - { siteId: VSO5-3-203, type: both }
+
+      - { siteId: VSO5-4-101, type: both }
+      - { siteId: VSO5-4-201, type: both }
+      - { siteId: VSO5-4-202, type: both }
+      - { siteId: VSO5-4-203, type: both }
+      - { siteId: VSO5-4-204, type: both }
+      - { siteId: VSO5-4-205, type: both }
+      - { siteId: VSO5-4-206, type: both }
+      - { siteId: VSO5-4-207, type: both }
+      - { siteId: VSO5-4-301, type: empty }
+
+      - { siteId: VSO5-5-101, type: both }
+      - { siteId: VSO5-5-201, type: both }
+
+      - { siteId: VSO5-6-101, type: both }
+      - { siteId: VSO5-6-201, type: both }
+      - { siteId: VSO5-6-202, type: both }
+      - { siteId: VSO5-6-203, type: both }
+
+      - { siteId: VSO5-M-301, type: both }
+      - { siteId: VSO5-M-302, type: both }
+      - { siteId: VSO5-M-303, type: both }
+
+  workTypes:
+    - id: VSO1
+      label: VSO1
+    - id: VSO2
+      label: VSO2
+    - id: VSO5
+      label: VSO5
+
+    - id: ADMIN
+      label: 管理员（未经领导授权，勿选）
+  workStations:
+    - id: VSO1-1
+      label: VSO1-1组
+      type: VSO1
+    - id: VSO1-2
+      label: VSO1-2组
+      type: VSO1
+    - id: VSO1-3
+      label: VSO1-3组
+      type: VSO1
+    - id: VSO1-4
+      label: VSO1-4组
+      type: VSO1
+    - id: VSO1-5
+      label: VSO1-5组
+      type: VSO1
+    - id: VSO1-6
+      label: VSO1-6组
+      type: VSO1
+    - id: VSO1-7
+      label: VSO1-7组
+      type: VSO1
+    - id: VSO1-8
+      label: VSO1-8组
+      type: VSO1
+    - id: VSO1-9
+      label: VSO1-9组
+      type: VSO1
+    - id: VSO1-M
+      label: VSO1-M组
+      type: VSO1
+
+
+    - id: VSO2-1
+      label: VSO2-1组
+      type: VSO2
+    - id: VSO2-2
+      label: VSO2-2组
+      type: VSO2
+    - id: VSO2-3
+      label: VSO2-3组
+      type: VSO2
+    - id: VSO2-4
+      label: VSO2-4组
+      type: VSO2
+    - id: VSO2-5
+      label: VSO2-5组
+      type: VSO2
+    - id: VSO2-6
+      label: VSO2-6组
+      type: VSO2
+    - id: VSO2-7
+      label: VSO2-7组
+      type: VSO2
+    - id: VSO2-M
+      label: VSO2-M组
+      type: VSO2
+
+    - id: VSO5-1
+      label: VSO5-1组
+      type: VSO5
+    - id: VSO5-2
+      label: VSO5-2组
+      type: VSO5
+    - id: VSO5-3
+      label: VSO5-3组
+      type: VSO5
+    - id: VSO5-4
+      label: VSO5-4组
+      type: VSO5
+    - id: VSO5-5
+      label: VSO5-5组
+      type: VSO5
+    - id: VSO5-6
+      label: VSO5-6组
+      type: VSO5
+    - id: VSO5-M
+      label: VSO5-M组
+      type: VSO5
+
+    - id: ADMIN
+      label: 管理员（未经领导授权，勿选）
+      type: ADMIN
+
+  orders:
+    - menuId: FreeTransport
+      label: 万能运输任务
+      menuItemBackground: "#319de8"
+      menuItemTextColor: black
+      robotTaskDef: free-transport
+      disabled: false
+      workTypes: []
+      tip: 将物料从指定发货库位送至指定收货库位。
+      confirmMessage: 确定要执行【万能运输】任务吗？
+      params:
+        - name: fromSiteId
+          input: text
+          label: 请选择/输入发货库位（起点）
+        - name: toSiteId
+          input: text
+          label: 请选择/输入收货库位（终点)
+
+    - menuId: ChangeSiteFilled
+      label: 更新库位
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: change-site-filled
+      disabled: false
+      workTypes: []
+      tip: 将目标库位设置为期望的状态。
+      confirmMessage: 确定要【更新库位】吗？
+      params:
+        - name: siteId
+          input: text
+          label: 请选择/输入目标库位
+        - name: changeToFilled
+          input: select
+          label: 请选择库位的期望状态
+          options:
+            - { value: false, label: 空库位}
+            - { value: true, label: 满库位}
+
+    - menuId: FillSitesByType
+      label: 空托盘补充
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: fill-sites-by-type
+      disabled: false
+      workTypes: []
+      tip: 将指定区域的所有库位状态变更为满（被占用状态）。
+      confirmMessage: 确定要执行【空托盘补充】吗？
+      params:
+        - name: fillByType
+          input: select
+          label: 请选择目标库区
+          options:
+            - { value: E1, label: 送回空托盘1库区-E1 }
+            - { value: E2, label: 送回空托盘2库区-E2 }
+
+  taskNotice:
+    scope: by-work-type
+    noticeType: alert
+    when:
+      - created

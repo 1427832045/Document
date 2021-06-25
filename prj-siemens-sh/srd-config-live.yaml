@@ -1,0 +1,730 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-siemens-sh
+mongoMainDatabase: srd-siemens-sh
+commAdapterIO: Redis
+
+commandQueueCapacity: 3
+sentQueueCapacity: 3
+
+# 设备服务器配置项
+synchronizer:
+  # 门服务器地址
+  doorRoute: http://localhost:7100/api/
+  #　交通管制区
+  mutexZoneRoute: http://localhost:7100/api/
+  # 充电机的url
+  locationRoute: http://localhost:7100/api/
+
+doors:
+  D1:
+    host: 192.168.192.66           # 电控柜的IP
+    port: 502                 # 端口号 默认为 502
+#    unitId: 1
+    openAddr: 1283            # 控制开门的地址 默认为 1280
+    closeAddr: 1284           # 控制关门的地址 默认为 1281
+    feedback: false            # true: 这是个有开门到位信号的自动门， false: 这个门没有开门到位反馈
+    openStatusAddr: 1025       # 读取开门到位信号的地址， 默认为 1024
+    delayForOpened: 20         # 一定次数后，设置自动门状态为OPEN，当 feedback = false 时有效
+    delayForCancelOpen: 0   # 一段时间后取消写入开门信号，单位为 ms    0: 不清空
+    delayForCancelClose: 500  # 一段时间后取消写入关门信号，单位为 ms    0: 不清空
+  D2:
+    host: 192.168.192.66           # 电控柜的IP
+    port: 502                 # 端口号 默认为 502
+    #    unitId: 1
+    openAddr: 1286            # 控制开门的地址 默认为 1280
+    closeAddr: 1287           # 控制关门的地址 默认为 1281
+    feedback: false            # true: 这是个有开门到位信号的自动门， false: 这个门没有开门到位反馈
+    openStatusAddr: 1026       # 读取开门到位信号的地址， 默认为 1024
+    delayForOpened: 5         # 一定次数后，设置自动门状态为OPEN，当 feedback = false 时有效
+    delayForCancelOpen: 0   # 一段时间后取消写入开门信号，单位为 ms    0: 不清空
+    delayForCancelClose: 500  # 一段时间后取消写入关门信号，单位为 ms    0: 不清空
+
+# # 信号灯当成自动门配置
+  T1:
+    host: 192.168.192.66           # 电控柜的IP
+    port: 502                 # 端口号 默认为 502
+    #    unitId: 1
+    openAddr: 1289            # 控制开门的地址 默认为 1280
+    closeAddr: 1289           # 控制关门的地址 默认为 1281
+    feedback: false            # true: 这是个有开门到位信号的自动门， false: 这个门没有开门到位反馈
+  #  openStatusAddr: 1024       # 读取开门到位信号的地址， 默认为 1024
+  #  delayForOpened: 20         # 一定次数后，设置自动门状态为OPEN，当 feedback = false 时有效
+    delayForCancelOpen: 0   # 一段时间后取消写入开门信号，单位为 ms    0: 不清空
+    delayForCancelClose: 0  # 一段时间后取消写入关门信号，单位为 ms    0: 不清空
+
+  # # 信号灯当成自动门配置
+  T2:
+    host: 192.168.192.66           # 电控柜的IP
+    port: 502                 # 端口号 默认为 502
+    #    unitId: 1
+    openAddr: 1290            # 控制开门的地址 默认为 1280
+    closeAddr: 1290           # 控制关门的地址 默认为 1281
+    feedback: false            # true: 这是个有开门到位信号的自动门， false: 这个门没有开门到位反馈
+    #    openStatusAddr: 1024       # 读取开门到位信号的地址， 默认为 1024
+    #    delayForOpened: 20         # 一定次数后，设置自动门状态为OPEN，当 feedback = false 时有效
+    delayForCancelOpen: 0   # 一段时间后取消写入开门信号，单位为 ms    0: 不清空
+    delayForCancelClose: 0  # 一段时间后取消写入关门信号，单位为 ms    0: 不清空
+
+  # # 信号灯当成自动门配置
+  T3:
+    host: 192.168.192.66           # 电控柜的IP
+    port: 502                 # 端口号 默认为 502
+    #    unitId: 1
+    openAddr: 1291            # 控制开门的地址 默认为 1280
+    closeAddr: 1291           # 控制关门的地址 默认为 1281
+    feedback: false            # true: 这是个有开门到位信号的自动门， false: 这个门没有开门到位反馈
+    #    openStatusAddr: 1024       # 读取开门到位信号的地址， 默认为 1024
+    #    delayForOpened: 20         # 一定次数后，设置自动门状态为OPEN，当 feedback = false 时有效
+    delayForCancelOpen: 0   # 一段时间后取消写入开门信号，单位为 ms    0: 不清空
+    delayForCancelClose: 0  # 一段时间后取消写入关门信号，单位为 ms    0: 不清空
+
+  # # 信号灯当成自动门配置
+  T4:
+    host: 192.168.192.66           # 电控柜的IP
+    port: 502                 # 端口号 默认为 502
+    #    unitId: 1
+    openAddr: 1292            # 控制开门的地址 默认为 1280
+    closeAddr: 1292           # 控制关门的地址 默认为 1281
+    feedback: false            # true: 这是个有开门到位信号的自动门， false: 这个门没有开门到位反馈
+    #    openStatusAddr: 1024       # 读取开门到位信号的地址， 默认为 1024
+    #    delayForOpened: 20         # 一定次数后，设置自动门状态为OPEN，当 feedback = false 时有效
+    delayForCancelOpen: 0   # 一段时间后取消写入开门信号，单位为 ms    0: 不清空
+    delayForCancelClose: 0  # 一段时间后取消写入关门信号，单位为 ms    0: 不清空
+
+
+
+# # 交通管制区域的配置
+zones:
+  mz1: 
+    resetBtn: false
+    boxes:
+      # 第一个电控柜
+        # 电控柜的名称，唯一值
+      - boxId: box1
+        # 电控柜的IP地址
+        host: 10.192.22.164
+        # 端口号
+        port: 502
+        # unitId: 1
+        # 状态灯(红-Red, 黄-Yellow, 绿-Green)的地址参数，没有的话可以不用配置（注释/删除即可）。
+        lightRedAddr:
+          # 地址编号
+          addrNo: 0
+          # 读取此地址状态/数据时，需要用到的功能码
+          funcNo: "05"
+        lightGreenAddr:
+          addrNo: 2
+          funcNo: "05"
+        lightYellowAddr:
+          addrNo: 1
+          funcNo: "05"
+        # 电控柜上按钮对应的地址，没有的话可以不用配置（注释/删除即可）。
+        switchAddr:
+          addrNo: 4
+          funcNo: "02"
+    # 参与交通管制的调度系统信息【系统名称: 系统IP】;唯一的【系统名称】对应唯一的【系统IP】，未被记录信息的设备/系统，无法参与交通管制。
+    involvedSystems:
+      # 第一个参与交通管制的系统信息 self: 127.0.0.1 为服务器自身信息。此项必填！！！
+      self: 127.0.0.1
+  # # 第二个交通管制区域
+  mz2: 
+    resetBtn: false
+    boxes:
+      # 第一个电控柜
+      - boxId: box2
+        host: 10.192.22.165
+        port: 502
+        # unitId: 1
+        lightRedAddr:
+          addrNo: 0
+          funcNo: "05"
+        lightGreenAddr:
+          addrNo: 2 
+          funcNo: "05"
+        lightYellowAddr:
+          addrNo: 1
+          funcNo: "05"
+        switchAddr:
+          addrNo: 4
+          funcNo: "02"
+    # 参与交通管制的调度系统信息【系统名称: 系统IP】;唯一的【系统名称】对应唯一的【系统IP】，未被记录信息的设备/系统，无法参与交通管制。
+    involvedSystems:
+      # 第一个参与交通管制的系统信息 self: 127.0.0.1 为服务器自身信息。此项必填！！！
+      self: 127.0.0.1
+
+# # # 第三个交通管制区域 （一期的）
+#   mz3: 
+#     resetBtn: true
+#     boxes:
+#       # 第一个电控柜
+#       - boxId: box3
+#         host: 192.168.192.66
+#         port: 502
+#         # unitId: 1
+#         lightRedAddr:
+#           addrNo: 1280
+#           funcNo: "05"
+#         lightGreenAddr:
+#           addrNo: 1281
+#           funcNo: "05"
+#         lightYellowAddr:
+#           addrNo: 1282
+#           funcNo: "05"
+#         switchAddr:
+#           addrNo: 1024
+#           funcNo: "02"
+#     # 参与交通管制的调度系统信息【系统名称: 系统IP】;唯一的【系统名称】对应唯一的【系统IP】，未被记录信息的设备/系统，无法参与交通管制。
+#     involvedSystems:
+#       # 第一个参与交通管制的系统信息 self: 127.0.0.1 为服务器自身信息。此项必填！！！
+#       self: 127.0.0.1
+  
+
+# # 充电机的配置（列表）
+chargers:
+  # 充电机名称，需要配置在线路属性中
+  - name: LOC-CP1089
+    # 充电机的 IP，视实际情况而定
+    #host: 10.192.22.107
+    host: 10.192.22.107
+    # 充电机的端口号，视实际情况而定
+    port: 4001
+    # 充电机所在的位置
+    location: CP1089
+    # 充电超时时间，默认值为60，单位：秒
+    timeout: 60
+    # 充电机 100 秒之内没有接收到充电机上报的信息，就会被判定为离线
+    connectTimeout: 100
+    # 充电机工作的最大电压，视实际情况而定，可设置为RoboShop上显示的【支持最大充电电压】的数值的10倍（此数值由充电机的通信协议规定）。
+    maxVoltage: 292
+    # 充电机工作的最大电流，视实际情况而定，可设置为RoboShop上显示的【支持最大充电电流】的数值的10倍（此数值由充电机的通信协议规定）。
+    maxCurrent: 900
+    
+plcDevices:
+  # 电控柜名称，唯一值，不能重复
+  PD1:
+    # plc的IP地址
+    host: 10.192.22.163
+    # 端口号
+    port: 502
+    unitId: 1
+    # 起始地址编号
+    baseAddr: 1
+    # 连续读取的地址数量
+    qty: 32
+    # #信号持续时间，判断信号有效
+    effectiveCount: 1
+    # 库位跟PLC地址（光电）的对应关系
+    siteAddrMapping:
+      ##地址： 库位编号
+      0: CB-1-1
+      1: CB-3-1
+      8: CA-1-02
+      9: CA-1-04
+      10: CA-1-06
+      11: CA-1-08
+      12: CA-1-10
+      13: CA-1-12
+      14: CA-1-01
+      15: CA-1-03
+      16: CA-1-05
+      17: CA-1-07
+      18: CA-1-09
+      19: CA-1-11
+  PD2:
+    # plc的IP地址
+    host: 10.192.22.166
+    # 端口号
+    port: 502
+    unitId: 1
+    # 起始地址编号
+    baseAddr: 1
+    # 连续读取的地址数量
+    qty: 32
+    # #信号持续时间，判断信号有效
+    effectiveCount: 1
+    # 库位跟PLC地址（光电）的对应关系
+    siteAddrMapping:
+      ##地址： 库位编号
+      0: M4-2-1
+      1: M4-2-2
+      2: M4-3-1
+      4: AE-2-1
+      12: M4-A-1
+      13: M4-A-2
+      14: M4-A-3
+      15: M4-B-1
+      16: M4-B-2
+      17: M4-B-3
+      18: AC-1-1
+      19: AC-2-1
+
+syncVehiclesDetails: true
+
+# # 向 siemens上位机 获取 Z8码 和 800码 对应关系的URL
+# # host: siemens上位机 的 ip
+# # port: siemens上位机提供的端口号
+# # extUrl: http://host:port/api/ext/sim
+
+# # PDA部分按钮对应的库位类型
+menuIdAndSiteType:
+  - menuId: M4-2
+    type: CB-3
+  - menuId: M4-3
+    type: CB-1
+
+# # 手持端配置
+
+# # 手持端的配置
+operator:
+  workTypes:
+    - id: A
+      label: A仓库（第5期仓库）
+    - id: B
+      label: B仓库（第4期仓库）
+    - id: C
+      label: 区域C
+    - id: E
+      label: 单元房(区域E)
+    - id: M4
+      label: 二期项目产线
+    - id: station
+      label: station
+#    - id: special
+#      label: 特殊操作
+
+  workStations:
+    # - id: AE-1
+    #   label: 单元缓存库位
+    #   type: E
+    - id: AE-2
+      label: 单元房呼叫入库
+      type: E
+#    - id: AE-3
+#      label: 单元房的外贸包装
+#      type: E
+    - id: CA-1
+      label: 仓库A-原料满料车发货
+      type: A
+    - id: C
+      label: 区域C缆线发货
+      type: C
+    - id: M4
+      label: 二期项目产线区域
+      type: M4
+    - id: station1
+      label: station1
+      type: station
+    - id: station2
+      label: station2
+      type: station
+    - id: station3
+      label: station3（仓库A）
+      type: station
+    - id: station4
+      label: station4（仓库A）
+      type: station
+#    - id: special
+#      label: 特殊操作
+#      type: special
+
+  orders:
+#    - menuId: GetCodeMap
+#      label: 获取 Z8码 和 800码 的对应关系
+#      menuItemBackground: "#ea711a"
+#      menuItemTextColor: black
+#      robotTaskDef: code-map
+#      disabled: false
+#      workTypes: [special]
+#      tip: 获取 Z8码 和 800码 的对应关系
+#      confirmMessage: 确定要【获取 Z8码 和 800码 的对应关系】吗？
+
+    - menuId: A
+      label: 空料车返回缆线库位
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: return-empty-tray-from-a-to-c
+      disabled: false
+      workTypes: [station]
+      workStations: [station3, stations4]
+      tip: 空料车返回缆线库位
+      confirmMessage: 确定要【空料车返回缆线库位】吗？
+      params:
+        - name: fromSiteId
+          input: select
+          label: 请选择起点库位
+          options:
+            - value: CA-4-1
+              label: CA-4-1
+
+    - menuId: C
+      label: 缆线运至仓库
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: take-mat-from-area-c-to-storage-a
+      disabled: false
+      workTypes: [C]
+      tip: 缆线运至仓库
+      confirmMessage: 确定要【缆线运至仓库】吗？
+      params:
+        - name: fromSiteId
+          input: select
+          label: 请选择起点库位
+          options:
+            - value: AC-1-1
+              label: AC-1-1
+        - name: code
+          input: text
+          label: 请扫描货物编码
+
+    - menuId: M4-1
+      label: 原料运至产线
+      menuItemBackground: "#AE8600"
+      menuItemTextColor: black
+      robotTaskDef: create-take-mat-to-ps-tasks
+      disabled: false
+      workTypes: [M4]
+      tip: 原料运至产线
+      confirmMessage: 确定要【原料运至产线】吗？
+      params:
+        - name: ps
+          input: select
+          label: 请选择当前产线
+          options:
+            # - value: unselected
+              # label: 请选择
+            - value: PS1
+              label: 1号产线
+            # - value: PS2
+              # label: 2号产线
+        - name: code
+          input: text
+          label: 请扫描货物编码
+
+    - menuId: M4-3
+      label: 备品备料运至仓库
+      menuItemBackground: "#EE7600"
+      menuItemTextColor: black
+      robotTaskDef: take-tray-back-to-storage
+      disabled: false
+      workTypes: [M4]
+      tip: 备品备料运至仓库
+      confirmMessage: 确定要【备品备料运至仓库】吗？
+      params:
+        - name: fromSiteId
+          input: select
+          label: 请选择库位码（起点）
+          options:
+            - value: M4-3-1
+              label: M4-3-1
+
+    - menuId: M4-2
+      label: 空料车运至仓库
+      menuItemBackground: "#CD6600"
+      menuItemTextColor: black
+      robotTaskDef: return-empty-tray-back-to-storage
+      disabled: false
+      workTypes: [M4]
+      tip: 空料车运至仓库
+      confirmMessage: 确定要【空料车运至仓库】吗？
+      params:
+        - name: fromSiteId
+          input: select
+          label: 请扫描库位码（起点）
+          options:
+            - value: M4-2-1
+              label: M4-2-1
+            - value: M4-2-2
+              label: M4-2-2
+
+    - menuId: EToStation
+      label: 单元运至station # //////////////// recognize ok
+      menuItemBackground: "#EE7600"
+      menuItemTextColor: black
+      robotTaskDef: create-e-to-station-tasks
+      disabled: false
+      workTypes: [station]
+      tip: 单元运至station
+      confirmMessage: 确定要【单元运至station】吗？
+      params:
+        - name: code
+          input: text
+          label: 请扫描整机码
+
+    - menuId: Station1ToE
+      label: 空料车返回单元房 # //////////////// recognize ok
+      menuItemBackground: "#EE7600"
+      menuItemTextColor: black
+      robotTaskDef: return-empty-tray-from-station-to-e
+      disabled: false
+      workTypes: [station]
+      workStations: [station1]
+      tip: Station1 空料车返回单元房
+      confirmMessage: 确定要【空料车返回单元房】吗？
+      params:
+        - name: fromSiteId
+          input: select
+          label: 请选择库位码（起点）
+          options:
+            - value: M0-2-1 
+              label: M0-2-1
+
+    - menuId: Station2ToE
+      label: 空料车返回单元房 # //////////////// recognize ok
+      menuItemBackground: "#EE7600"
+      menuItemTextColor: black
+      robotTaskDef: return-empty-tray-from-station-to-e
+      disabled: false
+      workTypes: [station]
+      workStations: [station2]
+      tip: Station2 空料车返回单元房
+      confirmMessage: 确定要【空料车返回单元房】吗？
+      params:
+        - name: fromSiteId
+          input: select
+          label: 请选择库位码（起点）
+          options:
+            - value: M1-2-1 
+              label: M1-2-1
+
+    - menuId: Station3ToE
+      label: 空料车返回单元房 # //////////////// recognize ok
+      menuItemBackground: "#EE7600"
+      menuItemTextColor: black
+      robotTaskDef: return-empty-tray-from-station-to-e
+      disabled: false
+      workTypes: [station]
+      workStations: [station3]
+      tip: Station3 空料车返回单元房
+      confirmMessage: 确定要【空料车返回单元房】吗？
+      params:
+        - name: fromSiteId
+          input: select
+          label: 请选择库位码（起点）
+          options:
+            - value: M2-2-1 
+              label: M2-2-1
+
+    - menuId: Station4ToE
+      label: 空料车返回单元房 # //////////////// recognize ok
+      menuItemBackground: "#EE7600"
+      menuItemTextColor: black
+      robotTaskDef: return-empty-tray-from-station-to-e
+      disabled: false
+      workTypes: [station]
+      workStations: [station4]
+      tip: Station4 空料车返回单元房
+      confirmMessage: 确定要【空料车返回单元房】吗？
+      params:
+        - name: fromSiteId
+          input: select
+          label: 请选择库位码（起点）
+          options:
+            - value: M3-2-1 
+              label: M3-2-1
+
+    - menuId: TakeEmptyTrayFromAE1ToAE2
+      label: 空料车呼叫      # //////////////// recognize ok
+      menuItemBackground: "#EE7600"
+      menuItemTextColor: black
+      robotTaskDef: take-empty-tray-from-ae1-to-ae2
+      disabled: false
+      workTypes: [E]
+      workStations: [AE-2]
+      tip: 空料车呼叫
+      confirmMessage: 确定要【空料车呼叫】吗？
+
+    - menuId: TakeMatFromAE2ToAE1
+      label: 单元满料车入库    # //////////////// recognize ok
+      menuItemBackground: "#EE7600"
+      menuItemTextColor: black
+      robotTaskDef: take-mat-from-ae2-to-ae1
+      disabled: false
+      workTypes: [E]
+      workStations: [AE-2]
+      tip: 单元满料车入库
+      confirmMessage: 确定要【单元满料车入库】吗？
+      params:
+        - name: fromSiteId
+          input: select
+          label: 请选择库位码（起点）
+          options:
+            - value: AE-2-1
+              label: AE-2-1
+        - name: code
+          input: text
+          label: 请扫描单元码
+
+#    - menuId: TakeMatFromAE1ToAE3
+#      label: 单元满料车呼叫
+#      menuItemBackground: "#EE7600"
+#      menuItemTextColor: black
+#      robotTaskDef: create-take-mat-from-ae1-to-ae3-tasks
+#      disabled: false
+#      workTypes: [E]
+#      workStations: [AE-3]
+#      tip: 单元满料车呼叫
+#      confirmMessage: 确定要【单元满料车呼叫】吗？
+#      params:
+#        - name: code
+#          input: text
+#          label: 请扫描货物编码
+
+#    - menuId: TakeEmptyTrayFromAE3ToAE1
+#      label: 空料车返回缓存库位
+#      menuItemBackground: "#EE7600"
+#      menuItemTextColor: black
+#      robotTaskDef: take-empty-tray-from-ae3-to-ae1
+#      disabled: false
+#      workTypes: [E]
+#      workStations: [AE-3]
+#      tip: 空料车返回缓存库位
+#      confirmMessage: 确定要【空料车返回缓存库位】吗？
+
+    - menuId: RecordContent
+      label: 更新库位
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: record-content
+      disabled: false
+      workTypes: [A, B, E]
+      workStations: [CA-1, AE-1, AE-2]
+      tip: 更新库位
+      confirmMessage: 确定要【更新库位】吗？
+      params:
+        - name: code
+          input: text
+          label: 请扫描货物编码
+        - name: siteId
+          input: text
+          label: 请扫描库位码（起点）
+
+    - menuId: ClearContentAE2
+      label: 库位取货
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: clear-content
+      disabled: false
+      workTypes: [E]
+      workStations: [AE-2]
+      tip: 库位取货
+      confirmMessage: 确定要【库位取货】吗？
+      params:
+        - name: siteId
+          input: text
+          label: 请扫描已清空货物的库位码
+
+    # - menuId: ClearContentAE2
+    #   label: 库位取货
+    #   menuItemBackground: "#32CD32"
+    #   menuItemTextColor: black
+    #   robotTaskDef: clear-content
+    #   disabled: false
+    #   workTypes: [E]
+    #   workStations: [AE-2]
+    #   tip: "单元房呼叫入库库位 - 库位取货"
+    #   confirmMessage: 确定要【库位取货】吗？
+    #   params:
+    #     - name: siteId
+    #       input: select
+    #       label: 请选择已清空货物的库位码
+    #       options:
+    #         - value: AE-2-1
+    #           label: AE-2-1
+
+    - menuId: ClearContentStation1
+      label: 库位取货
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: clear-content
+      disabled: false
+      workTypes: [station]
+      workStations: [station1]
+      tip: Station1 - 库位取货
+      confirmMessage: 确定要【库位取货】吗？
+      params:
+        - name: siteId
+          input: select
+          label: 请选择已清空货物的库位码
+          options:
+            - value: M0-1-1
+              label: M0-1-1（Station1）
+
+    - menuId: ClearContentStation2
+      label: 库位取货
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: clear-content
+      disabled: false
+      workTypes: [station]
+      workStations: [station2]
+      tip: Station2 - 库位取货
+      confirmMessage: 确定要【库位取货】吗？
+      params:
+        - name: siteId
+          input: select
+          label: 请选择已清空货物的库位码
+          options:
+            - value: M1-1-1
+              label: M1-1-1（Station2）
+
+    - menuId: ClearContentStation3
+      label: Station3 - 库位取货
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: clear-content
+      disabled: false
+      workTypes: [station]
+      workStations: [station3]
+      tip: Station3 - 库位取货
+      confirmMessage: 确定要【库位取货】吗？
+      params:
+        - name: siteId
+          input: select
+          label: 请选择已清空货物的库位码
+          options:
+            - value: M2-1-1
+              label: M2-1-1（Station3）
+
+    - menuId: ClearContentStation4
+      label: Station4 - 库位取货
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: clear-content
+      disabled: false
+      workTypes: [station]
+      workStations: [station4]
+      tip: Station4 - 库位取货
+      confirmMessage: 确定要【库位取货】吗？
+      params:
+        - name: siteId
+          input: select
+          label: 请选择已清空货物的库位码
+          options:
+            - value: M3-1-1
+              label: M3-1-1（Station4）
+
+    - menuId: ClearContentCA3
+      label: 缆线库位 - 库位取货
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: clear-content
+      disabled: false
+      workTypes: [station]
+      workStations: [station3, station4]
+      tip: 缆线库位 - 库位取货
+      confirmMessage: 确定要【库位取货】吗？
+      params:
+        - name: siteId
+          input: select
+          label: 请选择已清空货物的库位码
+          options:
+            - value: CA-3-1
+              label: CA-3-1（缆线满料车接收库位）
+
+
+  taskNotice:
+    scope: by-work-type
+    noticeType: alert
+    when:
+      - created
+

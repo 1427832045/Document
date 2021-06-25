@@ -1,0 +1,13 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/pager
+mongoMainDatabase: pager
+uiPath: e:/gitrepo/seer-ui/level2/dist
+commAdapterIO: Http
+vehicleSimulation: Http
+startFromDB: false
+tcpPort: 12345
+concentrators:
+  - id: "2590e7d8"
+    nodes:
+      - id: "00007888"
+        location: "LOC-AP108"

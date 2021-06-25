@@ -1,0 +1,6 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-tomi
+mongoMainDatabase: srd-tomi
+
+commAdapterIO: Tcp
+vehicleSimulation: Tcp

@@ -1,0 +1,1202 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-huaxinXian1F
+mongoMainDatabase: srd-huaxinXian1F
+#uiPath: E:/gitrepo/seer-ui/level2/dist
+uiPath: E:/gitrepo/seer-ui/custom/huaxin-xian/dist
+commAdapterIO: Http
+vehicleSimulation: Http
+#startFromDB: false
+mesUrl: http://localhost:7100/api/
+
+operator:
+  orders:
+    - menuId: 1F_ASAToAssemble8To14
+      label: 立库A <-> 装配区8-14
+      menuItemBackground: "rgb(131, 175, 155)"
+      menuItemTextColor: white
+      robotTaskDef: 1F_ASAToAssemble8To14
+      confirmMessage: 发起【立库A <-> 装配区8-14】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: LK1A
+              label: LK1A
+            - value: CZ8
+              label: CZ8
+            - value: CZ9
+              label: CZ9
+            - value: CZ10
+              label: CZ10
+            - value: CZ11
+              label: CZ11
+            - value: CZ12
+              label: CZ12
+            - value: CZ13
+              label: CZ13
+            - value: CZ14
+              label: CZ14
+        - name: to
+          input: select
+          label: 终点
+          options: &a814
+            - value: ""
+              label: ""
+            - value: CZ8
+              label: CZ8
+            - value: CZ9
+              label: CZ9
+            - value: CZ10
+              label: CZ10
+            - value: CZ11
+              label: CZ11
+            - value: CZ12
+              label: CZ12
+            - value: CZ13
+              label: CZ13
+            - value: CZ14
+              label: CZ14
+        - name: to
+          input: select
+          label: 终点
+          options: &a
+            - value: ""
+              label: ""
+            - value: LK1A
+              label: LK1A
+
+    - menuId: 1F_ASAToFix
+      label: 立库A <-> 部件检修区
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      robotTaskDef: 1F_ASAToFix
+      confirmMessage: 发起【立库A <-> 部件检修区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: LK1A
+              label: LK1A
+            - value: BJX1
+              label: BJX1
+            - value: BJX2
+              label: BJX2
+            - value: BJX3
+              label: BJX3
+            - value: BJX4
+              label: BJX4
+            - value: BJX5
+              label: BJX5
+            - value: BJX6
+              label: BJX6
+            - value: BJX7
+              label: BJX7
+            - value: BJX8
+              label: BJX8
+            - value: BJX9
+              label: BJX9
+            - value: BJX10
+              label: BJX10
+            - value: BJX11
+              label: BJX11
+        - name: to
+          input: select
+          label: 终点
+          options: &bjx
+            - value: ""
+              label: ""
+            - value: BJX1
+              label: BJX1
+            - value: BJX2
+              label: BJX2
+            - value: BJX3
+              label: BJX3
+            - value: BJX4
+              label: BJX4
+            - value: BJX5
+              label: BJX5
+            - value: BJX6
+              label: BJX6
+            - value: BJX7
+              label: BJX7
+            - value: BJX8
+              label: BJX8
+            - value: BJX9
+              label: BJX9
+            - value: BJX10
+              label: BJX10
+            - value: BJX11
+              label: BJX11
+        - name: to
+          input: select
+          label: 终点
+          options: *a
+
+    - menuId: 1F_ASToFix
+      label: 立库B/C <-> 检修区
+      menuItemBackground: "rgb(39, 194, 126)"
+      menuItemTextColor: white
+      robotTaskDef: 1F_ASToFix
+      confirmMessage: 发起【立库B/C <-> 检修区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: LK1B
+              label: LK1B
+            - value: LK1C
+              label: LK1C
+            - value: BJX1
+              label: BJX1
+            - value: BJX2
+              label: BJX2
+            - value: BJX3
+              label: BJX3
+            - value: BJX4
+              label: BJX4
+            - value: BJX5
+              label: BJX5
+            - value: BJX6
+              label: BJX6
+            - value: BJX7
+              label: BJX7
+            - value: BJX8
+              label: BJX8
+            - value: BJX9
+              label: BJX9
+            - value: BJX10
+              label: BJX10
+            - value: BJX11
+              label: BJX11
+        - name: to
+          input: select
+          label: 终点
+          options: *bjx
+
+        - name: to
+          input: select
+          label: 终点
+          options: &bc
+            - value: ""
+              label: ""
+            - value: LK1B
+              label: LK1B
+            - value: LK1C
+              label: LK1C
+
+    - menuId: 1F_ASToAssemble8To14
+      label: 立库B/C <-> 装配区8-14
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      robotTaskDef: 1F_ASToAssemble8To14
+      confirmMessage: 发起【立库B/C <-> 装配区8-14】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: LK1B
+              label: LK1B
+            - value: LK1C
+              label: LK1C
+            - value: CZ8
+              label: CZ8
+            - value: CZ9
+              label: CZ9
+            - value: CZ10
+              label: CZ10
+            - value: CZ11
+              label: CZ11
+            - value: CZ12
+              label: CZ12
+            - value: CZ13
+              label: CZ13
+            - value: CZ14
+              label: CZ14
+        - name: to
+          input: select
+          label: 终点
+          options: *a814
+        - name: to
+          input: select
+          label: 终点
+          options: *bc
+
+    - menuId: 1F_ASToAssemble1To7
+      label: 立库B/C <-> 装配区1-7
+      menuItemBackground: "rgb(131, 175, 155)"
+      menuItemTextColor: white
+      robotTaskDef: 1F_ASToAssemble1To7
+      confirmMessage: 发起【立库B/C <-> 装配区1-7】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: LK1B
+              label: LK1B
+            - value: LK1C
+              label: LK1C
+            - value: CZ1
+              label: CZ1
+            - value: CZ2
+              label: CZ2
+            - value: CZ3
+              label: CZ3
+            - value: CZ4
+              label: CZ4
+            - value: CZ5
+              label: CZ5
+            - value: CZ6
+              label: CZ6
+            - value: CZ7
+              label: CZ7
+        - name: to
+          input: select
+          label: 终点
+          options: &a17
+            - value: ""
+              label: ""
+            - value: CZ1
+              label: CZ1
+            - value: CZ2
+              label: CZ2
+            - value: CZ3
+              label: CZ3
+            - value: CZ4
+              label: CZ4
+            - value: CZ5
+              label: CZ5
+            - value: CZ6
+              label: CZ6
+            - value: CZ7
+              label: CZ7
+        - name: to
+          input: select
+          label: 终点
+          options: *bc
+
+    - menuId: 1F_ASToTest
+      label: 立库B/C <-> 转撤机测试区
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      robotTaskDef: 1F_ASToTest
+      confirmMessage: 发起【立库B/C <-> 转撤机测试区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: LK1B
+              label: LK1B
+            - value: LK1C
+              label: LK1C
+            - value: DYC1
+              label: DYC1
+            - value: DYC2
+              label: DYC2
+            - value: DDC1
+              label: DDC1
+            - value: DDC2
+              label: DDC2
+            - value: DKC1
+              label: DKC1
+            - value: DKC2
+              label: DKC2
+
+        - name: to
+          input: select
+          label: 终点
+          options: &test
+            - value: ""
+              label: ""
+            - value: DYC1
+              label: DYC1
+            - value: DYC2
+              label: DYC2
+            - value: DDC1
+              label: DDC1
+            - value: DDC2
+              label: DDC2
+            - value: DKC1
+              label: DKC1
+            - value: DKC2
+              label: DKC2
+        - name: to
+          input: select
+          label: 终点
+          options: *bc
+
+    - menuId: 1F_ASToUnload
+      label: 立库B/C <-> 卸车区
+      menuItemBackground: "rgb(39, 194, 126)"
+      menuItemTextColor: white
+      robotTaskDef: 1F_ASToUnload
+      confirmMessage: 发起【立库B/C <-> 卸车区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: LK1B
+              label: LK1B
+            - value: LK1C
+              label: LK1C
+            - value: XCQ
+              label: XCQ
+
+        - name: to
+          input: select
+          label: 终点
+          options: &unload
+            - value: ""
+              label: ""
+            - value: XCQ
+              label: XCQ
+
+        - name: to
+          input: select
+          label: 终点
+          options: *bc
+
+    - menuId: 1F_ASToLoad
+      label: 立库B/C <-> 装车区
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      robotTaskDef: 1F_ASToLoad
+      confirmMessage: 发起【立库B/C <-> 装车区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: LK1B
+              label: LK1B
+            - value: LK1C
+              label: LK1C
+            - value: ZCQ
+              label: ZCQ
+
+        - name: to
+          input: select
+          label: 终点
+          options: &load
+            - value: ""
+              label: ""
+            - value: ZCQ
+              label: ZCQ
+        - name: to
+          input: select
+          label: 终点
+          options: *bc
+
+
+    - menuId: 1F_ASToShield
+      label: 立库B/C <-> 罩壳
+      menuItemBackground: "rgb(131, 175, 155)"
+      menuItemTextColor: white
+      robotTaskDef: 1F_ASToShield
+      confirmMessage: 发起【立库B/C <-> 罩壳】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: LK1B
+              label: LK1B
+            - value: LK1C
+              label: LK1C
+            - value: XH1
+              label: XH1
+
+        - name: to
+          input: select
+          label: 终点
+          options: &zk
+            - value: ""
+              label: ""
+            - value: XH1
+              label: XH1
+        - name: to
+          input: select
+          label: 终点
+          options: *bc
+
+    - menuId: 1F_TestToUnload
+      label: 转撤机测试区 <-> 卸车区
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      robotTaskDef: 1F_TestToUnload
+      confirmMessage: 发起【转撤机测试 <-> 卸车区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: DYC1
+              label: DYC1
+            - value: DYC2
+              label: DYC2
+            - value: DDC1
+              label: DDC1
+            - value: DDC2
+              label: DDC2
+            - value: DKC1
+              label: DKC1
+            - value: DKC2
+              label: DKC2
+            - value: XCQ
+              label: XCQ
+
+        - name: to
+          input: select
+          label: 终点
+          options: *test
+
+        - name: to
+          input: select
+          label: 终点
+          options: *unload
+
+    - menuId: 1F_TestToLoad
+      label: 转撤机测试区 <-> 装车区
+      menuItemBackground: "rgb(39, 194, 126)"
+      menuItemTextColor: white
+      robotTaskDef: 1F_TestToLoad
+      confirmMessage: 发起【转撤机测试区 <-> 装车区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: DYC1
+              label: DYC1
+            - value: DYC2
+              label: DYC2
+            - value: DDC1
+              label: DDC1
+            - value: DDC2
+              label: DDC2
+            - value: DKC1
+              label: DKC1
+            - value: DKC2
+              label: DKC2
+            - value: ZCQ
+              label: ZCQ
+
+        - name: to
+          input: select
+          label: 终点
+          options: *test
+
+        - name: to
+          input: select
+          label: 终点
+          options: *load
+
+    - menuId: 1F_TestToAssemble
+      label: 转撤机测试区 <-> 装配区
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      robotTaskDef: 1F_TestToAssemble
+      confirmMessage: 发起【转撤机测试区 <-> 装配区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: DYC1
+              label: DYC1
+            - value: DDC1
+              label: DDC1
+            - value: DKC1
+              label: DKC1
+            - value: CZ1
+              label: CZ1
+            - value: CZ2
+              label: CZ2
+            - value: CZ3
+              label: CZ3
+            - value: CZ4
+              label: CZ4
+            - value: CZ5
+              label: CZ5
+            - value: CZ6
+              label: CZ6
+            - value: CZ7
+              label: CZ7
+            - value: CZ8
+              label: CZ8
+            - value: CZ9
+              label: CZ9
+            - value: CZ10
+              label: CZ10
+            - value: CZ11
+              label: CZ11
+            - value: CZ12
+              label: CZ12
+            - value: CZ13
+              label: CZ13
+            - value: CZ14
+              label: CZ14
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: ""
+              label: ""
+            - value: DYC1
+              label: DYC1
+            - value: DDC1
+              label: DDC1
+            - value: DKC1
+              label: DKC1
+        - name: to
+          input: select
+          label: 终点
+          options: &a
+            - value: ""
+              label: ""
+            - value: CZ1
+              label: CZ1
+            - value: CZ2
+              label: CZ2
+            - value: CZ3
+              label: CZ3
+            - value: CZ4
+              label: CZ4
+            - value: CZ5
+              label: CZ5
+            - value: CZ6
+              label: CZ6
+            - value: CZ7
+              label: CZ7
+            - value: CZ8
+              label: CZ8
+            - value: CZ9
+              label: CZ9
+            - value: CZ10
+              label: CZ10
+            - value: CZ11
+              label: CZ11
+            - value: CZ12
+              label: CZ12
+            - value: CZ13
+              label: CZ13
+            - value: CZ14
+              label: CZ14
+
+    - menuId: 1F_FixToAssemble8To14
+      label: 部件检修区 <-> 装配区8-14
+      menuItemBackground: "rgb(131, 175, 155)"
+      menuItemTextColor: white
+      robotTaskDef: 1F_FixToAssemble8To14
+      confirmMessage: 发起【部件检修区 <-> 装配区8-14】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: CZ8
+              label: CZ8
+            - value: CZ9
+              label: CZ9
+            - value: CZ10
+              label: CZ10
+            - value: CZ11
+              label: CZ11
+            - value: CZ12
+              label: CZ12
+            - value: CZ13
+              label: CZ13
+            - value: CZ14
+              label: CZ14
+            - value: BJX1
+              label: BJX1
+            - value: BJX2
+              label: BJX2
+            - value: BJX3
+              label: BJX3
+            - value: BJX4
+              label: BJX4
+            - value: BJX5
+              label: BJX5
+            - value: BJX6
+              label: BJX6
+            - value: BJX7
+              label: BJX7
+            - value: BJX8
+              label: BJX8
+            - value: BJX9
+              label: BJX9
+            - value: BJX10
+              label: BJX10
+            - value: BJX11
+              label: BJX11
+
+        - name: to
+          input: select
+          label: 终点
+          options: *a814
+
+        - name: to
+          input: select
+          label: 终点
+          options: *bjx
+
+    - menuId: 1F_FixToClear
+      label: 部件检修区 <-> 清洗区
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      robotTaskDef: 1F_FixToClear
+      confirmMessage: 发起【部件检修区 <-> 清洗区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: BJX1
+              label: BJX1
+            - value: BJX2
+              label: BJX2
+            - value: BJX3
+              label: BJX3
+            - value: BJX4
+              label: BJX4
+            - value: BJX5
+              label: BJX5
+            - value: BJX6
+              label: BJX6
+            - value: BJX7
+              label: BJX7
+            - value: BJX8
+              label: BJX8
+            - value: BJX9
+              label: BJX9
+            - value: BJX10
+              label: BJX10
+            - value: BJX11
+              label: BJX11
+            - value: QXQ
+              label: QXQ
+
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: ""
+              label: ""
+            - value: QXQ
+              label: QXQ
+
+        - name: to
+          input: select
+          label: 终点
+          options: *bjx
+
+    - menuId: 1F_BetweenAssemble
+      label: 装配区1-7 <-> 装配区1-7
+      menuItemBackground: "rgb(39, 194, 126)"
+      menuItemTextColor: white
+      robotTaskDef: 1F_BetweenAssemble
+      confirmMessage: 发起【装配区1-7 <-> 装配区1-7】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options: *a17
+
+        - name: to
+          input: select
+          label: 终点
+          options: *a17
+
+    - menuId: 1F_ShieldToAssemble
+      label: 罩壳 <-> 装配区
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      robotTaskDef: 1F_ShieldToAssemble
+      confirmMessage: 发起【罩壳 <-> 装配区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: XH1
+              label: XH1
+            - value: CZ1
+              label: CZ1
+            - value: CZ2
+              label: CZ2
+            - value: CZ3
+              label: CZ3
+            - value: CZ4
+              label: CZ4
+            - value: CZ5
+              label: CZ5
+            - value: CZ6
+              label: CZ6
+            - value: CZ7
+              label: CZ7
+            - value: CZ8
+              label: CZ8
+            - value: CZ9
+              label: CZ9
+            - value: CZ10
+              label: CZ10
+            - value: CZ11
+              label: CZ11
+            - value: CZ12
+              label: CZ12
+            - value: CZ13
+              label: CZ13
+            - value: CZ14
+              label: CZ14
+        - name: to
+          input: select
+          label: 终点
+          options: *zk
+        - name: to
+          input: select
+          label: 终点
+          options: *a
+
+#operator:
+#  orders:
+#    - menuId: 2F_ASToClear
+#      label: 器材清洁区 <-> 接驳台
+#      menuItemBackground: "rgb(39, 194, 126)"
+#      menuItemTextColor: white
+#      robotTaskDef: 2F_ASToClear
+#      confirmMessage: 发起【清洁区<->接驳台】任务吗?
+#      params:
+#        - name: from
+#          input: select
+#          label: 起点
+#          options:
+#            - value: ""
+#              label: ""
+#            - value: LK2-W
+#              label: LK2-W
+#            - value: QJQ
+#              label: QJQ
+#        - name: to
+#          input: select
+#          label: 终点
+#          options:
+#            - value: QJQ
+#              label: QJQ
+#        - name: to
+#          input: select
+#          label: 终点
+#          options:
+#            - value: LK2-W
+#              label: LK2-W
+#
+#    - menuId: 2F_ClearToElectricMaterialFix
+#      label: 器材清洁区 <-> 电子器件检修区
+#      menuItemBackground: "rgb(201, 138, 131)"
+#      menuItemTextColor: white
+#      robotTaskDef: 2F_ClearToElectricMaterialFix
+#      confirmMessage: 发起【清洁区<->电子器件检修区】任务吗?
+#      params:
+#        - name: from
+#          input: select
+#          label: 起点
+#          options:
+#            - value: ""
+#              label: ""
+#            - value: DZX
+#              label: DZX
+#            - value: QJQ
+#              label: QJQ
+#            - value: ZH1
+#              label: ZH1
+#            - value: ZH2
+#              label: ZH2
+#            - value: ZH3
+#              label: ZH3
+#            - value: ZH4
+#              label: ZH4
+#            - value: ZH5
+#              label: ZH5
+#            - value: ZH6
+#              label: ZH6
+#            - value: ZH7
+#              label: ZH7
+#            - value: ZH8
+#              label: ZH8
+#            - value: ZH9
+#              label: ZH9
+#            - value: ZH10
+#              label: ZH10
+#            - value: ZH11
+#              label: ZH11
+#            - value: ZH12
+#              label: ZH12
+#            - value: ZH13
+#              label: ZH13
+#            - value: ZH14
+#              label: ZH14
+#            - value: ZH15
+#              label: ZH15
+#            - value: ZH16
+#              label: ZH16
+#            - value: ZH17
+#              label: ZH17
+#            - value: ZH18
+#              label: ZH18
+#            - value: ZH19
+#              label: ZH19
+#            - value: ZH20
+#              label: ZH20
+#            - value: ZH21
+#              label: ZH21
+#            - value: ZH22
+#              label: ZH22
+#        - name: to
+#          input: select
+#          label: 终点
+#          options: &clearToClose
+#            - value: ""
+#              label: ""
+#            - value: QJQ
+#              label: QJQ
+#            - value: ZH1
+#              label: ZH1
+#            - value: ZH2
+#              label: ZH2
+#            - value: ZH3
+#              label: ZH3
+#            - value: ZH4
+#              label: ZH4
+#            - value: ZH5
+#              label: ZH5
+#            - value: ZH6
+#              label: ZH6
+#            - value: ZH7
+#              label: ZH7
+#            - value: ZH8
+#              label: ZH8
+#            - value: ZH9
+#              label: ZH9
+#            - value: ZH10
+#              label: ZH10
+#            - value: ZH11
+#              label: ZH11
+#            - value: ZH12
+#              label: ZH12
+#            - value: ZH13
+#              label: ZH13
+#            - value: ZH14
+#              label: ZH14
+#            - value: ZH15
+#              label: ZH15
+#            - value: ZH16
+#              label: ZH16
+#            - value: ZH17
+#              label: ZH17
+#            - value: ZH18
+#              label: ZH18
+#            - value: ZH19
+#              label: ZH19
+#            - value: ZH20
+#              label: ZH20
+#            - value: ZH21
+#              label: ZH21
+#            - value: ZH22
+#              label: ZH22
+#        - name: to
+#          input: select
+#          label: 终点
+#          options:
+#            - value: DZX
+#              label: DZX
+#
+#    - menuId: 2F_ASToElectricMaterialFix
+#      label: 电子器件检修区 <-> 接驳台
+#      menuItemBackground: "rgb(131, 175, 155)"
+#      menuItemTextColor: white
+#      robotTaskDef: 2F_ASToElectricMaterialFix
+#      confirmMessage: 发起【电子器件检修区<->接驳台】任务吗?
+#      params:
+#        - name: from
+#          input: select
+#          label: 起点
+#          options:
+#            - value: ""
+#              label: ""
+#            - value: DZX
+#              label: DZX
+#            - value: LK2-W
+#              label: LK2-W
+#        - name: to
+#          input: select
+#          label: 终点
+#          options:
+#            - value: LK2-W
+#              label: LK2-W
+#        - name: to
+#          input: select
+#          label: 终点
+#          options:
+#            - value: DZX
+#              label: DZX
+#
+#    - menuId: 2F_ASToSelfCloseFix
+#      label: 电源自闭器材检修 <-> 接驳台
+#      menuItemBackground: "rgb(230, 180, 80)"
+#      menuItemTextColor: white
+#      robotTaskDef: 2F_ASToSelfCloseFix
+#      confirmMessage: 发起【电源自闭器材检修<->接驳台】任务吗?
+#      params:
+#        - name: from
+#          input: select
+#          label: 起点
+#          options:
+#            - value: ""
+#              label: ""
+#            - value: LK2-W
+#              label: LK2-W
+#            - value: ZH1
+#              label: ZH1
+#            - value: ZH2
+#              label: ZH2
+#            - value: ZH3
+#              label: ZH3
+#            - value: ZH4
+#              label: ZH4
+#            - value: ZH5
+#              label: ZH5
+#            - value: ZH6
+#              label: ZH6
+#            - value: ZH7
+#              label: ZH7
+#            - value: ZH8
+#              label: ZH8
+#            - value: ZH9
+#              label: ZH9
+#            - value: ZH10
+#              label: ZH10
+#            - value: ZH11
+#              label: ZH11
+#            - value: ZH12
+#              label: ZH12
+#            - value: ZH13
+#              label: ZH13
+#            - value: ZH14
+#              label: ZH14
+#            - value: ZH15
+#              label: ZH15
+#            - value: ZH16
+#              label: ZH16
+#            - value: ZH17
+#              label: ZH17
+#            - value: ZH18
+#              label: ZH18
+#            - value: ZH19
+#              label: ZH19
+#            - value: ZH20
+#              label: ZH20
+#            - value: ZH21
+#              label: ZH21
+#            - value: ZH22
+#              label: ZH22
+#        - name: to
+#          input: select
+#          label: 终点
+#          options: &close
+#            - value: ""
+#              label: ""
+#            - value: ZH1
+#              label: ZH1
+#            - value: ZH2
+#              label: ZH2
+#            - value: ZH3
+#              label: ZH3
+#            - value: ZH4
+#              label: ZH4
+#            - value: ZH5
+#              label: ZH5
+#            - value: ZH6
+#              label: ZH6
+#            - value: ZH7
+#              label: ZH7
+#            - value: ZH8
+#              label: ZH8
+#            - value: ZH9
+#              label: ZH9
+#            - value: ZH10
+#              label: ZH10
+#            - value: ZH11
+#              label: ZH11
+#            - value: ZH12
+#              label: ZH12
+#            - value: ZH13
+#              label: ZH13
+#            - value: ZH14
+#              label: ZH14
+#            - value: ZH15
+#              label: ZH15
+#            - value: ZH16
+#              label: ZH16
+#            - value: ZH17
+#              label: ZH17
+#            - value: ZH18
+#              label: ZH18
+#            - value: ZH19
+#              label: ZH19
+#            - value: ZH20
+#              label: ZH20
+#            - value: ZH21
+#              label: ZH21
+#            - value: ZH22
+#              label: ZH22
+#        - name: to
+#          input: select
+#          label: 终点
+#          options:
+#            - value: LK2-W
+#              label: LK2-W
+#
+#    - menuId: 2F_ASToLine
+#      label:  接驳台 -> 流水线首端
+#      menuItemBackground: "rgb(39, 194, 126)"
+#      menuItemTextColor: white
+#      robotTaskDef: 2F_ASToLine
+#      confirmMessage: 发起【接驳台 -> 流水线首端】任务吗?
+#      params:
+#        - name: from
+#          input: select
+#          label: 起点
+#          options:
+#            - value: ""
+#              label: ""
+#            - value: LK2-N
+#              label: LK2-N
+#
+#        - name: to
+#          input: select
+#          label: 终点
+#          options:
+#            - value: LS-2
+#              label: LS-2
+#
+#    - menuId: 2F_ASToBurnInRoom
+#      label: 灯泡老化室 <-> 接驳台
+#      menuItemBackground: "rgb(201, 138, 131)"
+#      menuItemTextColor: white
+#      robotTaskDef: 2F_ASToBurnInRoom
+#      confirmMessage: 发起【灯泡老化室<->接驳台】任务吗?
+#      params:
+#        - name: from
+#          input: select
+#          label: 起点
+#          options:
+#            - value: ""
+#              label: ""
+#            - value: DPS
+#              label: DPS
+#            - value: LK2-W
+#              label: LK2-W
+#
+#        - name: to
+#          input: select
+#          label: 终点
+#          options:
+#            - value: LK2-W
+#              label: LK2-W
+#        - name: to
+#          input: select
+#          label: 终点
+#          options:
+#            - value: DPS
+#              label: DPS
+#
+#    - menuId: 2F_ASToRelayCheck
+#      label: 接驳台 -> 继电器验收
+#      menuItemBackground: "rgb(131, 175, 155)"
+#      menuItemTextColor: white
+#      robotTaskDef: 2F_ASToRelayCheck
+#      confirmMessage: 发起【接驳台 -> 继电器验收】任务吗?
+#      params:
+#        - name: from
+#          input: select
+#          label: 起点
+#          options:
+#            - value: ""
+#              label: ""
+#            - value: LK2-N
+#              label: LK2-N
+#        - name: to
+#          input: select
+#          label: 终点
+#          options:
+#            - value: ""
+#              label: ""
+#            - value: JYS1
+#              label: JYS1
+#            - value: JYS2
+#              label: JYS2
+#            - value: JYS3
+#              label: JYS3
+#            - value: JYS4
+#              label: JYS4
+#
+#    - menuId: 2F_ClearToSelfCloseFix
+#      label: 器材清洁区 <-> 电源自闭器材检修区
+#      menuItemBackground: "rgb(230, 180, 80)"
+#      menuItemTextColor: white
+#      robotTaskDef: 2F_ClearToSelfCloseFix
+#      confirmMessage: 发起【器材清洁区<->电源自闭器材检修区】任务吗?
+#      params:
+#        - name: from
+#          input: select
+#          label: 起点
+#          options: *clearToClose
+#        - name: to
+#          input: select
+#          label: 终点
+#          options: *close
+#        - name: to
+#          input: select
+#          label: 终点
+#          options:
+#            - value: QJQ
+#              label: QJQ
+#
+#extraTaskDefs:
+#  - "2F_ClearToSelfCloseFix"

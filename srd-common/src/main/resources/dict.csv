@@ -1,0 +1,64 @@
+key,zh,en,jp
+RouteError,调度错误,Route Error,スケジューリングエラー
+MissingUsernamePassword,请填写用户名和密码,Username and Password are required,ユーザー名とパスワードを入力してください
+P_VehicleUpgrades,上传,Upload,アップロードする
+P_ListUser,查看用户,List Users,ユーザーを表示
+P_CreateUser,创建用户,Create Users,ユーザーを作成
+P_ModifyUser,修改用户,Modify Users,ユーザーを変更
+P_ReadUserRole,查看角色,Read User Roles,役割を表示
+P_CreateUserRole,创建角色,Create User Roles,役割を作成
+P_WriteUserRole,修改角色,Write User Roles,役割を変更する
+P_ListScripts,查看脚本,List Scripts,スクリプトを表示
+P_ExecScripts,执行脚本,Execute Scripts,スクリプトを実行する
+P_ListApi,查看接口,List APIs,表示インターフェース
+P_ReadStoreSite,查看库位,Read Store Sites,場所を見る
+P_WriteStoreSite,修改库位,Write Store Sites,場所を変更
+P_ReadRobotTask,查看任务,Read Robot Tasks,タスクを表示する
+P_DeleteRobotTask,删除任务,Delete Robot Tasks,タスクを削除
+P_AbortRobotTask,终止任务,Abort Robot Tasks,タスクを終了する
+P_ReadVehicle,查看机器人,Read Vehicles,ロボットを見る
+P_WriteVehicle,修改机器人,Write Vehicles,ロボットを修正する
+P_ReadPlant,查看场景,Read PlantModels,シーンを見る
+P_WritePlant,修改场景,Write Plant Models,シーンを修正する
+P_CfgFile,修改配置,Write SRD Config,設定を変更
+P_LogFile,下载日志文件,Download Log File,ログファイルのダウンロード
+P_CustomTaskFile,下载柔性任务,Download Custom Task File,タスクファイルのダウンロード
+P_ReadRouteOrder,运单,Route Orders,運送状
+P_ReadRouteSequence,运单序列,Route Order Seq,運送状シーケンス
+P_ManualTask,快捷任务,Manual Tasks,クイックタスク
+P_EventLog,日志,Logs,ログ
+P_Stats,统计,Stats,統計
+P_StatsChart,仪表盘,Stats Chart,ダッシュボード
+P_DeviceDoor,自动门,Door,ドア
+P_DeviceLift,电梯,Lift,エレベーター
+P_DeviceZone,管制区域,MutexZone,こんとろーるえりあ
+P_DeviceCharger,充电机,Charger,ぜねれーた
+P_StatsTable,报表,Stats Table,報告書
+NoSuchStoreArea,无此库区,No such store area,そのようなエリアはありません
+Priority_Normal,普通,Normal,普通
+Priority_High,急,High,急
+Priority_VeryHigh,特急,Very High,特急
+UpdateAdminError,禁止修改管理员名称!,Modify admin name is not permitted!,管理者名の変更は禁止されています!
+DuplicatedUsername,用户名重复,Duplicated username,ユーザー名が重複しています
+UsernameNeeded,需要填写用户名,User name needed,ユーザー名は必須です
+DuplicatedRoleName,角色名重复,Duplicated role name,重複するロール名
+ManualTaskNameDuplicated,快捷任务名称重复!,Duplicated manual task name !,ショートカットタスク名が重複しています
+RoleNameNeeded,需要填写角色名,Role name needed,ロール名は必須です
+UploadFailForTask,系统有正在执行的运单，上传失败!!!,Tasks in progress!,進行中のタスクがあります!
+UploadFailForName,已存在该描述，请重新输入!,Duplicated plant model remark!,重複するシーン名
+Stat_RobotTaskCreated,创建任务数,Tasks created count,作成されたタスクの数
+Stat_RobotTaskFinished,结束任务数,Tasks finished count,完了したタスクの数
+Stat_RobotTaskSuccess,成功任务数,Tasks successful count,成功したタスクの数
+Stat_RobotTaskFailed,失败任务数,Tasks failed count,失敗したタスクの数
+Stat_RobotTaskAborted,终止任务数,Tasks aborted count,終了したタスクの数
+Stat_RobotTaskDurationSum,任务累计执行时间,Tasks time costs,累積タスク実行時間
+Stat_RobotTaskDurationAvg,任务平均执行时间,Tasks time costs(avg),タスク平均実行時間
+Stat_VehicleExecutingNum,AGV运行次数,AGVs running count,AGV実行
+Stat_VehicleExecutingTime,AGV运行时间,AGVs running time,AGVランタイム
+Stat_VehicleIdleNum,AGV空闲次数,AGVs idle count,AGVのアイドルカウント
+Stat_VehicleIdleTime,AGV空闲时间,AGVs idle time,AGVアイドル時間
+Stat_VehicleChargingNum,AGV充电次数,AGVs charging count,AGVの充電数
+Stat_VehicleChargingTime,AGV充电时间,AGVs charging time,AGV充電時間
+Stat_VehicleErrorNum,AGV错误次数,AGVs error count,AGVエラー数
+Stat_VehicleErrorTime,AGV错误时间,AGVs error time,AGVのエラー時間
+Stat_VehicleOfflineTime,AGV脱机时间,AGVs offline time,AGV オフライン時間

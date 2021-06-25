@@ -1,0 +1,7 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-huicang
+mongoMainDatabase: srd-huicang
+uiPath: D:\Projects\GitProjects\pure-seer-ui\level2\dist\
+
+commAdapterIO: Tcp
+vehicleSimulation: Tcp

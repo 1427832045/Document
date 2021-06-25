@@ -1,0 +1,31 @@
+httpPort: 7200
+mongodbUrl: mongodb://localhost:27017/srd-wangao
+mongoMainDatabase: srd-wangao
+uiPath: E:/gitrepo/seer-ui/level2/dist
+commAdapterIO: Tcp
+vehicleSimulation: Tcp
+#startFromDB: false
+devicePort: 503
+operator:
+#  signIn: true
+  orders:
+    - menuId: down
+      label: 下料
+      menuItemBackground: "#319deb"
+      menuItemTextColor: white
+      robotTaskDef: down
+      tip: 下料任务
+      confirmMessage: 确定【下料】吗?
+      params:
+        - name: from
+          input: select
+          label: 等待
+          options:
+            - value: LOC-AP
+              label: 等待点
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: LOC-AP4
+              label: 下料点

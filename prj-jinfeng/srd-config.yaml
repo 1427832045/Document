@@ -1,0 +1,132 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-jinfeng
+mongoMainDatabase: srd-jinfeng
+uiPath: D:\dev\work\seer-ui\level2\dist
+commAdapterIO: Tcp
+#commAdapterIO: AioTcp
+#newCommAdapter: true
+vehicleSimulation: Tcp
+forceResend: true
+#startFromDB: false
+## 主动上报任务状态,金峰系统的 url
+upUrl: http://localhost:7100/api/
+#upUrl: http://10.10.35.143:8082/api/
+
+#localUrl: http://localhost:7100/api/
+
+exchangePowerTimes: ["10:00-11:00","12:00-21:00"]
+
+thresholdA: 60
+thresholdB: 20
+thresholdM: 80
+thresholdN: 50
+
+exchangePowerEnable: true
+
+##虚拟车倍速
+#simulationTimeFactor: 5.0
+
+
+## 调度配置
+dispatcher:
+  rechargeIdleVehicles: false
+
+#  # 运单匹配机器人时运单的的优先级参考标准
+  orderCandidatePriorities: ["DEADLINE_AT_RISK_FIRST", "BY_INITIAL_ROUTING_COSTS", "BY_DEADLINE"]
+
+#  # 运单风险截止日期，半小时
+  deadlineAtRiskPeriod: -1800000
+
+# 配置特殊库位，及其对应的等待点，前面是特殊库位，冒号后是对应的等待点
+specialSiteToWaitSite:
+  "X-1": ["WAIT-X-1", "A-1"]
+
+#forkLoad 起点需要的参数
+fromProperties:
+  - key: end_height
+    value: 1
+  - key: start_height
+    value: 0
+
+#forkLoad 终点需要的参数
+toProperties:
+  - key: end_height
+    value: 0
+  - key: start_height
+    value: 1
+
+#jackLoad需要的参数
+jackProperties:
+  - key: recognize
+    value: true
+
+
+#不同业务类型，在不同站点发生Fork动作时，其start_height，end_height
+#如以下第一个，业务类型为TYPE_12，站点A-1，发生Fork动作时，start_height=0.1，end_height=0.4
+#taskTypeList:
+#  - taskType: TYPE_12
+#    stationList:
+#    - name: A-1
+#      properties:
+#        - key: end_height
+#          value: 0.4
+#        - key: start_height
+#          value: 0.1
+#    - name: X-1
+#      properties:
+#        - key: end_height
+#          value: 0.5
+#        - key: start_height
+#          value: 0.1
+#
+#  - taskType: TYPE_13
+#    stationList:
+#      - name: B-1
+#        properties:
+#          - key: end_height
+#            value: 0.6
+#          - key: start_height
+#            value: 0.6
+#      - name: C-1
+#        properties:
+#          - key: end_height
+#            value: 0.7
+#          - key: start_height
+#            value: 0.7
+
+# 任务类型 "TYPE_0"是类型值，冒号前的TYPE_0是key，&TYPE_0表示变量可以被引用
+taskTypeConst:
+    TYPE_0: &TYPE_0 "0"
+    TYPE_1: &TYPE_1 "1"
+    TYPE_2: &TYPE_2 "2"
+    TYPE_3: &TYPE_3 "3"
+    TYPE_4: &TYPE_4 "4"
+    TYPE_5: &TYPE_5 "5"
+    TYPE_6: &TYPE_6 "6"
+    TYPE_7: &TYPE_7 "7"
+    TYPE_8: &TYPE_8 "8"
+    TYPE_9: &TYPE_9 "9"
+    TYPE_10: &TYPE_10 "10"
+    TYPE_11: &TYPE_11 "11"
+    TYPE_12: &TYPE_12 "12"
+    TYPE_13: &TYPE_13 "13"
+    TYPE_14: &TYPE_14 "14"
+    TYPE_15: &TYPE_15 "15"
+    TYPE_16: &TYPE_16 "16"
+    TYPE_17: &TYPE_17 "17"
+    TYPE_18: &TYPE_18 "18"
+    TYPE_19: &TYPE_19 "19"
+    TYPE_20: &TYPE_20 "20"
+    TYPE_21: &TYPE_21 "21"
+
+#用于统计的配置 比如sbFull（送松布满车）,包括6，7,10,15,17，21六种类型的任务
+sbFull: [*TYPE_6, *TYPE_7, *TYPE_10, *TYPE_15, *TYPE_17, *TYPE_21]
+jcFull: [*TYPE_11]
+sbEmpty: [*TYPE_4, *TYPE_5, *TYPE_8, *TYPE_9, *TYPE_16, *TYPE_18, *TYPE_19, *TYPE_20]
+jcEmpty: [*TYPE_12, *TYPE_13, *TYPE_14]
+
+
+
+
+
+

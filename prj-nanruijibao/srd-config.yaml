@@ -1,0 +1,686 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-nanruijibao
+mongoMainDatabase: srd-nanruijibao
+uiPath: D:\Projects\GitProjects\pure-seer-ui\custom\weiyi\dist
+commAdapterIO: Tcp
+vehicleSimulation: Tcp
+
+syncVehiclesDetails: true
+
+# # 用于手持端的库位配置
+storeSites:
+  # # 一楼 物料发货库位
+  - {value: 1F-A-1, label: 1F-A-1}
+  - {value: 1F-A-2, label: 1F-A-2}
+  - {value: 1F-A-3, label: 1F-A-3}
+  - {value: 1F-A-4, label: 1F-A-4}
+  - {value: 1F-A-5, label: 1F-A-5}
+  - {value: 1F-A-6, label: 1F-A-6}
+  - {value: 1F-A-7, label: 1F-A-7}
+  - {value: 1F-A-8, label: 1F-A-8}
+  - {value: 1F-A-9, label: 1F-A-9}
+  - {value: 1F-A-10, label: 1F-A-10}
+  - {value: 1F-A-11, label: 1F-A-11}
+  - {value: 1F-A-12, label: 1F-A-12}
+
+  # # 一楼 空托盘回收库位
+  - {value: 1F-B-1, label: 1F-B-1}
+
+  # # 二楼 装置1发货库位
+  - {value: 2F-A-1, label: 2F-A-1}
+  - {value: 2F-A-2, label: 2F-A-2}
+
+  # # 二楼 插件发货
+  - {value: 2F-B-1, label: 2F-B-1}
+  - {value: 2F-B-2, label: 2F-B-2}
+
+  # # 二楼 插件收货
+  - {value: 2F-C-1, label: 2F-C-1}
+  - {value: 2F-C-2, label: 2F-C-2}
+
+  # # 二楼 物料收货
+  - {value: 2F-D-1, label: 2F-D-1}
+  - {value: 2F-D-2, label: 2F-D-2}
+  - {value: 2F-D-3, label: 2F-D-3}
+
+  # # 二楼 空托盘发货
+  - {value: 2F-E-1, label: 2F-E-1}
+
+  # # 二楼 装置2发货
+  - {value: 2F-F-1, label: 2F-F-1}
+  - {value: 2F-F-2, label: 2F-F-2}
+
+  # # 二楼 装置3发货
+  - {value: 2F-G-1, label: 2F-G-1}
+  - {value: 2F-G-2, label: 2F-G-2}
+
+  # # 二楼 装置收货
+  - {value: 2F-H-1, label: 2F-H-1}
+  - {value: 2F-H-2, label: 2F-H-2}
+  - {value: 2F-H-3, label: 2F-H-3}
+
+  # # 二楼 工装操作库位
+  - {value: 2F-I-1, label: 2F-I-1}
+
+  # # 二楼 三防装置收货
+  - {value: 2F-J-1, label: 2F-J-1}
+  - {value: 2F-J-2, label: 2F-J-2}
+
+  # # 二楼 三防插件收货
+  - {value: 2F-K-1, label: 2F-K-1}
+  - {value: 2F-K-2, label: 2F-K-2}
+
+  # # 二楼 三防插件发货
+  - {value: 2F-L-1, label: 2F-L-1}
+  - {value: 2F-L-2, label: 2F-L-2}
+
+  # # 三楼 物料发货
+  - {value: 3F-A-1, label: 3F-A-1}
+
+  # # 三楼 空托盘发货
+  - {value: 3F-B-1, label: 3F-B-1}
+
+  # # 三楼 装置收货
+  - {value: 3F-M-1, label: 3F-M-1}
+  - {value: 3F-M-2, label: 3F-M-2}
+
+  # # 三楼 装置发货
+  - {value: 3F-N-1, label: 3F-N-1}
+  - {value: 3F-N-2, label: 3F-N-2}
+
+  # # 三楼 三防插件收货
+  - {value: 3F-P-1, label: 3F-P-1}
+  - {value: 3F-P-2, label: 3F-P-2}
+
+
+# 切换账号（岗位和工位）时，用于校验的密码
+password: 123456
+
+# # 手持端配置-权限
+operator:
+  customConfig:
+    # # 主菜单上对当前工位的描述，例如 “当前账号是：管理员”
+    workTypeLabelPrefix: "当前账号是："
+    # # PAD启用强制终止任务功能
+    enableAbortTask: true
+    # # 切换工位和岗位时，需要输入密码，默认密码是 123456；可通过修改第97行的password进行配置
+    checkPassword:
+      enable: true      # # true: 启用校验， false: 禁用校验
+    # # 库位选项的背景颜色
+    itemBgColorForExtListNRJB: ["#eee", "#ddd"]
+    # # 在任务创建成功和任务结束之后，播放指定的音频
+    audioConfig:
+      playAudioIfFinished: true
+    # # true: 绑定管理员账号的PDA启用报警功能； false: 绑定管理员账号的PAD禁用报警功能
+    adminPlayAudio: true
+    # # 岗位和此岗位相关的库位
+    sitesOfWorkTypeForAlarm:
+      Account-0001: [1F-B-1, 2F-D-1, 2F-D-2, 2F-D-3, 2F-E-1]
+      Account-0002: [3F-A-1]
+      Account-0003: [2F-A-1, 2F-A-2, 2F-B-1, 2F-B-2, 2F-C-1, 2F-C-2]
+      Account-0004: [2F-L-1, 2F-L-2, 2F-K-1, 2F-K-2]
+      Account-0005: [2F-G-1, 2F-G-2, 2F-H-1, 2F-H-2, 2F-H-3]
+      Account-0006: [3F-N-1, 3F-N-2, 3F-M-1, 3F-M-2, 3F-P-1, 3F-P-2]
+      # Account-9999:
+
+  workTypes:
+    # 1楼 -> 2楼满托盘发货； TakeMatFrom1Fto2F； 2楼原料运输(1F-A-->2F-D)
+    # 2楼 -> 1楼空托盘发货； ReturnEmptyTray； 空托盘运输(2F-E-->1F-B)
+    - id: Account-0001
+      label: 托盘发货
+
+    # 1楼 -> 3楼满托盘发货（现有的）； TakeMatFrom1Fto3F； 3楼原料运输
+    - id: Account-0002
+      label: 3楼原材料库房
+
+    # 2楼插件 -> 2楼三防； TakeBasketFrom2fbTo2fd； 2F插件到三防插件(2F-B-->2F-K)
+    # 2楼装置1 –> 2楼装置1，2收货； TakeBasketFrom2fcTo2fa； 装置1到装置收货(2F-A-->2F-H)
+    # 2楼装置2 -> 2楼装置1，2收货； TakeBasketTo3F； 装置2发货至装置收货(2F-F-->2F-H)
+    - id: Account-0003
+      label: 2楼装配
+
+    # 2楼三防 -> 2楼插件； TakeBasketTo2F； 三防插件发货送至插件收货(2F-L-->2F-C)
+    # 2楼三防 -> 3楼装置收发货（暂无）； TakeBasketFrom2flTo3fm； 三防插件到3F插件(2F-L-->3F-M)
+    - id: Account-0004
+      label: 2楼三防
+
+    # 2楼装置3 -> 3楼装置收发货（暂无）； TakeBasketFrom2fgTo3fp； 装置3发货至3楼装置3收货(2F-G-->3F-P)
+    # 2楼装置1，2收货 - 库位清空； EmptyStoreSite
+    - id: Account-0005
+      label: 2楼调试
+
+    # 3楼满托盘收货 -> 库位清空； EmptyStoreSite
+    # 3楼装置收发货（暂无） -> 2楼三防； TakeBasketFrom3fnTo2fk； 3F插件到三防插件(3F-N-->2F-K)
+    - id: Account-0006
+      label: 3楼整机库房
+
+    # 拥有所有权限
+    - id: Account-9999
+      label: 管理员
+
+  workStations:
+    - id: Account1_
+      label: "-"
+      type: Account-0001
+
+    - id: Account2_
+      label: "-"
+      type: Account-0002
+
+    - id: Account3_
+      label: "-"
+      type: Account-0003
+
+    - id: Account4_
+      label: "-"
+      type: Account-0004
+
+    - id: Account5_
+      label: "-"
+      type: Account-0005
+
+    - id: Account6_
+      label: "-"
+      type: Account-0006
+
+    - id: admin
+      label: 管理员
+      type: Account-9999
+
+  orders:
+    # # 2楼原料运输
+    - menuId: TakeMatFrom1Fto2F
+      label: 2楼原料运输(1F-A-->2F-D)
+      menuItemBackground: "#f09400"
+      menuItemTextColor: black
+      robotTaskDef: take-mat-from-1f-to-2f
+      disabled: false
+      workTypes: [Account-0001, Account-9999]
+      # workStations: []
+      tip: 将原料从1楼运到2楼
+      confirmMessage: 确定要【将原料从1楼运到2楼】吗？
+      params:
+        - name: fromSite
+          input: ext-list-nrjb
+          label: 请选择库位码（起点）
+          options:
+            - {value: 1F-A-1, label: 1F-A-1}
+            - {value: 1F-A-2, label: 1F-A-2}
+            - {value: 1F-A-3, label: 1F-A-3}
+            - {value: 1F-A-4, label: 1F-A-4}
+            - {value: 1F-A-5, label: 1F-A-5}
+            - {value: 1F-A-6, label: 1F-A-6}
+            - {value: 1F-A-7, label: 1F-A-7}
+            - {value: 1F-A-8, label: 1F-A-8}
+            - {value: 1F-A-9, label: 1F-A-9}
+            - {value: 1F-A-10, label: 1F-A-10}
+            - {value: 1F-A-11, label: 1F-A-11}
+            - {value: 1F-A-12, label: 1F-A-12}
+        - name: toSite
+          input: ext-list-nrjb
+          label: 请选择库位码（终点）
+          options:
+            - {value: 2F-D-1, label: 2F-D-1}
+            - {value: 2F-D-2, label: 2F-D-2}
+            - {value: 2F-D-3, label: 2F-D-3}
+
+    # # 3楼原料运输
+    - menuId: TakeMatFrom1Fto3F
+      label: 3楼原料运输（1F-A-->3F-A)
+      menuItemBackground: "#f09400"
+      menuItemTextColor: black
+      robotTaskDef: take-mat-from-1f-to-3f
+      disabled: false
+      workTypes: [Account-0002, Account-9999]
+      # workStations: []
+      tip: 将原料从1楼运到3楼
+      confirmMessage: 确定要【将原料从1楼运到3楼】吗？
+      params:
+        - name: fromSite
+          input: ext-list-nrjb
+          label: 请选择库位码（起点）
+          options:
+            - {value: 1F-A-1, label: 1F-A-1}
+            - {value: 1F-A-2, label: 1F-A-2}
+            - {value: 1F-A-3, label: 1F-A-3}
+            - {value: 1F-A-4, label: 1F-A-4}
+            - {value: 1F-A-5, label: 1F-A-5}
+            - {value: 1F-A-6, label: 1F-A-6}
+            - {value: 1F-A-7, label: 1F-A-7}
+            - {value: 1F-A-8, label: 1F-A-8}
+            - {value: 1F-A-9, label: 1F-A-9}
+            - {value: 1F-A-10, label: 1F-A-10}
+            - {value: 1F-A-11, label: 1F-A-11}
+            - {value: 1F-A-12, label: 1F-A-12}
+        - name: toSite
+          input: ext-list-nrjb
+          label: 请选择库位码（终点）
+          options:
+            - {value: 3F-A-1, label: 3F-A-1}
+
+    # # 空托盘运输
+    - menuId: ReturnEmptyTray
+      label: 空托盘运输(2F-E-->1F-B)
+      menuItemBackground: "#f09400"
+      menuItemTextColor: black
+      robotTaskDef: take-mat-from-1f-to-3f
+      disabled: false
+      workTypes: [Account-0001, Account-9999]
+      # workStations: []
+      tip: 将空托盘送回1楼
+      confirmMessage: 确定要【将空托盘送回1楼】吗？
+      params:
+        - name: fromSite
+          input: ext-list-nrjb
+          label: 请选择库位码（起点）
+          options: # 2F-E-1/3F-D-1
+            - {value: 2F-E-1, label: 2F-E-1}
+            - {value: 3F-B-1, label: 3F-B-1}
+
+        - name: toSite
+          input: ext-list-nrjb
+          label: 请选择库位码（终点）
+          options: # 1F-B-1
+            - {value: 1F-B-1, label: 1F-B-1}
+
+    # # 装置1到三防装置
+    - menuId: TakeBasketFrom2fcTo2fa
+      label: 装置1到装置收货(2F-A-->2F-H)
+      menuItemBackground: "#00bfff"
+      menuItemTextColor: black
+      robotTaskDef: take-basket-from-2fc-to-2fa
+      disabled: false
+      workTypes: [Account-0003, Account-9999]
+      # workStations: []
+      tip: 将料车从 2楼的装置1发货库位 运至 2楼的装置收货库位
+      confirmMessage: 确定要【执行】吗？
+      params:
+        - name: fromSite
+          input: ext-list-nrjb
+          label: 请选择库位码（起点）
+          options: # 2F-A-1
+            - {value: 2F-A-1, label: 2F-A-1}
+            - {value: 2F-A-2, label: 2F-A-2}
+        - name: toSite
+          input: ext-list-nrjb
+          label: 请选择库位码（终点）
+          options: # 2F-H-1
+            - {value: 2F-H-1, label: 2F-H-1}
+            - {value: 2F-H-2, label: 2F-H-2}
+            - {value: 2F-H-3, label: 2F-H-3}
+
+    # # 2F插件到三防插件
+    - menuId: TakeBasketFrom2fbTo2fd
+      label: 2F插件到三防插件(2F-B-->2F-K)
+      menuItemBackground: "#00bfff"
+      menuItemTextColor: black
+      robotTaskDef: take-basket-from-2fb-to-2fd
+      disabled: false
+      workTypes: [Account-0003, Account-9999]
+      # workStations: []
+      tip: 将料车从 2楼的插件发货库位 运至 2楼三防插件收货库位
+      confirmMessage: 确定要【执行】吗？
+      params:
+        - name: fromSite
+          input: ext-list-nrjb
+          label: 请选择库位码（起点）
+          options: # 2F-B-1
+            - {value: 2F-B-1, label: 2F-B-1}
+            - {value: 2F-B-2, label: 2F-B-2}
+        - name: toSite
+          input: ext-list-nrjb
+          label: 请选择库位码（终点）
+          options: # 2F-K-1
+            - {value: 2F-K-1, label: 2F-K-1}
+            - {value: 2F-K-2, label: 2F-K-2}
+
+    # # 三防插件到2F插件
+    - menuId: TakeBasketTo2F
+      label: 三防插件发货送至插件收货(2F-L-->2F-C)
+      menuItemBackground: "#00bfff"
+      menuItemTextColor: black
+      robotTaskDef: take-basket-to-2f
+      disabled: false
+      workTypes: [Account-0004, Account-9999]
+      # workStations: []
+      tip: 将料车从 2楼的三防插件发货库位 运至 2楼的插件收货库位
+      confirmMessage: 确定要【执行】吗？
+      params:
+        - name: fromSite
+          input: ext-list-nrjb
+          label: 请选择库位码（起点）
+          options: # 3F-L-1
+            - {value: 2F-L-1, label: 2F-L-1}
+            - {value: 2F-L-2, label: 2F-L-2}
+        - name: toSite
+          input: ext-list-nrjb
+          label: 请选择库位码（终点）
+          options: # 2F-C-1
+            - {value: 2F-C-1, label: 2F-C-1}
+            - {value: 2F-C-2, label: 2F-C-2}
+
+    # # 装置2发货至2楼装置2收货
+    - menuId: TakeBasketTo3F
+      label: 装置2发货至装置收货(2F-F-->2F-H)
+      menuItemBackground: "#00bfff"
+      menuItemTextColor: black
+      robotTaskDef: take-basket-to-3f
+      disabled: false
+      workTypes: [Account-0003, Account-9999]
+      # workStations: []
+      tip: 将料车从 2楼的装置2发货库位 运至 2楼的装置收货库位
+      confirmMessage: 确定要【执行】吗？
+      params:
+        - name: fromSite
+          input: ext-list-nrjb
+          label: 请选择库位码（起点）
+          options: # 2F-F-1
+            - {value: 2F-F-1, label: 2F-F-1}
+            - {value: 2F-F-2, label: 2F-F-2}
+        - name: toSite
+          input: ext-list-nrjb
+          label: 请选择库位码（终点）
+          options: # 3F-H-1
+            - {value: 2F-H-1, label: 2F-H-1}
+            - {value: 2F-H-2, label: 2F-H-2}
+            - {value: 2F-H-3, label: 2F-H-3}
+
+    # # 3F插件到三防插件
+    - menuId: TakeBasketFrom3fnTo2fk
+      label: 3F插件到三防插件(3F-N-->2F-K)
+      menuItemBackground: "#00bfff"
+      menuItemTextColor: black
+      robotTaskDef: take-basket-from-3fn-to-2fk
+      disabled: false
+      workTypes: [Account-0006, Account-9999]
+      # workStations: []
+      tip: 将料车从 3楼的插件发货库位 运至 2楼三防插件收货库位
+      confirmMessage: 确定要【执行】吗？
+      params:
+        - name: fromSite
+          input: ext-list-nrjb
+          label: 请选择库位码（起点）
+          options: # 3F-N-1
+            - {value: 3F-N-1, label: 3F-N-1}
+            - {value: 3F-N-2, label: 3F-N-2}
+        - name: toSite
+          input: ext-list-nrjb
+          label: 请选择库位码（终点）
+          options: # 2F-K-1
+            - {value: 2F-K-1, label: 2F-K-1}
+            - {value: 2F-K-2, label: 2F-K-2}
+
+    # # 三防插件到3F插件
+    - menuId: TakeBasketFrom2flTo3fm
+      label: 三防插件到3F插件(2F-L-->3F-M)
+      menuItemBackground: "#00bfff"
+      menuItemTextColor: black
+      robotTaskDef: take-basket-from-2fl-to-3fm
+      disabled: false
+      workTypes: [Account-0004, Account-9999]
+      # workStations: []
+      tip: 将料车从 2楼的插件发货库位 运至 3楼三防插件收货库位
+      confirmMessage: 确定要【执行】吗？
+      params:
+        - name: fromSite
+          input: ext-list-nrjb
+          label: 请选择库位码（起点）
+          options: # 2F-L-1
+            - {value: 2F-L-1, label: 2F-L-1}
+            - {value: 2F-L-2, label: 2F-L-2}
+        - name: toSite
+          input: ext-list-nrjb
+          label: 请选择库位码（终点）
+          options: # 3F-M-1
+            - {value: 3F-M-1, label: 3F-M-1}
+            - {value: 3F-M-2, label: 3F-M-2}
+
+    # # 装置3发货至3楼装置3收货
+    - menuId: TakeBasketFrom2fgTo3fp
+      label: 装置3发货至3楼装置3收货(2F-G-->3F-P)
+      menuItemBackground: "#00bfff"
+      menuItemTextColor: black
+      robotTaskDef: take-basket-from-2fg-to-3fp
+      disabled: false
+      workTypes: [Account-0005, Account-9999]
+      # workStations: []
+      tip: 将料车从 2楼的装置3发货库位 运至 3楼装置3收货库位
+      confirmMessage: 确定要【执行】吗？
+      params:
+        - name: fromSite
+          input: ext-list-nrjb
+          label: 请选择库位码（起点）
+          options: # 2F-G-1
+            - {value: 2F-G-1, label: 2F-G-1}
+            - {value: 2F-G-2, label: 2F-G-2}
+        - name: toSite
+          input: ext-list-nrjb
+          label: 请选择库位码（终点）
+          options: # 3F-P-1
+            - {value: 3F-P-1, label: 3F-P-1}
+            - {value: 3F-P-2, label: 3F-P-2}
+
+    # # 清空库位-分拣线
+    - menuId: EmptyStoreSite-A
+      label: 清空库位-A
+      menuItemBackground: "#abcdef"
+      menuItemTextColor: black
+      robotTaskDef: empty-store-site
+      disabled: false
+      workTypes: [Account-0001, Account-9999]
+      # workStations: []
+      tip: 将目标库位设置为未占用状态
+      confirmMessage: 确定要【清空库位】吗？
+      params:
+        - name: siteId
+          input: ext-list-nrjb
+          label: 请选择已领走货物的库位码
+          options:
+            - {value: 1F-B-1, label: 1F-B-1}
+            - {value: 2F-D-1, label: 2F-D-1}
+            - {value: 2F-D-2, label: 2F-D-2}
+            - {value: 2F-D-3, label: 2F-D-3}
+            - {value: 2F-E-1, label: 2F-E-1}
+    - menuId: EmptyStoreSite-B
+      label: 清空库位-B
+      menuItemBackground: "#abcdef"
+      menuItemTextColor: black
+      robotTaskDef: empty-store-site
+      disabled: false
+      workTypes: [Account-0002, Account-9999]
+      # workStations: []
+      tip: 将目标库位设置为未占用状态
+      confirmMessage: 确定要【清空库位】吗？
+      params:
+        - name: siteId
+          input: ext-list-nrjb
+          label: 请选择已领走货物的库位码
+          options:
+            - {value: 3F-A-1, label: 3F-A-1}
+    - menuId: EmptyStoreSite-C
+      label: 清空库位-C
+      menuItemBackground: "#abcdef"
+      menuItemTextColor: black
+      robotTaskDef: empty-store-site
+      disabled: false
+      workTypes: [Account-0003, Account-9999]
+      # workStations: []
+      tip: 将目标库位设置为未占用状态
+      confirmMessage: 确定要【清空库位】吗？
+      params:
+        - name: siteId
+          input: ext-list-nrjb
+          label: 请选择已领走货物的库位码
+          options:
+            - {value: 2F-A-1, label: 2F-A-1}
+            - {value: 2F-A-2, label: 2F-A-2}
+            - {value: 2F-B-1, label: 2F-B-1}
+            - {value: 2F-B-2, label: 2F-B-2}
+            - {value: 2F-C-1, label: 2F-C-1}
+            - {value: 2F-C-2, label: 2F-C-2}
+    - menuId: EmptyStoreSite-D
+      label: 清空库位-D
+      menuItemBackground: "#abcdef"
+      menuItemTextColor: black
+      robotTaskDef: empty-store-site
+      disabled: false
+      workTypes: [Account-0004, Account-9999]
+      # workStations: []
+      tip: 将目标库位设置为未占用状态
+      confirmMessage: 确定要【清空库位】吗？
+      params:
+        - name: siteId
+          input: ext-list-nrjb
+          label: 请选择已领走货物的库位码
+          options:
+            - {value: 2F-L-1, label: 2F-L-1}
+            - {value: 2F-L-2, label: 2F-L-2}
+            - {value: 2F-K-1, label: 2F-K-1}
+            - {value: 2F-K-2, label: 2F-K-2}
+            # - {value: 2F-J-1, label: 2F-J-1}
+            # - {value: 2F-J-2, label: 2F-J-2}
+    - menuId: EmptyStoreSite-E
+      label: 清空库位-E
+      menuItemBackground: "#abcdef"
+      menuItemTextColor: black
+      robotTaskDef: empty-store-site
+      disabled: false
+      workTypes: [Account-0005, Account-9999]
+      # workStations: []
+      tip: 将目标库位设置为未占用状态
+      confirmMessage: 确定要【清空库位】吗？
+      params:
+        - name: siteId
+          input: ext-list-nrjb
+          label: 请选择已领走货物的库位码
+          options:
+            - {value: 2F-G-1, label: 2F-G-1}
+            - {value: 2F-G-2, label: 2F-G-2}
+            - {value: 2F-H-1, label: 2F-H-1}
+            - {value: 2F-H-2, label: 2F-H-2}
+            - {value: 2F-H-3, label: 2F-H-3}
+    - menuId: EmptyStoreSite-F
+      label: 清空库位-F
+      menuItemBackground: "#abcdef"
+      menuItemTextColor: black
+      robotTaskDef: empty-store-site
+      disabled: false
+      workTypes: [Account-0006, Account-9999]
+      # workStations: []
+      tip: 将目标库位设置为未占用状态
+      confirmMessage: 确定要【清空库位】吗？
+      params:
+        - name: siteId
+          input: ext-list-nrjb
+          label: 请选择已领走货物的库位码
+          options:
+            - {value: 3F-N-1, label: 3F-N-1}
+            - {value: 3F-N-2, label: 3F-N-2}
+            - {value: 3F-M-1, label: 3F-M-1}
+            - {value: 3F-M-2, label: 3F-M-2}
+            - {value: 3F-P-1, label: 3F-P-1}
+            - {value: 3F-P-2, label: 3F-P-2}
+
+    # # 更新AGV标签 分界线
+    - menuId: UpdateAgvTag
+      label: 更新AGV标签
+      menuItemBackground: "#abcdef"
+      menuItemTextColor: black
+      robotTaskDef: update-agv-tag
+      disabled: false
+      # workTypes: []
+      # workStations: []
+      tip: 更新AGV标签
+      confirmMessage: 确定要【更新AGV标签】吗？
+      params:
+        - name: vehicleName
+          input: select
+          label: 请选择目标机器人编号
+          options:
+            - value: DN-01
+              label: DN-01
+            - value: DN-02
+              label: DN-02
+        - name: tag
+          input: select
+          label: 请选根据AGV实际状态选择标签
+          options:
+            - value: true
+              label: 已安装工装
+            - value: false
+              label: 未安装工装
+
+    # # 安装/拆卸工装完成
+    - menuId: OpreateExtDeviceFinished
+      label: 安装/拆卸工装完成
+      menuItemBackground: "#abcdef"
+      menuItemTextColor: black
+      robotTaskDef: opt-ext-device-finished
+      disabled: false
+      # workTypes: []
+      # workStations: []
+      tip: 告知 SRD-K 已完成工装的安装或拆卸
+      confirmMessage: 确定要【执行】吗？
+      params:
+        - name: vehicleName
+          input: select
+          label: 请选择目标机器人编号
+          options:
+            - value: DN-01
+              label: DN-01
+            - value: DN-02
+              label: DN-02
+        - name: tag
+          input: select
+          label: 请选根据AGV实际状态选择标签
+          options:
+            - value: true
+              label: 已安装工装
+            - value: false
+              label: 未安装工装
+      #工装安装
+    - menuId: TaskDefLoadExtraDevice
+      label: 安装工装
+      menuItemBackground: "#abcdef"
+      menuItemTextColor: black
+      robotTaskDef: load-ext-device
+      disabled: false
+      workTypes: [Account-9999, Account-0001]
+      # workStations: []
+      tip: 发送安装工装
+      confirmMessage: 确定要【执行】吗？
+      params:
+        - name: vehicleName
+          input: select
+          label: 请选择目标机器人编号
+          options:
+            - value: DN-01
+              label: DN-01
+            - value: DN-02
+              label: DN-02
+        #工装拆卸
+    - menuId: TaskDefUnloadExtraDevice
+      label: 安装拆卸
+      menuItemBackground: "#abcdef"
+      menuItemTextColor: black
+      robotTaskDef: unload-ext-device
+      disabled: false
+      workTypes: [Account-9999, Account-0001]
+      # workStations: []
+      tip: 发送安装工装
+      confirmMessage: 确定要【执行】吗？
+      params:
+        - name: vehicleName
+          input: select
+          label: 请选择目标机器人编号
+          options:
+            - value: DN-01
+              label: DN-01
+            - value: DN-02
+              label: DN-02
+  taskNotice:
+    scope: by-work-type
+    noticeType: alert
+    when:
+      - created
+      - finished

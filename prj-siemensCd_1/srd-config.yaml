@@ -1,0 +1,1069 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-siemensCd1
+mongoMainDatabase: srd-siemensCd1
+uiPath: E:/gitrepo/seer-ui/level2/dist
+#uiPath: E:/gitrepo/seer-ui/custom/standard-en/dist
+commAdapterIO: Http
+vehicleSimulation: Http
+#startFromDB: false
+sendCommandArrayToRbk: false
+
+# 设备服务器配置项
+synchronizer:
+  liftRoute: http://localhost:7100/api/
+
+lifts: #（列表）
+  - name: wl1
+    host: 127.0.0.1
+    port: 502
+    mode: ModbusTcp
+    modbusConfig:
+      # # 从站ID
+      unitId: 0
+      # # true:不发送开门和关门指令； false:发送开门和关门指令
+      ignoreOpenOrClose: true
+      # # 呼叫电梯来机器人所在的楼层
+      call:
+        # # 功能码
+        funNo: "06"
+        # # 地址编号，本系统寻址是从0开始的，而不是从1开始的，必要时需要进行地址偏移操作
+        addrNo: 1
+      # # 呼叫电梯去机器人期望的楼层
+      go:
+        funNo: "06"
+        addrNo: 2
+      # # 机器人到达SM点
+      idleInside:
+        funNo: "05"
+        addrNo: 1
+        # # false(系统默认配置):读取到的线圈量的值与其实际意义相同；如果正常情况下0表示false,1表示true；则读取到的0表示false，1表示true。
+        # # true: 读取到的线圈量的值与其实际意义相反；如果正常情况下0表示false,1表示true；则读取到的0表示true，1表示false。
+        #inverseValueOf0xOr1x: false
+      # # 机器人到达电梯的前置点
+      idleOutside:
+        funNo: "05"
+        addrNo: 2
+        #inverseValueOf0xOr1x: false
+      # # 机器人是否可以进入电梯
+      enterPermission:
+        funNo: "02"
+        addrNo: 1
+        #inverseValueOf0xOr1x: false
+      # # 机器人是否可以离开电梯
+      leavePermission:
+        funNo: "02"
+        addrNo: 2
+        #inverseValueOf0xOr1x: false
+      # # 电梯门的状态
+      liftDoorStatus:
+        funNo: "02"
+        addrNo: 3
+        #inverseValueOf0xOr1x: false
+      # # 电梯所在的楼层信息
+      liftFloor:
+        funNo: "04"
+        addrNo: 1
+        #inverseValueOf0xOr1x: false
+
+operator:
+  orders:
+    - menuId: MatIn
+      label: 原材料入库
+      menuItemBackground: "rgb(131, 175, 155)"
+      menuItemTextColor: white
+      robotTaskDef: MatIn
+      confirmMessage: 确定下发【原材料入库】吗?
+      params:
+        - name: from
+          input: selectField
+          label: 起点
+          options:
+            - value: GR-01-01
+              label: GR-01-01
+            - value: GR-01-02
+              label: GR-01-02
+            - value: GR-01-03
+              label: GR-01-03
+            - value: GR-01-04
+              label: GR-01-04
+            - value: GR-01-05
+              label: GR-01-05
+            - value: GR-01-06
+              label: GR-01-06
+            - value: GR-01-07
+              label: GR-01-07
+            - value: GR-01-08
+              label: GR-01-08
+            - value: GR-01-09
+              label: GR-01-09
+            - value: GR-01-10
+              label: GR-01-10
+            - value: GR-01-11
+              label: GR-01-11
+            - value: GR-01-12
+              label: GR-01-12
+            - value: GR-01-13
+              label: GR-01-13
+            - value: GR-01-14
+              label: GR-01-14
+            - value: GR-01-15
+              label: GR-01-15
+            - value: GR-01-16
+              label: GR-01-16
+            - value: GR-01-17
+              label: GR-01-17
+            - value: GR-01-18
+              label: GR-01-18
+            - value: GR-01-19
+              label: GR-01-19
+            - value: GR-01-20
+              label: GR-01-20
+            - value: GR-01-21
+              label: GR-01-21
+            - value: GR-01-22
+              label: GR-01-22
+            - value: GR-01-23
+              label: GR-01-23
+            - value: GR-01-24
+              label: GR-01-24
+            - value: GR-01-25
+              label: GR-01-25
+        - name: to
+          input: selectField
+          label: 终点
+          options:
+            - value: PW1-end-01
+              label: PW1-end-01
+            - value: PW1-end-02
+              label: PW1-end-02
+            - value: PW2-end-01
+              label: PW2-end-01
+            - value: PW2-end-02
+              label: PW2-end-02
+            - value: PW3-44-01-01
+              label: PW3-44-01-01
+            - value: PW3-44-01-02
+              label: PW3-44-01-02
+            - value: PW3-44-01-03
+              label: PW3-44-01-03
+            - value: PW3-44-01-04
+              label: PW3-44-01-04
+            - value: PW3-44-01-05
+              label: PW3-44-01-05
+            - value: PW3-44-01-06
+              label: PW3-44-01-06
+            - value: PW3-44-01-07
+              label: PW3-44-01-07
+            - value: PW3-44-01-08
+              label: PW3-44-01-08
+            - value: PW3-44-01-09
+              label: PW3-44-01-09
+            - value: PW3-44-01-10
+              label: PW3-44-01-10
+            - value: PW3-44-01-11
+              label: PW3-44-01-11
+            - value: PW3-44-01-12
+              label: PW3-44-01-12
+            - value: PW3-44-01-13
+              label: PW3-44-01-13
+            - value: PW3-44-01-14
+              label: PW3-44-01-14
+            - value: PW3-44-01-15
+              label: PW3-44-01-15
+            - value: PW3-44-01-16
+              label: PW3-44-01-16
+            - value: PW3-44-01-17
+              label: PW3-44-01-17
+            - value: PW3-44-01-18
+              label: PW3-44-01-18
+            - value: PW3-44-01-19
+              label: PW3-44-01-19
+            - value: PW3-44-01-20
+              label: PW3-44-01-20
+            - value: PW3-44-01-21
+              label: PW3-44-01-21
+            - value: PW3-44-01-22
+              label: PW3-44-01-22
+            - value: PW3-44-01-23
+              label: PW3-44-01-23
+            - value: PW3-44-01-24
+              label: PW3-44-01-24
+            - value: PW3-44-01-25
+              label: PW3-44-01-25
+            - value: PW3-44-01-26
+              label: PW3-44-01-26
+            - value: PW3-44-01-27
+              label: PW3-44-01-27
+            - value: PW3-44-01-28
+              label: PW3-44-01-28
+            - value: PW3-44-01-29
+              label: PW3-44-01-29
+            - value: PW3-44-01-30
+              label: PW3-44-01-30
+            - value: PW3-44-01-31
+              label: PW3-44-01-31
+            - value: PW3-44-01-32
+              label: PW3-44-01-32
+            - value: PW3-44-01-33
+              label: PW3-44-01-33
+            - value: PW3-44-01-34
+              label: PW3-44-01-34
+            - value: PW3-44-01-35
+              label: PW3-44-01-35
+            - value: PW3-44-01-36
+              label: PW3-44-01-36
+            - value: PW3-44-01-37
+              label: PW3-44-01-37
+            - value: PW3-44-01-38
+              label: PW3-44-01-38
+            - value: PW3-44-01-39
+              label: PW3-44-01-39
+            - value: PW3-44-01-40
+              label: PW3-44-01-40
+            - value: PW3-44-01-41
+              label: PW3-44-01-41
+            - value: PW3-44-01-42
+              label: PW3-44-01-42
+            - value: PW3-44-01-43
+              label: PW3-44-01-43
+            - value: PW3-44-01-44
+              label: PW3-44-01-44
+            - value: PW3-44-01-45
+              label: PW3-44-01-45
+            - value: PW3-44-01-46
+              label: PW3-44-01-46
+            - value: PW3-44-01-47
+              label: PW3-44-01-47
+            - value: PW3-44-01-48
+              label: PW3-44-01-48
+            - value: PW3-44-01-49
+              label: PW3-44-01-49
+            - value: PW3-44-01-50
+              label: PW3-44-01-50
+            - value: PW3-44-01-51
+              label: PW3-44-01-51
+            - value: PW3-44-01-52
+              label: PW3-44-01-52
+            - value: PW3-44-01-53
+              label: PW3-44-01-53
+            - value: PW3-44-01-54
+              label: PW3-44-01-54
+            - value: PW3-44-01-55
+              label: PW3-44-01-55
+            - value: PW3-44-01-56
+              label: PW3-44-01-56
+            - value: PW3-44-01-57
+              label: PW3-44-01-57
+            - value: PW3-44-01-58
+              label: PW3-44-01-58
+            - value: PW3-44-01-59
+              label: PW3-44-01-59
+            - value: PW3-44-01-60
+              label: PW3-44-01-60
+            - value: PW3-44-02-01
+              label: PW3-44-02-01
+            - value: PW3-44-02-02
+              label: PW3-44-02-02
+            - value: PW3-44-02-03
+              label: PW3-44-02-03
+            - value: PW3-44-02-04
+              label: PW3-44-02-04
+            - value: PW3-44-02-05
+              label: PW3-44-02-05
+            - value: PW3-44-02-06
+              label: PW3-44-02-06
+            - value: PW3-44-02-07
+              label: PW3-44-02-07
+            - value: PW3-44-02-08
+              label: PW3-44-02-08
+            - value: PW3-44-02-09
+              label: PW3-44-02-09
+            - value: PW3-44-02-10
+              label: PW3-44-02-10
+            - value: PW3-44-02-11
+              label: PW3-44-02-11
+            - value: PW3-44-02-12
+              label: PW3-44-02-12
+            - value: PW3-44-02-13
+              label: PW3-44-02-13
+            - value: PW3-44-02-14
+              label: PW3-44-02-14
+            - value: PW3-44-02-15
+              label: PW3-44-02-15
+            - value: PW3-44-02-16
+              label: PW3-44-02-16
+            - value: PW3-44-02-17
+              label: PW3-44-02-17
+            - value: PW3-44-02-18
+              label: PW3-44-02-18
+            - value: PW3-44-02-19
+              label: PW3-44-02-19
+            - value: PW3-44-02-20
+              label: PW3-44-02-20
+            - value: PW3-44-02-21
+              label: PW3-44-02-21
+            - value: PW3-44-02-22
+              label: PW3-44-02-22
+            - value: PW3-44-02-23
+              label: PW3-44-02-23
+            - value: PW3-44-02-24
+              label: PW3-44-02-24
+            - value: PW3-44-02-25
+              label: PW3-44-02-25
+            - value: PW3-44-02-26
+              label: PW3-44-02-26
+            - value: PW3-44-02-27
+              label: PW3-44-02-27
+            - value: PW3-44-02-28
+              label: PW3-44-02-28
+            - value: PW3-44-02-29
+              label: PW3-44-02-29
+            - value: PW3-44-02-30
+              label: PW3-44-02-30
+            - value: PW3-44-02-31
+              label: PW3-44-02-31
+            - value: PW3-44-02-32
+              label: PW3-44-02-32
+            - value: PW3-44-02-33
+              label: PW3-44-02-33
+            - value: PW3-44-02-34
+              label: PW3-44-02-34
+            - value: PW3-44-02-35
+              label: PW3-44-02-35
+            - value: PW3-44-02-36
+              label: PW3-44-02-36
+            - value: PW3-44-02-37
+              label: PW3-44-02-37
+            - value: PW3-44-02-38
+              label: PW3-44-02-38
+            - value: PW3-44-02-39
+              label: PW3-44-02-39
+            - value: PW3-44-02-40
+              label: PW3-44-02-40
+            - value: PW3-44-02-41
+              label: PW3-44-02-41
+
+    - menuId: MatTransfer
+      label: 原材料运输
+      menuItemBackground: "rgb(131, 175, 155)"
+      menuItemTextColor: white
+      robotTaskDef: MatTransfer
+      confirmMessage: 确定下发【原材料运输】吗?
+      params:
+        - name: from
+          input: selectField
+          label: 起点
+          options:
+            - value: PW1-sent-01
+              label: PW1-sent-01
+            - value: PW1-sent-02
+              label: PW1-sent-02
+            - value: PW3-44-01-01
+              label: PW3-44-01-01
+            - value: PW3-44-01-02
+              label: PW3-44-01-02
+            - value: PW3-44-01-03
+              label: PW3-44-01-03
+            - value: PW3-44-01-04
+              label: PW3-44-01-04
+            - value: PW3-44-01-05
+              label: PW3-44-01-05
+            - value: PW3-44-01-06
+              label: PW3-44-01-06
+            - value: PW3-44-01-07
+              label: PW3-44-01-07
+            - value: PW3-44-01-08
+              label: PW3-44-01-08
+            - value: PW3-44-01-09
+              label: PW3-44-01-09
+            - value: PW3-44-01-10
+              label: PW3-44-01-10
+            - value: PW3-44-01-11
+              label: PW3-44-01-11
+            - value: PW3-44-01-12
+              label: PW3-44-01-12
+            - value: PW3-44-01-13
+              label: PW3-44-01-13
+            - value: PW3-44-01-14
+              label: PW3-44-01-14
+            - value: PW3-44-01-15
+              label: PW3-44-01-15
+            - value: PW3-44-01-16
+              label: PW3-44-01-16
+            - value: PW3-44-01-17
+              label: PW3-44-01-17
+            - value: PW3-44-01-18
+              label: PW3-44-01-18
+            - value: PW3-44-01-19
+              label: PW3-44-01-19
+            - value: PW3-44-01-20
+              label: PW3-44-01-20
+            - value: PW3-44-01-21
+              label: PW3-44-01-21
+            - value: PW3-44-01-22
+              label: PW3-44-01-22
+            - value: PW3-44-01-23
+              label: PW3-44-01-23
+            - value: PW3-44-01-24
+              label: PW3-44-01-24
+            - value: PW3-44-01-25
+              label: PW3-44-01-25
+            - value: PW3-44-01-26
+              label: PW3-44-01-26
+            - value: PW3-44-01-27
+              label: PW3-44-01-27
+            - value: PW3-44-01-28
+              label: PW3-44-01-28
+            - value: PW3-44-01-29
+              label: PW3-44-01-29
+            - value: PW3-44-01-30
+              label: PW3-44-01-30
+            - value: PW3-44-01-31
+              label: PW3-44-01-31
+            - value: PW3-44-01-32
+              label: PW3-44-01-32
+            - value: PW3-44-01-33
+              label: PW3-44-01-33
+            - value: PW3-44-01-34
+              label: PW3-44-01-34
+            - value: PW3-44-01-35
+              label: PW3-44-01-35
+            - value: PW3-44-01-36
+              label: PW3-44-01-36
+            - value: PW3-44-01-37
+              label: PW3-44-01-37
+            - value: PW3-44-01-38
+              label: PW3-44-01-38
+            - value: PW3-44-01-39
+              label: PW3-44-01-39
+            - value: PW3-44-01-40
+              label: PW3-44-01-40
+            - value: PW3-44-01-41
+              label: PW3-44-01-41
+            - value: PW3-44-01-42
+              label: PW3-44-01-42
+            - value: PW3-44-01-43
+              label: PW3-44-01-43
+            - value: PW3-44-01-44
+              label: PW3-44-01-44
+            - value: PW3-44-01-45
+              label: PW3-44-01-45
+            - value: PW3-44-01-46
+              label: PW3-44-01-46
+            - value: PW3-44-01-47
+              label: PW3-44-01-47
+            - value: PW3-44-01-48
+              label: PW3-44-01-48
+            - value: PW3-44-01-49
+              label: PW3-44-01-49
+            - value: PW3-44-01-50
+              label: PW3-44-01-50
+            - value: PW3-44-01-51
+              label: PW3-44-01-51
+            - value: PW3-44-01-52
+              label: PW3-44-01-52
+            - value: PW3-44-01-53
+              label: PW3-44-01-53
+            - value: PW3-44-01-54
+              label: PW3-44-01-54
+            - value: PW3-44-01-55
+              label: PW3-44-01-55
+            - value: PW3-44-01-56
+              label: PW3-44-01-56
+            - value: PW3-44-01-57
+              label: PW3-44-01-57
+            - value: PW3-44-01-58
+              label: PW3-44-01-58
+            - value: PW3-44-01-59
+              label: PW3-44-01-59
+            - value: PW3-44-01-60
+              label: PW3-44-01-60
+            - value: PW3-44-02-01
+              label: PW3-44-02-01
+            - value: PW3-44-02-02
+              label: PW3-44-02-02
+            - value: PW3-44-02-03
+              label: PW3-44-02-03
+            - value: PW3-44-02-04
+              label: PW3-44-02-04
+            - value: PW3-44-02-05
+              label: PW3-44-02-05
+            - value: PW3-44-02-06
+              label: PW3-44-02-06
+            - value: PW3-44-02-07
+              label: PW3-44-02-07
+            - value: PW3-44-02-08
+              label: PW3-44-02-08
+            - value: PW3-44-02-09
+              label: PW3-44-02-09
+            - value: PW3-44-02-10
+              label: PW3-44-02-10
+            - value: PW3-44-02-11
+              label: PW3-44-02-11
+            - value: PW3-44-02-12
+              label: PW3-44-02-12
+            - value: PW3-44-02-13
+              label: PW3-44-02-13
+            - value: PW3-44-02-14
+              label: PW3-44-02-14
+            - value: PW3-44-02-15
+              label: PW3-44-02-15
+            - value: PW3-44-02-16
+              label: PW3-44-02-16
+            - value: PW3-44-02-17
+              label: PW3-44-02-17
+            - value: PW3-44-02-18
+              label: PW3-44-02-18
+            - value: PW3-44-02-19
+              label: PW3-44-02-19
+            - value: PW3-44-02-20
+              label: PW3-44-02-20
+            - value: PW3-44-02-21
+              label: PW3-44-02-21
+            - value: PW3-44-02-22
+              label: PW3-44-02-22
+            - value: PW3-44-02-23
+              label: PW3-44-02-23
+            - value: PW3-44-02-24
+              label: PW3-44-02-24
+            - value: PW3-44-02-25
+              label: PW3-44-02-25
+            - value: PW3-44-02-26
+              label: PW3-44-02-26
+            - value: PW3-44-02-27
+              label: PW3-44-02-27
+            - value: PW3-44-02-28
+              label: PW3-44-02-28
+            - value: PW3-44-02-29
+              label: PW3-44-02-29
+            - value: PW3-44-02-30
+              label: PW3-44-02-30
+            - value: PW3-44-02-31
+              label: PW3-44-02-31
+            - value: PW3-44-02-32
+              label: PW3-44-02-32
+            - value: PW3-44-02-33
+              label: PW3-44-02-33
+            - value: PW3-44-02-34
+              label: PW3-44-02-34
+            - value: PW3-44-02-35
+              label: PW3-44-02-35
+            - value: PW3-44-02-36
+              label: PW3-44-02-36
+            - value: PW3-44-02-37
+              label: PW3-44-02-37
+            - value: PW3-44-02-38
+              label: PW3-44-02-38
+            - value: PW3-44-02-39
+              label: PW3-44-02-39
+            - value: PW3-44-02-40
+              label: PW3-44-02-40
+            - value: PW3-44-02-41
+              label: PW3-44-02-41
+        - name: to
+          input: selectField
+          label: 终点
+          options:
+            - value: PU1-A1-01
+              label: PU1-A1-01
+            - value: PU1-B1-01
+              label: PU1-B1-01
+            - value: PU1-B2-01
+              label: PU1-B2-01
+            - value: PU2-E1-01
+              label: PU2-E1-01
+            - value: PU2-F1-01
+              label: PU2-F1-01
+            - value: PU2-F1-02
+              label: PU2-F1-02
+            - value: PU2-F2-01
+              label: PU2-F2-01
+            - value: PU2-F2-02
+              label: PU2-F2-02
+            - value: PU2-F2-03
+              label: PU2-F2-03
+            - value: PU2-F2-04
+              label: PU2-F2-04
+            - value: PU2-F3-01
+              label: PU2-F3-01
+            - value: PU2-F3-02
+              label: PU2-F3-02
+            - value: PU2-F5-01
+              label: PU2-F5-01
+            - value: PU2-F5-02
+              label: PU2-F5-02
+            - value: PU2-F6-02
+              label: PU2-F6-02
+
+    - menuId: ProductTransfer
+      label: 成品运输
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      robotTaskDef: ProductTransfer
+      confirmMessage: 确定下发【成品运输】吗?
+      params:
+        - name: from
+          input: selectField
+          label: 起点
+          options:
+            - value: PU2-F3-03
+              label: PU2-F3-03
+            - value: PU2-F3-04
+              label: PU2-F3-04
+            - value: PU2-F4-01
+              label: PU2-F4-01
+            - value: PU2-F4-02
+              label: PU2-F4-02
+            - value: PU2-F6-01
+              label: PU2-F6-01
+
+        - name: to
+          input: selectField
+          label: 终点
+          options:
+            - value: SHIP-FG-01
+              label: SHIP-FG-01
+            - value: SHIP-FG-02
+              label: SHIP-FG-02
+
+    - menuId: EmptyTrayTransfer
+      label: 空托盘运输
+      menuItemBackground: "rgb(39, 194, 126)"
+      menuItemTextColor: white
+      robotTaskDef: EmptyTrayTransfer
+      confirmMessage: 确定下发【空托盘运输】吗?
+      params:
+        - name: from
+          input: selectField
+          label: 起点
+          options:
+            - value: PW1-FG-Pallet-EMPTY-01
+              label: PW1-FG-Pallet-EMPTY-01
+            - value: PU1-A1-01
+              label: PU1-A1-01
+            - value: PU1-B1-01
+              label: PU1-B1-01
+            - value: PU1-B2-01
+              label: PU1-B2-01
+            - value: PU2-E1-01
+              label: PU2-E1-01
+            - value: PU2-F1-01
+              label: PU2-F1-01
+            - value: PU2-F1-02
+              label: PU2-F1-02
+            - value: PU2-F2-01
+              label: PU2-F2-01
+            - value: PU2-F2-02
+              label: PU2-F2-02
+            - value: PU2-F2-03
+              label: PU2-F2-03
+            - value: PU2-F2-04
+              label: PU2-F2-04
+            - value: PU2-F3-01
+              label: PU2-F3-01
+            - value: PU2-F3-02
+              label: PU2-F3-02
+            - value: PU2-F5-01
+              label: PU2-F5-01
+            - value: PU2-F5-02
+              label: PU2-F5-02
+            - value: PU2-F6-02
+              label: PU2-F6-02
+        - name: to
+          input: selectField
+          label: 终点
+          options:
+            - value: PW1-Pallet-EMPTY-01
+              label: PW1-Pallet-EMPTY-01
+            - value: GR-Pallet-EMPTY-01
+              label: GR-Pallet-EMPTY-01
+            - value: GR-01-01
+              label: GR-01-01
+            - value: GR-01-02
+              label: GR-01-02
+            - value: GR-01-03
+              label: GR-01-03
+            - value: GR-01-04
+              label: GR-01-04
+            - value: GR-01-05
+              label: GR-01-05
+            - value: GR-01-06
+              label: GR-01-06
+            - value: GR-01-07
+              label: GR-01-07
+            - value: GR-01-08
+              label: GR-01-08
+            - value: GR-01-09
+              label: GR-01-09
+            - value: GR-01-10
+              label: GR-01-10
+            - value: GR-01-11
+              label: GR-01-11
+            - value: GR-01-12
+              label: GR-01-12
+            - value: GR-01-13
+              label: GR-01-13
+            - value: GR-01-14
+              label: GR-01-14
+            - value: GR-01-15
+              label: GR-01-15
+            - value: GR-01-16
+              label: GR-01-16
+            - value: GR-01-17
+              label: GR-01-17
+            - value: GR-01-18
+              label: GR-01-18
+            - value: GR-01-19
+              label: GR-01-19
+            - value: GR-01-20
+              label: GR-01-20
+            - value: GR-01-21
+              label: GR-01-21
+            - value: GR-01-22
+              label: GR-01-22
+            - value: GR-01-23
+              label: GR-01-23
+            - value: GR-01-24
+              label: GR-01-24
+            - value: GR-01-25
+              label: GR-01-25
+
+    - menuId: updateSite
+      label: 更新库位
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      robotTaskDef: updateSite
+      confirmMessage: 确定更新库位信息吗?
+      params:
+        - name: siteId
+          input: selectField
+          label: 库位名称
+          options:
+            - value: PU1-A1-01
+              label: PU1-A1-01
+            - value: PU1-B1-01
+              label: PU1-B1-01
+            - value: PU1-B2-01
+              label: PU1-B2-01
+            - value: PU2-E1-01
+              label: PU2-E1-01
+            - value: PU2-F1-01
+              label: PU2-F1-01
+            - value: PU2-F1-02
+              label: PU2-F1-02
+            - value: PU2-F2-01
+              label: PU2-F2-01
+            - value: PU2-F2-02
+              label: PU2-F2-02
+            - value: PU2-F2-03
+              label: PU2-F2-03
+            - value: PU2-F2-04
+              label: PU2-F2-04
+            - value: PU2-F3-01
+              label: PU2-F3-01
+            - value: PU2-F3-02
+              label: PU2-F3-02
+            - value: PU2-F3-03
+              label: PU2-F3-03
+            - value: PU2-F3-04
+              label: PU2-F3-04
+            - value: PU2-F4-01
+              label: PU2-F4-01
+            - value: PU2-F4-02
+              label: PU2-F4-02
+            - value: PU2-F5-01
+              label: PU2-F5-01
+            - value: PU2-F5-02
+              label: PU2-F5-02
+            - value: PU2-F6-01
+              label: PU2-F6-01
+            - value: PU2-F6-02
+              label: PU2-F6-02
+            - value: SHIP-FG-01
+              label: SHIP-FG-01
+            - value: SHIP-FG-02
+              label: SHIP-FG-02
+            - value: PW1-FG-Pallet-EMPTY-01
+              label: PW1-FG-Pallet-EMPTY-01
+            - value: PW1-Pallet-EMPTY-01
+              label: PW1-Pallet-EMPTY-01
+            - value: PW1-sent-01
+              label: PW1-sent-01
+            - value: PW1-sent-02
+              label: PW1-sent-02
+            - value: PW1-end-01
+              label: PW1-end-01
+            - value: PW1-end-02
+              label: PW1-end-02
+            - value: PW2-end-01
+              label: PW2-end-01
+            - value: PW2-end-02
+              label: PW2-end-02
+            - value: PW3-44-01-01
+              label: PW3-44-01-01
+            - value: PW3-44-01-02
+              label: PW3-44-01-02
+            - value: PW3-44-01-03
+              label: PW3-44-01-03
+            - value: PW3-44-01-04
+              label: PW3-44-01-04
+            - value: PW3-44-01-05
+              label: PW3-44-01-05
+            - value: PW3-44-01-06
+              label: PW3-44-01-06
+            - value: PW3-44-01-07
+              label: PW3-44-01-07
+            - value: PW3-44-01-08
+              label: PW3-44-01-08
+            - value: PW3-44-01-09
+              label: PW3-44-01-09
+            - value: PW3-44-01-10
+              label: PW3-44-01-10
+            - value: PW3-44-01-11
+              label: PW3-44-01-11
+            - value: PW3-44-01-12
+              label: PW3-44-01-12
+            - value: PW3-44-01-13
+              label: PW3-44-01-13
+            - value: PW3-44-01-14
+              label: PW3-44-01-14
+            - value: PW3-44-01-15
+              label: PW3-44-01-15
+            - value: PW3-44-01-16
+              label: PW3-44-01-16
+            - value: PW3-44-01-17
+              label: PW3-44-01-17
+            - value: PW3-44-01-18
+              label: PW3-44-01-18
+            - value: PW3-44-01-19
+              label: PW3-44-01-19
+            - value: PW3-44-01-20
+              label: PW3-44-01-20
+            - value: PW3-44-01-21
+              label: PW3-44-01-21
+            - value: PW3-44-01-22
+              label: PW3-44-01-22
+            - value: PW3-44-01-23
+              label: PW3-44-01-23
+            - value: PW3-44-01-24
+              label: PW3-44-01-24
+            - value: PW3-44-01-25
+              label: PW3-44-01-25
+            - value: PW3-44-01-26
+              label: PW3-44-01-26
+            - value: PW3-44-01-27
+              label: PW3-44-01-27
+            - value: PW3-44-01-28
+              label: PW3-44-01-28
+            - value: PW3-44-01-29
+              label: PW3-44-01-29
+            - value: PW3-44-01-30
+              label: PW3-44-01-30
+            - value: PW3-44-01-31
+              label: PW3-44-01-31
+            - value: PW3-44-01-32
+              label: PW3-44-01-32
+            - value: PW3-44-01-33
+              label: PW3-44-01-33
+            - value: PW3-44-01-34
+              label: PW3-44-01-34
+            - value: PW3-44-01-35
+              label: PW3-44-01-35
+            - value: PW3-44-01-36
+              label: PW3-44-01-36
+            - value: PW3-44-01-37
+              label: PW3-44-01-37
+            - value: PW3-44-01-38
+              label: PW3-44-01-38
+            - value: PW3-44-01-39
+              label: PW3-44-01-39
+            - value: PW3-44-01-40
+              label: PW3-44-01-40
+            - value: PW3-44-01-41
+              label: PW3-44-01-41
+            - value: PW3-44-01-42
+              label: PW3-44-01-42
+            - value: PW3-44-01-43
+              label: PW3-44-01-43
+            - value: PW3-44-01-44
+              label: PW3-44-01-44
+            - value: PW3-44-01-45
+              label: PW3-44-01-45
+            - value: PW3-44-01-46
+              label: PW3-44-01-46
+            - value: PW3-44-01-47
+              label: PW3-44-01-47
+            - value: PW3-44-01-48
+              label: PW3-44-01-48
+            - value: PW3-44-01-49
+              label: PW3-44-01-49
+            - value: PW3-44-01-50
+              label: PW3-44-01-50
+            - value: PW3-44-01-51
+              label: PW3-44-01-51
+            - value: PW3-44-01-52
+              label: PW3-44-01-52
+            - value: PW3-44-01-53
+              label: PW3-44-01-53
+            - value: PW3-44-01-54
+              label: PW3-44-01-54
+            - value: PW3-44-01-55
+              label: PW3-44-01-55
+            - value: PW3-44-01-56
+              label: PW3-44-01-56
+            - value: PW3-44-01-57
+              label: PW3-44-01-57
+            - value: PW3-44-01-58
+              label: PW3-44-01-58
+            - value: PW3-44-01-59
+              label: PW3-44-01-59
+            - value: PW3-44-01-60
+              label: PW3-44-01-60
+            - value: PW3-44-02-01
+              label: PW3-44-02-01
+            - value: PW3-44-02-02
+              label: PW3-44-02-02
+            - value: PW3-44-02-03
+              label: PW3-44-02-03
+            - value: PW3-44-02-04
+              label: PW3-44-02-04
+            - value: PW3-44-02-05
+              label: PW3-44-02-05
+            - value: PW3-44-02-06
+              label: PW3-44-02-06
+            - value: PW3-44-02-07
+              label: PW3-44-02-07
+            - value: PW3-44-02-08
+              label: PW3-44-02-08
+            - value: PW3-44-02-09
+              label: PW3-44-02-09
+            - value: PW3-44-02-10
+              label: PW3-44-02-10
+            - value: PW3-44-02-11
+              label: PW3-44-02-11
+            - value: PW3-44-02-12
+              label: PW3-44-02-12
+            - value: PW3-44-02-13
+              label: PW3-44-02-13
+            - value: PW3-44-02-14
+              label: PW3-44-02-14
+            - value: PW3-44-02-15
+              label: PW3-44-02-15
+            - value: PW3-44-02-16
+              label: PW3-44-02-16
+            - value: PW3-44-02-17
+              label: PW3-44-02-17
+            - value: PW3-44-02-18
+              label: PW3-44-02-18
+            - value: PW3-44-02-19
+              label: PW3-44-02-19
+            - value: PW3-44-02-20
+              label: PW3-44-02-20
+            - value: PW3-44-02-21
+              label: PW3-44-02-21
+            - value: PW3-44-02-22
+              label: PW3-44-02-22
+            - value: PW3-44-02-23
+              label: PW3-44-02-23
+            - value: PW3-44-02-24
+              label: PW3-44-02-24
+            - value: PW3-44-02-25
+              label: PW3-44-02-25
+            - value: PW3-44-02-26
+              label: PW3-44-02-26
+            - value: PW3-44-02-27
+              label: PW3-44-02-27
+            - value: PW3-44-02-28
+              label: PW3-44-02-28
+            - value: PW3-44-02-29
+              label: PW3-44-02-29
+            - value: PW3-44-02-30
+              label: PW3-44-02-30
+            - value: PW3-44-02-31
+              label: PW3-44-02-31
+            - value: PW3-44-02-32
+              label: PW3-44-02-32
+            - value: PW3-44-02-33
+              label: PW3-44-02-33
+            - value: PW3-44-02-34
+              label: PW3-44-02-34
+            - value: PW3-44-02-35
+              label: PW3-44-02-35
+            - value: PW3-44-02-36
+              label: PW3-44-02-36
+            - value: PW3-44-02-37
+              label: PW3-44-02-37
+            - value: PW3-44-02-38
+              label: PW3-44-02-38
+            - value: PW3-44-02-39
+              label: PW3-44-02-39
+            - value: PW3-44-02-40
+              label: PW3-44-02-40
+            - value: PW3-44-02-41
+              label: PW3-44-02-41
+            - value: GR-01-01
+              label: GR-01-01
+            - value: GR-01-02
+              label: GR-01-02
+            - value: GR-01-03
+              label: GR-01-03
+            - value: GR-01-04
+              label: GR-01-04
+            - value: GR-01-05
+              label: GR-01-05
+            - value: GR-01-06
+              label: GR-01-06
+            - value: GR-01-07
+              label: GR-01-07
+            - value: GR-01-08
+              label: GR-01-08
+            - value: GR-01-09
+              label: GR-01-09
+            - value: GR-01-10
+              label: GR-01-10
+            - value: GR-01-11
+              label: GR-01-11
+            - value: GR-01-12
+              label: GR-01-12
+            - value: GR-01-13
+              label: GR-01-13
+            - value: GR-01-14
+              label: GR-01-14
+            - value: GR-01-15
+              label: GR-01-15
+            - value: GR-01-16
+              label: GR-01-16
+            - value: GR-01-17
+              label: GR-01-17
+            - value: GR-01-18
+              label: GR-01-18
+            - value: GR-01-19
+              label: GR-01-19
+            - value: GR-01-20
+              label: GR-01-20
+            - value: GR-01-21
+              label: GR-01-21
+            - value: GR-01-22
+              label: GR-01-22
+            - value: GR-01-23
+              label: GR-01-23
+            - value: GR-01-24
+              label: GR-01-24
+            - value: GR-01-25
+              label: GR-01-25
+            - value: GR-Pallet-EMPTY-01
+              label: GR-Pallet-EMPTY-01
+
+        - name: code
+          input: text
+          label: 扫描/输入物料码
+        - name: type
+          input: select
+          label: 操作类型
+          options:
+            - value: ""
+              label: ""
+            - value: clear
+              label: 清空库位
+            - value: update
+              label: 占用库位

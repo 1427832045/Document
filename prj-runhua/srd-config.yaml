@@ -1,0 +1,17 @@
+httpPort: 7200
+mongodbUrl: mongodb://localhost:27017/srd-runhua
+mongoMainDatabase: srd-runhua
+uiPath: E:/gitrepo/seer-ui/level2/dist
+
+commAdapterIO: Tcp
+vehicleSimulation: Tcp
+
+#commAdapterIO: AioTcp
+#newCommAdapter: true
+
+
+#startFromDB: false
+plcConfig:
+  plc1:
+    host: "127.0.0.1"
+    port: 502

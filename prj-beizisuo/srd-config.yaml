@@ -1,0 +1,180 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-beizisuo
+mongoMainDatabase: srd-beizisuo
+uiPath: E:/gitrepo/seer-ui/level2/dist
+commAdapterIO: Tcp
+vehicleSimulation: Tcp
+mockVehicleDetails: true
+#checkWithOwnerIp: false
+#newCommAdapter: true
+#startFromDB: false
+plcEnabled: false
+enabled: false
+dispatcher:
+  orderCandidatePriorities: ["BY_DEADLINE", "BY_INITIAL_ROUTING_COSTS"]
+plcDeviceList:
+  - id: plc1
+    ip: 127.0.0.1
+    port: 4001
+
+errorMap:
+  0: no error.
+  4000: request fialed!
+
+operator:
+  workTypes:
+    - id: default
+      label: 默认
+
+  workStations:
+    - id: default
+      label: 默认
+      type: default
+
+  orders:
+    - menuId: updateSite
+      label: 库位更新
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      robotTaskDef: updateSite
+      confirmMessage: 确定更新库位吗?
+      params:
+        - name: A
+          input: checkField
+          label: 空托盘入库点
+          options:
+            - value: AGVKT-001
+              label: 空托盘人工补充点-01
+            - value: AGVKT-002
+              label: 空托盘人工补充点-02
+#        - name: B
+#          input: checkField
+#          label: 空托盘缓存区
+#          options: &AGVDD1
+#            - value: AGVDD-01
+#              label: 空托盘地堆区-01
+#            - value: AGVDD-02
+#              label: 空托盘地堆区-02
+#            - value: AGVDD-003
+#              label: 空托盘地堆区-03
+#            - value: AGVDD-004
+#              label: 空托盘地堆区-04
+#            - value: AGVDD-005
+#              label: 空托盘地堆区-05
+#            - value: AGVDD-006
+#              label: 空托盘地堆区-06
+#            - value: AGVDD-007
+#              label: 空托盘地堆区-07
+#            - value: AGVDD-008
+#              label: 空托盘地堆区-08
+#            - value: AGVDD-009
+#              label: 空托盘地堆区-09
+#            - value: AGVDD-010
+#              label: 空托盘地堆区-10
+#            - value: AGVDD-011
+#              label: 空托盘地堆区-11
+#            - value: AGVDD-012
+#              label: 空托盘地堆区-12
+#        - name: C
+#          input: checkField
+#          label: 码托库位
+#          options:
+#            - value: AGVMT-001
+#              label: 码托库位-001
+#            - value: AGVMT-002
+#              label: 码托库位-002
+#            - value: AGVMT-003
+#              label: 码托库位-003
+#            - value: AGVMT-004
+#              label: 码托库位-004
+#        - name: D
+#          input: checkField
+#          label: 满料缓存库位
+#          options:
+#            - value: AGVDD-013
+#              label: 满托盘地堆区-13
+#            - value: AGVDD-014
+#              label: 满托盘地堆区-14
+#            - value: AGVDD-015
+#              label: 满托盘地堆区-15
+#            - value: AGVDD-016
+#              label: 满托盘地堆区-16
+#            - value: AGVDD-017
+#              label: 满托盘地堆区-17
+#            - value: AGVDD-018
+#              label: 满托盘地堆区-18
+#            - value: AGVDD-019
+#              label: 满托盘地堆区-19
+#            - value: AGVDD-020
+#              label: 满托盘地堆区-20
+#            - value: AGVDD-021
+#              label: 满托盘地堆区-21
+#            - value: AGVDD-022
+#              label: 满托盘地堆区-22
+#            - value: AGVDD-023
+#              label: 满托盘地堆区-23
+#            - value: AGVDD-024
+#              label: 满托盘地堆区-24
+#            - value: AGVDD-025
+#              label: 满托盘地堆区-25
+#            - value: AGVDD-026
+#              label: 满托盘地堆区-26
+#            - value: AGVDD-027
+#              label: 满托盘地堆区-27
+#            - value: AGVDD-028
+#              label: 满托盘地堆区-28
+#        - name: E
+#          input: checkField
+#          label: 裹膜贴标区
+#          options:
+#            - value: AGVGM-001
+#              label: 裹膜贴标区-001
+#        - name: F
+#          input: checkField
+#          label: 人工出库口
+#          options:
+#            - value: AGVCK-001
+#              label: 人工出库口-001
+#            - value: AGVCK-002
+#              label: 人工出库口-002
+
+    - menuId: emptyTray
+      label: 空托盘入库
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      robotTaskDef: emptyTray
+      confirmMessage: 发起-空托盘入库任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: AGVKT-001
+              label: 空托盘人工补充点-01
+            - value: AGVKT-002
+              label: 空托盘人工补充点-02
+#        - name: to
+#          input: select
+#          label: 终点
+#          options: *AGVDD1
+
+area:
+  matuo:
+    host: 127.0.0.1
+    port: 503
+    siteToAddr:
+      AGVMT-001: 0
+      AGVMT-002: 1
+      AGVMT-003: 2
+      AGVMT-004: 3
+#  guidao:
+#    host: 127.0.0.1
+#    post: 502
+#    siteToAddr:
+#      AGVGM-001: 0
+#  rengongchuku:
+#    host: 127.0.0.1
+#    port: 502
+#    siteToAddr:
+#      AGVCK-001: 0
+#      AGVCK-002: 1

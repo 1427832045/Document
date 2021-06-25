@@ -1,0 +1,608 @@
+httpPort: 7200
+mongodbUrl: mongodb://localhost:27017/srd-huaxinHefei
+mongoMainDatabase: srd-huaxinHefei
+uiPath: E:/gitrepo/seer-ui/custom/huaxin-hefei/dist
+commAdapterIO: Http
+vehicleSimulation: Http
+#startFromDB: false
+
+operator:
+  orders:
+    - menuId: prefix-in
+      label: 待修品入库
+      menuItemBackground: "rgb(39, 194, 126)"
+      menuItemTextColor: white
+      robotTaskDef: prefix-in
+      confirmMessage: 发起【待修品入库】任务吗?
+      params:
+        - name: prefix-in-from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: ZX-01
+              label: ZX-01
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: ZX-02
+              label: ZX-02
+
+    - menuId: machine-test
+      label: 整机测试
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      robotTaskDef: machine-test
+      confirmMessage: 发起【整机测试】任务吗?
+      params:
+        - name: machine-test-from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: ZX-01
+              label: ZX-01
+            - value: ZX-02
+              label: ZX-02
+            - value: ZP-01
+              label: ZP-01
+            - value: ZP-02
+              label: ZP-02
+            - value: ZP-03
+              label: ZP-03
+            - value: ZP-04
+              label: ZP-04
+            - value: ZP-05
+              label: ZP-05
+            - value: ZP-06
+              label: ZP-06
+            - value: YS-01
+              label: YS-01
+            - value: YS-03
+              label: YS-03
+            - value: YS-04
+              label: YS-04
+            - value: YS-05
+              label: YS-05
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: YS-01
+              label: YS-01
+            - value: YS-02
+              label: YS-02
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: YS-01
+              label: YS-01
+            - value: YS-03
+              label: YS-03
+            - value: YS-04
+              label: YS-04
+            - value: YS-05
+              label: YS-05
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: ZP-01
+              label: ZP-01
+            - value: ZP-02
+              label: ZP-02
+            - value: ZP-03
+              label: ZP-03
+            - value: ZP-04
+              label: ZP-04
+            - value: ZP-05
+              label: ZP-05
+            - value: ZP-06
+              label: ZP-06
+
+    - menuId: machine-disassemble
+      label: 整机分解
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      robotTaskDef: machine-disassemble
+      confirmMessage: 发起【整机分解】任务吗?
+      params:
+        - name: machine-disassemble-from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: ZX-01
+              label: ZX-01
+            - value: ZX-02
+              label: ZX-02
+            - value: YS-01
+              label: YS-01
+            - value: YS-02
+              label: YS-02
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: FJ-01
+              label: FJ-01
+
+    - menuId: machine-rework
+      label: 整机返工
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      robotTaskDef: machine-rework
+      confirmMessage: 发起【整机返工】任务吗?
+      params:
+        - name: machine-rework-from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: YS-01
+              label: YS-01
+            - value: YS-03
+              label: YS-03
+            - value: YS-04
+              label: YS-04
+            - value: YS-05
+              label: YS-05
+            - value: ZP-01
+              label: ZP-01
+            - value: ZP-02
+              label: ZP-02
+            - value: ZP-03
+              label: ZP-03
+            - value: ZP-04
+              label: ZP-04
+            - value: ZP-05
+              label: ZP-05
+            - value: ZP-06
+              label: ZP-06
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: YS-01
+              label: YS-01
+            - value: YS-03
+              label: YS-03
+            - value: YS-04
+              label: YS-04
+            - value: YS-05
+              label: YS-05
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: ZP-01
+              label: ZP-01
+            - value: ZP-02
+              label: ZP-02
+            - value: ZP-03
+              label: ZP-03
+            - value: ZP-04
+              label: ZP-04
+            - value: ZP-05
+              label: ZP-05
+            - value: ZP-06
+              label: ZP-06
+
+    - menuId: product-in
+      label: 成品入库
+      menuItemBackground: "rgb(131, 175, 155)"
+      menuItemTextColor: white
+      robotTaskDef: product-in
+      confirmMessage: 发起【成品入库】任务吗?
+      params:
+        - name: product-in-from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: YS-01
+              label: YS-01
+            - value: YS-02
+              label: YS-02
+            - value: YS-03
+              label: YS-03
+            - value: YS-04
+              label: YS-04
+            - value: YS-05
+              label: YS-05
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: LK-01
+              label: LK-01
+            - value: LK-03
+              label: LK-03
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: LK-02
+              label: LK-02
+
+    - menuId: product-out
+      label: 成品出库
+      menuItemBackground: "rgb(131, 175, 155)"
+      menuItemTextColor: white
+      robotTaskDef: product-out
+      confirmMessage: 发起【成品出库】任务吗?
+      params:
+        - name: product-out-from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: LK-01
+              label: LK-01
+            - value: LK-02
+              label: LK-02
+            - value: LK-03
+              label: LK-03
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: ZX-01
+              label: ZX-01
+
+    - menuId: component-fix
+      label: 部件检修
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      robotTaskDef: component-fix
+      confirmMessage: 发起【部件检修】任务吗?
+      params:
+        - name: component-fix-from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: QX-01
+              label: QX-01
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: JX-01
+              label: JX-01
+            - value: JX-02
+              label: JX-02
+            - value: JX-03
+              label: JX-03
+            - value: JX-04
+              label: JX-04
+            - value: JX-05
+              label: JX-05
+            - value: JX-06
+              label: JX-06
+            - value: JX-07
+              label: JX-07
+            - value: JX-08
+              label: JX-08
+            - value: JX-09
+              label: JX-09
+            - value: JX-10
+              label: JX-10
+            - value: JX-11
+              label: JX-11
+
+    - menuId: component-in
+      label: 部件入库
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      robotTaskDef: component-in
+      confirmMessage: 发起【部件入库】任务吗?
+      params:
+        - name: component-in-from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: QX-01
+              label: QX-01
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: LK-01
+              label: LK-01
+            - value: LK-03
+              label: LK-03
+
+    - menuId: relay-check
+      label: 继电器验收
+      menuItemBackground: "rgb(64, 191, 191)"
+      menuItemTextColor: white
+      robotTaskDef: relay-check
+      confirmMessage: 发起【继电器验收】任务吗?
+      params:
+        - name: relay-check-from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: YC-01
+              label: YC-01
+            - value: YC-02
+              label: YC-02
+            - value: YC-03
+              label: YC-03
+            - value: YC-04
+              label: YC-04
+            - value: XC-01
+              label: XC-01
+            - value: XC-02
+              label: XC-02
+            - value: XC-03
+              label: XC-03
+            - value: XC-04
+              label: XC-04
+            - value: XC-05
+              label: XC-05
+            - value: XC-06
+              label: XC-06
+            - value: XC-07
+              label: XC-07
+            - value: XC-08
+              label: XC-08
+            - value: XC-09
+              label: XC-09
+            - value: XC-10
+              label: XC-10
+            - value: XC-11
+              label: XC-11
+            - value: XC-12
+              label: XC-12
+            - value: XC-13
+              label: XC-13
+            - value: XC-14
+              label: XC-14
+            - value: XC-15
+              label: XC-15
+            - value: XC-16
+              label: XC-16
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: YC-01
+              label: YC-01
+            - value: YC-02
+              label: YC-02
+            - value: YC-03
+              label: YC-03
+            - value: YC-04
+              label: YC-04
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: XC-01
+              label: XC-01
+            - value: XC-02
+              label: XC-02
+            - value: XC-03
+              label: XC-03
+            - value: XC-04
+              label: XC-04
+            - value: XC-05
+              label: XC-05
+            - value: XC-06
+              label: XC-06
+            - value: XC-07
+              label: XC-07
+            - value: XC-08
+              label: XC-08
+            - value: XC-09
+              label: XC-09
+            - value: XC-10
+              label: XC-10
+            - value: XC-11
+              label: XC-11
+            - value: XC-12
+              label: XC-12
+            - value: XC-13
+              label: XC-13
+            - value: XC-14
+              label: XC-14
+            - value: XC-15
+              label: XC-15
+            - value: XC-16
+              label: XC-16
+
+    - menuId: relay-fix
+      label: 继电器检修
+      menuItemBackground: "rgb(64, 191, 191)"
+      menuItemTextColor: white
+      robotTaskDef: relay-fix
+      confirmMessage: 发起【继电器检修】任务吗?
+      params:
+        - name: relay-fix-from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: KX-01
+              label: KX-01
+            - value: KX-02
+              label: KX-02
+            - value: KX-03
+              label: KX-03
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: XC-01
+              label: XC-01
+            - value: XC-02
+              label: XC-02
+            - value: XC-03
+              label: XC-03
+            - value: XC-04
+              label: XC-04
+            - value: XC-05
+              label: XC-05
+            - value: XC-06
+              label: XC-06
+            - value: XC-07
+              label: XC-07
+            - value: XC-08
+              label: XC-08
+            - value: XC-09
+              label: XC-09
+            - value: XC-10
+              label: XC-10
+            - value: XC-11
+              label: XC-11
+            - value: XC-12
+              label: XC-12
+            - value: XC-13
+              label: XC-13
+            - value: XC-14
+              label: XC-14
+            - value: XC-15
+              label: XC-15
+            - value: XC-16
+              label: XC-16
+
+#    - menuId: relay-in-out
+#      label: 继电器返所/入所
+#      menuItemBackground: "rgb(64, 191, 191)"
+#      menuItemTextColor: white
+#      robotTaskDef: relay-in-out
+#      confirmMessage: 发起【继电器返所/入所】任务吗?
+#      params:
+#        - name: relay-in-out-from
+#          input: select
+#          label: 起点
+#          options:
+#            - value: ""
+#              label: ""
+#            - value: FS-01
+#              label: FS-01
+#            - value: KC-01
+#              label: KC-01
+#        - name: to
+#          input: select
+#          label: 终点
+#          options:
+#            - value: FS-01
+#              label: FS-01
+#        - name: to
+#          input: select
+#          label: 终点
+#          options:
+#            - value: KC-01
+#              label: KC-01
+
+    - menuId: relay-product-in
+      label: 继电器成品入库
+      menuItemBackground: "rgb(64, 191, 191)"
+      menuItemTextColor: white
+      robotTaskDef: relay-product-in
+      confirmMessage: 发起【继电器成品入库】任务吗?
+      params:
+        - name: relay-product-in-from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: YC-01
+              label: YC-01
+            - value: YC-02
+              label: YC-02
+            - value: YC-03
+              label: YC-03
+            - value: YC-04
+              label: YC-04
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: KC-01
+              label: KC-01
+
+#taskDefToSiteVehicle:
+#  prefix-in:
+#    - from: ["ZX-01"]
+#      to: ["ZX-02"]
+#      vehicleName: "SW500-01"
+#  machine-test:
+#    - from: ["ZX-01", "ZX-02"]
+#      to: ["YS-01", "YS-02"]
+#      vehicleName: "SW500-01"
+#    - from: ["ZP-01", "ZP-02", "ZP-03", "ZP-04", "ZP-05", "ZP-06"]
+#      to: ["YS-01", "YS-02", "YS-03", "YS-04", "YS-05"]
+#      vehicleName: "SW500-02"
+#    - from: ["YS-01", "YS-02", "YS-03", "YS-04", "YS-05"]
+#      to: ["ZP-01", "ZP-02", "ZP-03", "ZP-04", "ZP-05", "ZP-06"]
+#      vehicleName: "SW500-02"
+#  machine-disassemble:
+#    - from: ["ZX-01", "ZX-02", "YS-01", "YS-02"]
+#      to: ["FJ-01"]
+#      vehicleName: "SW500-01"
+#  machine-rework:
+#    - from: ["YS-01"]
+#      to: ["ZP-01", "ZP-02", "ZP-03", "ZP-04", "ZP-05", "ZP-06"]
+#      vehicleName: "SW500-01"
+#    - from: ["ZP-01", "ZP-02", "ZP-03", "ZP-04", "ZP-05", "ZP-06"]
+#      to: ["YS-01"]
+#      vehicleName: "SW500-01"
+#    - from: ["YS-03", "YS-04", "YS-05"]
+#      to: ["ZP-01", "ZP-02", "ZP-03", "ZP-04", "ZP-05", "ZP-06"]
+#      vehicleName: "SW500-02"
+#    - from: ["ZP-01", "ZP-02", "ZP-03", "ZP-04", "ZP-05", "ZP-06"]
+#      to: ["YS-03", "YS-04", "YS-05"]
+#      vehicleName: "SW500-02"
+#  component-in:
+#    - from: ["QX-01"]
+#      to: ["LK-01", "LK-03"]
+#      vehicleName: "SW500-01"
+#  component-fix:
+#    - from: ["QX-01"]
+#      to: ["JX-01", "JX-02", "JX-03", "JX-04", "JX-05", "JX-06", "JX-07", "JX-08", "JX-09", "JX-10", "JX-11"]
+#      vehicleName: "SW500-01"
+#  product-out:
+#    - from: ["LK-01", "LK-02", "LK-03"]
+#      to: ["ZX-01"]
+#      vehicleName: "SW500-01"
+#  relay-in-out:
+#    - from: ["FS-01"]
+#      to: ["KC-01"]
+#      vehicleName: "SW500-03"
+#    - from: ["KC-01"]
+#      to: ["FS-01"]
+#      vehicleName: "SW500-03"
+#  relay-fix:
+#    - from: ["KX-01"]
+#      to: ["XC-01", "XC-02", "XC-03", "XC-04", "XC-05", "XC-06", "XC-07", "XC-08", "XC-09","XC-10", "XC-11", "XC-12", "XC-13", "XC-14", "XC-15", "XC-16"]
+#      vehicleName: "SW500-03"
+#  relay-check:
+#    - from: ["YC-01", "YC-02", "YC-03", "YC-04"]
+#      to: ["XC-01", "XC-02", "XC-03", "XC-04", "XC-05", "XC-06", "XC-07", "XC-08", "XC-09","XC-10", "XC-11", "XC-12", "XC-13", "XC-14", "XC-15", "XC-16"]
+#      vehicleName: "SW500-03"
+#    - from: ["XC-01", "XC-02", "XC-03", "XC-04", "XC-05", "XC-06", "XC-07", "XC-08", "XC-09","XC-10", "XC-11", "XC-12", "XC-13", "XC-14", "XC-15", "XC-16"]
+#      to: ["YC-01", "YC-02", "YC-03", "YC-04"]
+#      vehicleName: "SW500-03"
+#  relay-product-in:
+#    - from: ["YC-01", "YC-02", "YC-03", "YC-04"]
+#      to: ["KC-01"]
+#      vehicleName: "SW500-03"

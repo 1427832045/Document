@@ -1,0 +1,46 @@
+httpPort: 7200
+mongodbUrl: mongodb://localhost:27017/srd-lps2
+mongoMainDatabase: srd-lps2
+uiPath: E:/gitrepo/seer-ui/level2/dist-lps2-1230
+commAdapterIO: Http
+vehicleSimulation: Http
+
+mockDi: true
+
+descending: false
+
+operator:
+  signIn: true
+
+addStations:
+  - 315J
+  - 314-LEFT
+  - 314-RIGHT
+  - 312-LEFT
+  - 312-RIGHT
+  - 313GT
+
+# 设备服务器配置项
+synchronizer:
+  # 门服务器地址
+  doorRoute: http://localhost:7200/api/
+
+#startFromDB: false
+
+doors:
+  T1:
+    host: 127.0.0.1         # 电控柜的IP
+    port: 502               # 端口号 默认为 502
+    openAddr: 1280          # 控制开门的地址 默认为 1280
+    closeAddr: 1280         # 控制关门的地址 默认为 1281
+    feedback: false          # true: 这是个有开门到位信号的自动门， false: 这个门没有开门到位反馈
+    delayForOpened: 1         # 一定次数后，设置自动门状态为OPEN，当 feedback = false 时有效
+    delayForCancelOpen: 500   # 一段时间后取消写入开门信号，单位为 ms    0: 不清空
+    delayForCancelClose: 500  # 一段时间后取消写入关门信号，单位为 ms    0: 不清空
+
+## SRD将可下发运单下发给给机器人的循环时间间隔
+#transportRetryDelay: 500
+## 调度配置
+#dispatcher:
+#  # 空闲机器人重新参与调度任务的间隔时间
+#  idleVehicleRedispatchingInterval: 2000

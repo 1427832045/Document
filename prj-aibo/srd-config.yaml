@@ -1,0 +1,49 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-aibo
+mongoMainDatabase: srd-aibo
+uiPath: D:\test\seer-ui\level2\dist #这里是ui的path需要修改
+commAdapterIO: Tcp
+vehicleSimulation: Tcp
+
+# 设备服务器配置项
+synchronizer:
+  doorRoute: http://localhost:7100/api/
+
+#doors:
+#  d1:
+#    host: 127.0.0.1           # 电控柜的IP
+#    port: 502                 # 端口号 默认为 502
+#    openAddr: 1280            # 控制开门的地址 默认为 1280
+#    closeAddr: 1281           # 控制关门的地址 默认为 1281
+#    feedback: true            # true: 这是个有开门到位信号的自动门， false: 这个门没有开门到位反馈
+#    openStatusAddr: 1024      # 读取开门到位信号的地址， 默认为 1024
+#    delayForOpened: 5         # 一定次数后，设置自动门状态为OPEN，当 feedback = false 时有效
+#    delayForCancelOpen: 500   # 一段时间后取消写入开门信号，单位为 ms    0: 不清空
+#    delayForCancelClose: 500  # 一段时间后取消写入关门信号，单位为 ms    0: 不清空
+#
+#operator:
+#  orders:
+#    - menuId: transfer
+#      label: 运输任务
+#      menuItemBackground: "#0066cc"
+#      menuItemTextColor: white
+#      robotTaskDef: transfer
+#      tip: 运输任务
+#      confirmMessage: 确定下发任务吗？
+#      params:
+#        - name: from
+#          input: select
+#          label: 起点
+#          options:
+#            - value: ""
+#              label: ""
+#            - value: A
+#              label: A
+#        - name: to
+#          input: select
+#          label: 起点
+#          options:
+#            - value: ""
+#              label: ""
+#            - value: B
+#              label: B

@@ -1,0 +1,434 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-zhenghai
+mongoMainDatabase: srd-zhenghai
+uiPath: D:\Projects\GitProjects\pure-seer-ui\level2\dist\
+#startFromDB: false
+commAdapterIO: Tcp
+vehicleSimulation: Tcp
+
+syncVehiclesDetails: true
+
+# # 任务列表界面上的扩展字段
+robotTaskListExtraColumns:
+  - label: 任务备注
+    fieldPath: persistedVariables.operatorOrderLabel
+
+# # 每个库位对应的顶升高度
+jackHeightOfSites:
+  "Box-Prepare-01": "0.15"
+  "Box-Prepare-02": "0.15"
+  "Mat-Check-01": "0.15"
+  "Mat-Check-02": "0.15"
+  "Mat-Check-03": "0.15"
+  "Mat-Check-04": "0.15"
+  "Mat-In-01": "0.15"
+  "Mat-In-02": "0.15"
+  "Mat-In-03": "0.15"
+  "Mat-In-04": "0.15"
+  "Mat-In-05": "0.15"
+  "Mat-In-06": "0.15"
+  "Mat-In-07": "0.15"
+  "Mat-In-08": "0.15"
+  "Mat-In-09": "0.15"
+  "Mat-In-10": "0.15"
+  "Mat-In-11": "0.15"
+  "Mat-In-12": "0.15"
+  "Mat-In-13": "0.15"
+  "Mat-In-14": "0.15"
+  "Mat-In-15": "0.15"
+  "Mat-Out-01": "0.15"
+  "Mat-Out-02": "0.15"
+  "Mat-Out-03": "0.15"
+  "Mat-Prepare-01": "0.15"
+  "Mat-Prepare-02": "0.15"
+
+operator:
+  workTypes:
+    - id: Fork
+      label: 发起叉车相关任务的岗位
+    - id: Jack
+      label: 发起顶升车相关任务的岗位
+    - id: ADMIN
+      label: 管理员（未经领导授权，勿选）
+  workStations:
+    - id: Fork1
+      label: 发起叉车相关任务的工位1
+      type: Fork
+    - id: Jack1
+      label: 发起顶升车相关任务的工位1
+      type: Jack
+    - id: ADMIN
+      label: 管理员（未经领导授权，勿选）
+      type: ADMIN
+  orders:
+    - menuId: BoxPrepareToPrepare
+      label: 人工加料任务：料盒准备区 > 备料区
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: simple-transport-jack
+      disabled: false
+      workTypes: [Jack]
+      tip: 人工加料任务：料盒准备区 > 备料区
+      confirmMessage: 确定要执行“人工加料任务”吗？
+      params:
+        - name: fromSiteId
+          input: select
+          label: 请选择起点库位
+          options: &BOX_PREPARE
+            - value: "Box-Prepare-01"
+              label: "料盒准备1# ~ Box-Prepare-01"
+            - value: "Box-Prepare-02"
+              label: "料盒准备2# ~ Box-Prepare-02"
+        - name: toSiteId
+          input: select
+          label: 请选择终点库位
+          options: &MAT_PREPARE
+            - value: "Mat-Prepare-01"
+              label: "备料1# ~ Mat-Prepare-01"
+            - value: "Mat-Prepare-02"
+              label: "备料2# ~ Mat-Prepare-02"
+
+    - menuId: CheckToBoxPrepare
+      label: 检料区 > 料盒准备区
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: simple-transport-jack
+      disabled: false
+      workTypes: [Jack]
+      tip: 检料区 > 料盒准备区
+      confirmMessage: 确定要执行“检料区 > 料盒准备区”的任务吗？
+      params:
+        - name: fromSiteId
+          input: select
+          label: 请选择起点库位
+          options: &MAT_CHECK
+            - value: "Mat-Check-01"
+              label: "检料1# ~ Mat-Check-01"
+            - value: "Mat-Check-02"
+              label: "检料2# ~ Mat-Check-02"
+            - value: "Mat-Check-03"
+              label: "检料3# ~ Mat-Check-03"
+            - value: "Mat-Check-04"
+              label: "检料4# ~ Mat-Check-04"
+        - name: toSiteId
+          input: select
+          label: 请选择终点库位
+          options: *BOX_PREPARE
+
+    - menuId: OutToCheck
+      label: 运送空车任务： 出料区 > 检料区
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: simple-transport-jack
+      disabled: false
+      workTypes: [Jack]
+      tip: 检料区 > 料盒准备区
+      confirmMessage: 确定要执行“出料区 > 检料区”的任务吗？
+      params:
+        - name: fromSiteId
+          input: select
+          label: 请选择起点库位
+          options: &MAT_OUT
+            - value: "Mat-Out-01"
+              label: "出料1# ~ Mat-Out-01"
+            - value: "Mat-Out-02"
+              label: "出料2# ~ Mat-Out-02"
+            - value: "Mat-Out-03"
+              label: "出料3# ~ Mat-Out-03"
+        - name: toSiteId
+          input: select
+          label: 请选择终点库位
+          options: *MAT_CHECK
+
+    - menuId: FreeTransport
+      label: 自由运输任务(万能任务)
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: simple-transport-jack
+      disabled: false
+      workTypes: [ADMIN]
+      tip: 自由运输任务（万能任务），仅管理者可操作此功能
+      confirmMessage: 仅管理者可以发起“自由运输任务”任务，请勿越权操作，确定要执行吗？
+      params:
+        - name: fromSiteId
+          input: select
+          label: 请选择起点库位
+          options: &ALL_SITES
+            # # 备料区
+            - value: "Mat-Prepare-01"
+              label: "备料1# ~ Mat-Prepare-01"
+            - value: "Mat-Prepare-02"
+              label: "备料2# ~ Mat-Prepare-02"
+            # # 进料区
+            - value: "Mat-In-01"
+              label: "进料1# ~ Mat-In-01"
+            - value: "Mat-In-03"
+              label: "进料3# ~ Mat-In-03"
+            - value: "Mat-In-04"
+              label: "进料4# ~ Mat-In-04"
+            - value: "Mat-In-05"
+              label: "进料5# ~ Mat-In-05"
+            - value: "Mat-In-06"
+              label: "进料6# ~ Mat-In-06"
+            - value: "Mat-In-07"
+              label: "进料7# ~ Mat-In-07"
+            - value: "Mat-In-08"
+              label: "进料8# ~ Mat-In-08"
+            - value: "Mat-In-09"
+              label: "进料9# ~ Mat-In-09"
+            - value: "Mat-In-10"
+              label: "进料10# ~ Mat-In-10"
+            - value: "Mat-In-11"
+              label: "进料11# ~ Mat-In-11"
+            - value: "Mat-In-12"
+              label: "进料12# ~ Mat-In-12"
+            - value: "Mat-In-13"
+              label: "进料13# ~ Mat-In-13"
+            - value: "Mat-In-14"
+              label: "进料14# ~ Mat-In-14"
+            - value: "Mat-In-15"
+              label: "进料15# ~ Mat-In-15"
+            # # 出料区
+            - value: "Mat-Out-01"
+              label: "出料1# ~ Mat-Out-01"
+            - value: "Mat-Out-02"
+              label: "出料2# ~ Mat-Out-02"
+            - value: "Mat-Out-03"
+              label: "出料3# ~ Mat-Out-03"
+            # # 检料区
+            - value: "Mat-Check-01"
+              label: "检料1# ~ Mat-Check-01"
+            - value: "Mat-Check-02"
+              label: "检料2# ~ Mat-Check-02"
+            - value: "Mat-Check-03"
+              label: "检料3# ~ Mat-Check-03"
+            - value: "Mat-Check-04"
+              label: "检料4# ~ Mat-Check-04"
+            # # 料盒准备区
+            - value: "Box-Prepare-01"
+              label: "料盒准备1# ~ Box-Prepare-01"
+            - value: "Box-Prepare-02"
+              label: "料盒准备2# ~ Box-Prepare-02"
+        - name: toSiteId
+          input: select
+          label: 请选择终点库位
+          options: *ALL_SITES
+
+    - menuId: CheckToPrepare
+      label: 检料区 > 备料区
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: simple-transport-jack
+      disabled: false
+      workTypes: [Jack]
+      tip: 检料区 > 备料区
+      confirmMessage: 确定要执行“检料区 > 备料区”的任务吗？
+      params:
+        - name: fromSiteId
+          input: select
+          label: 请选择起点库位
+          options: *MAT_CHECK
+        - name: toSiteId
+          input: select
+          label: 请选择终点库位
+          options: *MAT_PREPARE
+
+    - menuId: PrepareToIn
+      label: 上料任务： 备料区 > 进料区
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: simple-transport-fork
+      disabled: false
+      workTypes: [Fork]
+      tip: 上料任务： 备料区 > 进料区
+      confirmMessage: 确定要执行“备料区 > 进料区”的任务吗？
+      params:
+        - name: fromSiteId
+          input: select
+          label: 请选择起点库位
+          options: *MAT_PREPARE
+        - name: toSiteId
+          input: select
+          label: 请选择终点库位
+          options: &MAT_IN_ALL
+            - value: "Mat-In-01"
+              label: "进料1# ~ Mat-In-01"
+            - value: "Mat-In-03"
+              label: "进料3# ~ Mat-In-03"
+            - value: "Mat-In-04"
+              label: "进料4# ~ Mat-In-04"
+            - value: "Mat-In-05"
+              label: "进料5# ~ Mat-In-05"
+            - value: "Mat-In-06"
+              label: "进料6# ~ Mat-In-06"
+            - value: "Mat-In-07"
+              label: "进料7# ~ Mat-In-07"
+            - value: "Mat-In-08"
+              label: "进料8# ~ Mat-In-08"
+            - value: "Mat-In-09"
+              label: "进料9# ~ Mat-In-09"
+            - value: "Mat-In-10"
+              label: "进料10# ~ Mat-In-10"
+            - value: "Mat-In-11"
+              label: "进料11# ~ Mat-In-11"
+            - value: "Mat-In-12"
+              label: "进料12# ~ Mat-In-12"
+            - value: "Mat-In-13"
+              label: "进料13# ~ Mat-In-13"
+            - value: "Mat-In-14"
+              label: "进料14# ~ Mat-In-14"
+            - value: "Mat-In-15"
+              label: "进料15# ~ Mat-In-15"
+
+    - menuId: InToOut
+      label: 进料区 > 出料区
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: simple-transport-fork
+      disabled: false
+      workTypes: [Fork]
+      tip: 进料区 > 出料区
+      confirmMessage: 确定要执行“进料区 > 出料区”的任务吗？
+      params:
+        - name: fromSiteId
+          input: select
+          label: 请选择起点库位
+          options: *MAT_IN_ALL
+        - name: toSiteId
+          input: select
+          label: 请选择终点库位
+          options: *MAT_OUT
+
+    - menuId: ComplexTransport1
+      label: 综合任务1
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: complex-transport-jack
+      disabled: false
+      workTypes: [Jack]
+      tip: 综合任务1
+      confirmMessage: 确定要执行“综合任务1”的任务吗？
+      params:
+        - name: matPrepareSiteId
+          input: select
+          label: 请选择起点库位
+          options: *MAT_PREPARE
+        - name: matInSiteId
+          input: select
+          label: 请选择终点库位
+          options:
+            - value: "Mat-In-01"
+              label: "进料1# ~ Mat-In-01"
+            - value: "Mat-In-04"
+              label: "进料4# ~ Mat-In-04"
+            - value: "Mat-In-05"
+              label: "进料5# ~ Mat-In-05"
+            - value: "Mat-In-06"
+              label: "进料6# ~ Mat-In-06"
+            - value: "Mat-In-07"
+              label: "进料7# ~ Mat-In-07"
+            - value: "Mat-In-08"
+              label: "进料8# ~ Mat-In-08"
+            - value: "Mat-In-09"
+              label: "进料9# ~ Mat-In-09"
+
+    - menuId: ComplexTransport2
+      label: 综合任务2
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: complex-transport-jack
+      disabled: false
+      workTypes: [Jack]
+      tip: 综合任务2
+      confirmMessage: 确定要执行“综合任务2”的任务吗？
+      params:
+        - name: matPrepareSiteId
+          input: select
+          label: 请选择起点库位
+          options: *MAT_PREPARE
+        - name: matInSiteId
+          input: select
+          label: 请选择终点库位
+          options:
+            - value: "Mat-In-03"
+              label: "进料3# ~ Mat-In-03"
+            - value: "Mat-In-10"
+              label: "进料10# ~ Mat-In-10"
+            - value: "Mat-In-11"
+              label: "进料11# ~ Mat-In-11"
+            - value: "Mat-In-12"
+              label: "进料12# ~ Mat-In-12"
+            - value: "Mat-In-13"
+              label: "进料13# ~ Mat-In-13"
+            - value: "Mat-In-14"
+              label: "进料14# ~ Mat-In-14"
+            - value: "Mat-In-15"
+              label: "进料15# ~ Mat-In-15"
+
+    - menuId: ChangeSiteFilled
+      label: 清空/占用库位状态
+      menuItemBackground: "#319deb"
+      menuItemTextColor: black
+      robotTaskDef: change-site-filled
+      disabled: false
+      workTypes: []
+      tip: 清空/占用库位状态
+      confirmMessage: 确定要执行“清空/占用库位状态”的任务吗？
+      params:
+        - name: siteId
+          input: select
+          label: 请选择目标库位
+          # # 应该是所有库位（备料区、进料区、出料区、检料区、料盒准备区）
+          options: *ALL_SITES
+        - name: fill
+          input: select
+          label: 请选择操作方式
+          options:
+            - value: -1
+              label: "请选择"
+            - value: 0
+              label: "清空"
+            - value: 1
+              label: "占用"
+
+    - menuId: SetComplexTransportDest
+      label: 放行
+      menuItemBackground: "#319deb"
+      menuItemTextColor: black
+      robotTaskDef: set-complex-transport-dest
+      disabled: false
+      workTypes: [Jack]
+      tip: 放行
+      confirmMessage: 确定要执行“放行”的任务吗？
+      params:
+        - name: matInSiteId
+          input: select
+          label: 请选择机器人当前所在库位
+          # # 所有满料区的库位
+          options: *MAT_IN_ALL
+        - name: dest
+          input: select
+          label: 请选择机器人要去的库位
+          # # 料盒准备区、检料区、备料区
+          options:
+            - value: "Box-Prepare-01"
+              label: "料盒准备1# ~ Box-Prepare-01"
+            - value: "Box-Prepare-02"
+              label: "料盒准备2# ~ Box-Prepare-02"
+            - value: "Mat-Check-01"
+              label: "检料1# ~ Mat-Check-01"
+            - value: "Mat-Check-02"
+              label: "检料2# ~ Mat-Check-02"
+            - value: "Mat-Check-03"
+              label: "检料3# ~ Mat-Check-03"
+            - value: "Mat-Check-04"
+              label: "检料4# ~ Mat-Check-04"
+            - value: "Mat-Prepare-01"
+              label: "备料1# ~ Mat-Prepare-01"
+            - value: "Mat-Prepare-02"
+              label: "备料2# ~ Mat-Prepare-02"
+  taskNotice:
+    scope: by-work-type
+    noticeType: alert
+    when:
+      - created

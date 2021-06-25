@@ -1,0 +1,271 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-dupu
+mongoMainDatabase: srd-dupu
+uiPath: D:/Project/seer/seer-ui/level2/dist
+commAdapterIO: Tcp
+#commAdapterIO: AioTcp
+vehicleSimulation: Tcp
+forceResend: true
+#newCommAdapter: true
+
+# 禁用自动停靠
+dispatcher:
+  parkIdleVehicles: false
+
+adminPwd: auth-dp
+
+operator:
+  workTypes:
+    - id: WS
+      label: 工作区
+    - id: BUF
+      label: 缓存区
+    - id: ADMIN
+      label: 管理员（未经领导授权，勿选）
+  workStations:
+    - id: WS-01
+      label: 工位WS-01
+      type: WS
+    - id: WS-02
+      label: 工位WS-02
+      type: WS
+    - id: WS-03
+      label: 工位WS-03
+      type: WS
+    - id: WS-04
+      label: 工位WS-04
+      type: WS
+    - id: WS-05
+      label: 工位WS-05
+      type: WS
+    - id: WS-06
+      label: 工位WS-06
+      type: WS
+    - id: WS-07
+      label: 工位WS-07
+      type: WS
+    - id: WS-08
+      label: 工位WS-08
+      type: WS
+    - id: WS-09
+      label: 工位WS-09
+      type: WS
+    - id: WS-10
+      label: 工位WS-10
+      type: WS
+    - id: WS-11
+      label: 工位WS-11
+      type: WS
+    - id: WS-12
+      label: 工位WS-12
+      type: WS
+    - id: BUF-01
+      label: 缓存BUF-01
+      type: BUF
+    - id: BUF-02
+      label: 缓存BUF-02
+      type: BUF
+    - id: BUF-03
+      label: 缓存BUF-03
+      type: BUF
+    - id: BUF-04
+      label: 缓存BUF-04
+      type: BUF
+    - id: BUF-05
+      label: 缓存BUF-05
+      type: BUF
+    - id: BUF-06
+      label: 缓存BUF-06
+      type: BUF
+    - id: BUF-07
+      label: 缓存BUF-07
+      type: BUF
+    - id: BUF-08
+      label: 缓存BUF-08
+      type: BUF
+    - id: BUF-09
+      label: 缓存BUF-09
+      type: BUF
+    - id: BUF-10
+      label: 缓存BUF-10
+      type: BUF
+    - id: BUF-11
+      label: 缓存BUF-11
+      type: BUF
+    - id: BUF-12
+      label: 缓存BUF-12
+      type: BUF
+    - id: ADMIN
+      label: 管理员（未经领导授权，勿选）
+      type: ADMIN
+
+  orders:
+    - menuId: CallFromBuff
+      label: 呼叫
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: buff-to-ws
+      disabled: false
+      workTypes: [ WS, ADMIN ]
+      tip: 运送料架到工作区
+      confirmMessage: 请确认工作区已经没有托盘！！！
+
+    - menuId: PassToNext
+      label: 放行
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: ws-to-buff
+      disabled: false
+      workTypes: [ WS, ADMIN ]
+      tip: 运送料架到缓存区
+      confirmMessage: 请确认缓存区已经没有托盘！！！
+      params:
+        - name: qrCode
+          input: text
+          label: 请扫描二维码
+          inputDetails: GetProductInfo
+        - name: productNo
+          input: text
+          label: 产品总成码
+        - name: productSerial
+          input: text
+          label: 总成生产流水号
+        - name: onlineDate
+          input: text
+          label: 上线日期
+        - name: param1
+          input: text
+          label: 参数1
+        - name: param2
+          input: text
+          label: 参数2
+        - name: param3
+          input: text
+          label: 参数3
+
+    - menuId: Charge
+      label: 启用/禁用充电
+      menuItemBackGround: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: charge
+      workTypes: [ ADMIN ]
+      confirmMessage: 确认要执行此操作吗？
+      params:
+        - name: currentStatus
+          input: select
+          label: 当前状态
+          optionsSource: CurrentStatus
+        - name: pwd
+          input: text
+          label: 请输入密码
+        - name: enabled
+          input: select
+          label: 当前操作
+          optionsSource: EnableAutoCharge
+
+    - menuId: UpdateSite
+      label: 更新库位
+      menuItemBackGround: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: update-station
+      workTypes: [ ADMIN ]
+      confirmMessage: 确认要执行此操作吗？
+      params:
+        - name: currentStation
+          input: select
+          label: 库位
+          optionsSource: DpWorkStations
+        - name: pwd
+          input: text
+          label: 请输入密码
+        - name: operation
+          input: select
+          label: 操作
+          optionsSource: DpStationOperations
+
+  taskNotice:
+    scope: by-work-type
+    noticeType: alert
+    when:
+      - created
+
+# 前往充电站的路径
+chargerRoutes:
+  - LM31 --- CP25
+  - LM32 --- CP26
+
+# 特殊站点
+specialSites:
+  - BUF-01
+  - BUF-04
+  - BUF-07
+  - BUF-10
+
+# 流水线工作站配置
+#workStationConfigs:
+#  workStations 站点ID:
+#    vehicle: 指定车ID
+#    front: 上一站点ID
+#    next: 下一站点ID
+#    park: 停靠站点ID
+workStationConfigs:
+  "WS-01":
+    vehicle: AGV-1
+    front: BUF-01
+    next: BUF-02
+    park: BUF-02
+  "WS-02":
+    vehicle: AGV-1
+    front: BUF-02
+    next: BUF-03
+    park: BUF-02
+  "WS-03":
+    vehicle: AGV-1
+    front: BUF-03
+    next: BUF-04
+    park: BUF-03
+  "WS-04":
+    vehicle: AGV-2
+    front: BUF-04
+    next: BUF-05
+    park: BUF-05
+  "WS-05":
+    vehicle: AGV-2
+    front: BUF-05
+    next: BUF-06
+    park: BUF-05
+  "WS-06":
+    vehicle: AGV-2
+    front: BUF-06
+    next: BUF-07
+    park: BUF-06
+  "WS-07":
+    vehicle: AGV-3
+    front: BUF-07
+    next: BUF-08
+    park: BUF-08
+  "WS-08":
+    vehicle: AGV-3
+    front: BUF-08
+    next: BUF-09
+    park: BUF-08
+  "WS-09":
+    vehicle: AGV-3
+    front: BUF-09
+    next: BUF-10
+    park: BUF-09
+  "WS-10":
+    vehicle: AGV-4
+    front: BUF-10
+    next: BUF-11
+    park: BUF-11
+  "WS-11":
+    vehicle: AGV-4
+    front: BUF-11
+    next: BUF-12
+    park: BUF-11
+  "WS-12":
+    vehicle: AGV-4
+    front: BUF-12
+    next: BUF-01
+    park: BUF-12

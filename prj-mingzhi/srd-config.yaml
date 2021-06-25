@@ -1,0 +1,6 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-mingzhi
+mongoMainDatabase: srd-mingzhi
+commAdapterIO: Http
+vehicleSimulation: Http
+upUrl: http://localhost:7100/api/mock/

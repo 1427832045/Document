@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model version="0.0.2" name="test-20201021001">
+    <point name="LM10" xPosition="3120" yPosition="-650" zPosition="0" vehicleOrientationAngle="NaN" type="HALT_POSITION">
+        <outgoingPath name="LM10 --- LM9"/>
+    </point>
+    <point name="LM2" xPosition="1850" yPosition="-1270" zPosition="0" vehicleOrientationAngle="NaN" type="HALT_POSITION">
+        <outgoingPath name="LM2 --- LM9"/>
+    </point>
+    <point name="LM3" xPosition="4360" yPosition="-650" zPosition="0" vehicleOrientationAngle="NaN" type="HALT_POSITION">
+        <outgoingPath name="LM3 --- LM7"/>
+    </point>
+    <point name="LM4" xPosition="5450" yPosition="-650" zPosition="0" vehicleOrientationAngle="NaN" type="HALT_POSITION">
+        <outgoingPath name="LM4 --- LM8"/>
+    </point>
+    <point name="LM5" xPosition="4360" yPosition="-1870" zPosition="0" vehicleOrientationAngle="NaN" type="HALT_POSITION">
+        <outgoingPath name="LM5 --- LM7"/>
+    </point>
+    <point name="LM6" xPosition="5450" yPosition="-1870" zPosition="0" vehicleOrientationAngle="NaN" type="HALT_POSITION">
+        <outgoingPath name="LM6 --- LM8"/>
+    </point>
+    <point name="LM7" xPosition="4360" yPosition="-1270" zPosition="0" vehicleOrientationAngle="NaN" type="HALT_POSITION">
+        <outgoingPath name="LM3 --- LM7"/>
+        <outgoingPath name="LM5 --- LM7"/>
+        <outgoingPath name="LM7 --- LM8"/>
+        <outgoingPath name="LM7 --- LM9"/>
+    </point>
+    <point name="LM8" xPosition="5450" yPosition="-1270" zPosition="0" vehicleOrientationAngle="NaN" type="HALT_POSITION">
+        <outgoingPath name="LM4 --- LM8"/>
+        <outgoingPath name="LM6 --- LM8"/>
+        <outgoingPath name="LM7 --- LM8"/>
+    </point>
+    <point name="LM9" xPosition="3120" yPosition="-1270" zPosition="0" vehicleOrientationAngle="NaN" type="HALT_POSITION">
+        <outgoingPath name="LM10 --- LM9"/>
+        <outgoingPath name="LM2 --- LM9"/>
+        <outgoingPath name="LM7 --- LM9"/>
+        <outgoingPath name="LM9 --- PP1"/>
+    </point>
+    <point name="PP1" xPosition="3120" yPosition="-1870" zPosition="0" vehicleOrientationAngle="NaN" type="PARK_POSITION">
+        <outgoingPath name="LM9 --- PP1"/>
+    </point>
+    <path name="LM10 --- LM9" sourcePoint="LM10" destinationPoint="LM9" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="LM9 --- LM10" sourcePoint="LM9" destinationPoint="LM10" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="LM2 --- LM9" sourcePoint="LM2" destinationPoint="LM9" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="LM9 --- LM2" sourcePoint="LM9" destinationPoint="LM2" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="LM3 --- LM7" sourcePoint="LM3" destinationPoint="LM7" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="LM7 --- LM3" sourcePoint="LM7" destinationPoint="LM3" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="LM4 --- LM8" sourcePoint="LM4" destinationPoint="LM8" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="LM8 --- LM4" sourcePoint="LM8" destinationPoint="LM4" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="LM5 --- LM7" sourcePoint="LM5" destinationPoint="LM7" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="LM7 --- LM5" sourcePoint="LM7" destinationPoint="LM5" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="LM6 --- LM8" sourcePoint="LM6" destinationPoint="LM8" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="LM8 --- LM6" sourcePoint="LM8" destinationPoint="LM6" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="LM7 --- LM8" sourcePoint="LM7" destinationPoint="LM8" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="LM8 --- LM7" sourcePoint="LM8" destinationPoint="LM7" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="LM7 --- LM9" sourcePoint="LM7" destinationPoint="LM9" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="LM9 --- LM7" sourcePoint="LM9" destinationPoint="LM7" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="LM9 --- PP1" sourcePoint="LM9" destinationPoint="PP1" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <path name="PP1 --- LM9" sourcePoint="PP1" destinationPoint="LM9" length="1000" routingCost="1" maxVelocity="10000" maxReverseVelocity="0" locked="false"/>
+    <vehicle name="AMB-01" length="1000" energyLevelCritical="30" energyLevelGood="75" maxVelocity="1000" maxReverseVelocity="1000" energyLevelFullyRecharged="85" energyLevelSufficientlyRecharged="35" rechargeOperation="CHARGE" type="">
+        <processableCategory name="-"/>
+    </vehicle>
+    <locationType name="TransferLocation">
+        <allowedOperation name="Wait"/>
+        <allowedOperation name="WaitKey"/>
+    </locationType>
+    <locationType name="ChargeLocation">
+        <allowedOperation name="CHARGE"/>
+    </locationType>
+    <location name="L-1-1" xPosition="3910" yPosition="-310" zPosition="0" type="TransferLocation">
+        <link point="LM3"/>
+    </location>
+    <location name="L-1-2" xPosition="5060" yPosition="-310" zPosition="0" type="TransferLocation">
+        <link point="LM4"/>
+    </location>
+    <location name="L-2-1" xPosition="3910" yPosition="-1670" zPosition="0" type="TransferLocation">
+        <link point="LM5"/>
+    </location>
+    <location name="L-2-2" xPosition="5060" yPosition="-1670" zPosition="0" type="TransferLocation">
+        <link point="LM6"/>
+    </location>
+    <location name="LOC-CP10" xPosition="2740" yPosition="-310" zPosition="0" type="ChargeLocation">
+        <link point="LM10"/>
+    </location>
+    <location name="Manual" xPosition="1650" yPosition="-650" zPosition="0" type="TransferLocation">
+        <link point="LM2"/>
+    </location>
+    <visualLayout name="VLayout-1" scaleX="1.000" scaleY="1.000">
+        <modelLayoutElement visualizedObjectName="AMB-01" layer="0">
+            <property name="ROUTE_COLOR" value="#d66b29"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM10" layer="0">
+            <property name="LABEL_OFFSET_X" value="0"/>
+            <property name="LABEL_OFFSET_Y" value="0"/>
+            <property name="POSITION_X" value="14"/>
+            <property name="POSITION_Y" value="45"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM2" layer="0">
+            <property name="LABEL_OFFSET_X" value="0"/>
+            <property name="LABEL_OFFSET_Y" value="0"/>
+            <property name="POSITION_X" value="-200"/>
+            <property name="POSITION_Y" value="-17"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM3" layer="0">
+            <property name="LABEL_OFFSET_X" value="0"/>
+            <property name="LABEL_OFFSET_Y" value="0"/>
+            <property name="POSITION_X" value="232"/>
+            <property name="POSITION_Y" value="45"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM4" layer="0">
+            <property name="LABEL_OFFSET_X" value="0"/>
+            <property name="LABEL_OFFSET_Y" value="0"/>
+            <property name="POSITION_X" value="341"/>
+            <property name="POSITION_Y" value="45"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM5" layer="0">
+            <property name="LABEL_OFFSET_X" value="0"/>
+            <property name="LABEL_OFFSET_Y" value="0"/>
+            <property name="POSITION_X" value="232"/>
+            <property name="POSITION_Y" value="-77"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM6" layer="0">
+            <property name="LABEL_OFFSET_X" value="0"/>
+            <property name="LABEL_OFFSET_Y" value="0"/>
+            <property name="POSITION_X" value="341"/>
+            <property name="POSITION_Y" value="-77"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM7" layer="0">
+            <property name="LABEL_OFFSET_X" value="0"/>
+            <property name="LABEL_OFFSET_Y" value="0"/>
+            <property name="POSITION_X" value="232"/>
+            <property name="POSITION_Y" value="-17"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM8" layer="0">
+            <property name="LABEL_OFFSET_X" value="0"/>
+            <property name="LABEL_OFFSET_Y" value="0"/>
+            <property name="POSITION_X" value="341"/>
+            <property name="POSITION_Y" value="-17"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM9" layer="0">
+            <property name="LABEL_OFFSET_X" value="0"/>
+            <property name="LABEL_OFFSET_Y" value="0"/>
+            <property name="POSITION_X" value="14"/>
+            <property name="POSITION_Y" value="-17"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="PP1" layer="0">
+            <property name="LABEL_OFFSET_X" value="0"/>
+            <property name="LABEL_OFFSET_Y" value="0"/>
+            <property name="POSITION_X" value="14"/>
+            <property name="POSITION_Y" value="-77"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM10 --- LM9" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM9 --- LM10" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM2 --- LM9" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM9 --- LM2" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM3 --- LM7" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM7 --- LM3" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM4 --- LM8" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM8 --- LM4" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM5 --- LM7" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM7 --- LM5" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM6 --- LM8" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM8 --- LM6" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM7 --- LM8" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM8 --- LM7" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM7 --- LM9" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM9 --- LM7" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LM9 --- PP1" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="PP1 --- LM9" layer="0">
+            <property name="CONN_TYPE" value="DIRECT"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="L-1-1" layer="0">
+            <property name="LABEL_OFFSET_X" value="0"/>
+            <property name="LABEL_OFFSET_Y" value="0"/>
+            <property name="POSITION_X" value="187"/>
+            <property name="POSITION_Y" value="79"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="L-1-2" layer="0">
+            <property name="LABEL_OFFSET_X" value="0"/>
+            <property name="LABEL_OFFSET_Y" value="0"/>
+            <property name="POSITION_X" value="302"/>
+            <property name="POSITION_Y" value="79"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="L-2-1" layer="0">
+            <property name="LABEL_OFFSET_X" value="0"/>
+            <property name="LABEL_OFFSET_Y" value="0"/>
+            <property name="POSITION_X" value="187"/>
+            <property name="POSITION_Y" value="-57"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="L-2-2" layer="0">
+            <property name="LABEL_OFFSET_X" value="-1"/>
+            <property name="LABEL_OFFSET_Y" value="0"/>
+            <property name="POSITION_X" value="302"/>
+            <property name="POSITION_Y" value="-57"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="LOC-CP10" layer="0">
+            <property name="LABEL_OFFSET_X" value="0"/>
+            <property name="LABEL_OFFSET_Y" value="0"/>
+            <property name="POSITION_X" value="-24"/>
+            <property name="POSITION_Y" value="79"/>
+        </modelLayoutElement>
+        <modelLayoutElement visualizedObjectName="Manual" layer="0">
+            <property name="LABEL_OFFSET_X" value="0"/>
+            <property name="LABEL_OFFSET_Y" value="0"/>
+            <property name="POSITION_X" value="-220"/>
+            <property name="POSITION_Y" value="45"/>
+        </modelLayoutElement>
+    </visualLayout>
+    <property name="robot:modelFileLastModified" value="2020-10-21T16:03:31.002Z"/>
+</model>

@@ -1,0 +1,27 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-intel-cd
+mongoMainDatabase: srd-intel-cd
+uiPath: D:\Projects\GitProjects\pure-seer-ui\level2\dist\
+
+commAdapterIO: Tcp
+vehicleSimulation: Tcp
+
+## 设备服务器配置项
+synchronizer:
+#  # 门服务器地址
+  doorRoute: http://localhost:7100/api/
+
+doors:
+  D1:
+    #    host: 192.168.0.7           # 电控柜的IP, 默认值为 127.0.0.1
+    port: 502                 # 端口号 默认为 502
+    unitId: 1
+    recordOpenOpt: true     # 记录每一波开门请求的第一条请求
+    openAddr: 2            # 控制开门的地址 默认为 1280
+    closeAddr: 3           # 控制关门的地址 默认为 1281
+    feedback: false            # true: 这是个有开门到位信号的自动门， false: 这个门没有开门到位反馈
+    openStatusAddr: 1      # 读取开门到位信号的地址， 默认为 1024
+    errorAddr: 2
+    delayForOpened: 5         # 一定次数后，设置自动门状态为OPEN，当 feedback = false 时有效
+    delayForCancelOpen: 0   # 一段时间后取消写入开门信号，单位为 ms    0: 不清空
+    delayForCancelClose: 500  # 一段时间后取消写入关门信号，单位为 ms    0: 不清空

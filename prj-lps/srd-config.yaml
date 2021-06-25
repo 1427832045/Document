@@ -1,0 +1,47 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-lps
+mongoMainDatabase: srd-lps
+uiPath: E:/gitrepo/seer-ui/level2/dist
+commAdapterIO: Http
+vehicleSimulation: Http
+tcpPort: 7868
+downSize: 2
+
+modbusLines:
+  line11:
+    upHost: 127.0.0.1
+    upPort: 503
+    downHost: 127.0.0.1
+    downPort: 503
+    alertHost: 127.0.0.1
+    alertPort: 503
+  line12:
+    upHost: 127.0.0.1
+    upPort: 504
+    downHost: 127.0.0.1
+    downPort: 504
+    alertHost: 127.0.0.1
+    alertPort: 504
+
+modbusAddress:
+  upBin1: 0
+  upBin2: 1
+  upBin3: 2
+  upA: 3
+  upB: 4
+  upC: 5
+
+  downBin1: 10
+  downBin2: 11
+  downA: 12
+  downB: 13
+  downC: 14
+  alert: 15
+
+productTypes:
+  - value: pt1
+    label: 产品类型1
+  - value: pt2
+    label: 产品类型2
+  - value: pt3
+    label: 产品类型3

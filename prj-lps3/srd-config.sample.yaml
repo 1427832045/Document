@@ -1,0 +1,168 @@
+# SRD 配置文件示例
+# 以下所有配置项，如无特殊说明，可以不配，后面是默认值
+
+
+# SRD 服务器端口
+httpPort: 7100
+
+# SRD 对外提供服务的 URL 的前缀，如 http://<host>:<httpPort>/api
+#apiPrefix: api
+
+# 用户会话过期时间，单位分钟
+#sessionExpireMinutes: 100000
+
+# 数据库连接，必填，无默认值
+mongodbUrl: mongodb://localhost:27017/srd
+
+# 数据库名字，必填，无默认值
+mongoMainDatabase: srd
+
+# 上传文件存储目录，默认为当前工作目录+/upload
+#uploadDir:
+
+# 界面文件所在目录，默认为当前工作目录下的 ui 目录
+#uiPath:
+
+# 是否查询车的详情信息
+#syncVehiclesDetails: true
+
+# 查询车的详情信息的周期（毫秒）
+#syncVehiclesDetailsDelay: 1000L
+
+
+# 统计周期中，一天的实际段统计，分几个时间段，起止时间
+# 例如统计上下午两个班次的情况，时间分别为上午8点到11点半，下午2点到6点
+#statDayPartDefs:
+#  - label: 上午班次
+#    start: 08:00:00 # HH:mm:ss 格式
+#    end: 11:30:00
+#  - label: 下午班次
+#    start: 14:00:00
+#    end: 18:00:00
+
+
+# 任务优先级定义，必须从低到高排列
+#taskPriorities:
+#  - name: 低
+#    value: 10
+#  - name: 正常
+#    value: 100
+#  - name: 加急
+#    value: 200
+#  - name: 特急
+#    value: 300
+#
+#
+# 手持端，见独立手册
+#operator:
+#
+# 是否检查死锁
+#useDeadlock: false
+#
+# 重启是否恢复之前未执行完的运单、序列等
+#startFromDB: true
+
+
+# RoboRouteConfig 调度系统配置项
+# Kernel 常规配置
+#kernelApp:
+#  # 编辑模式切换是否自动保存场景文件
+#  saveModelOnTerminateModelling: false
+#  # 操作模式切换是否自动保存场景文件
+#  saveModelOnTerminateOperating: false
+#  # 路径锁定属性变化时是否自动更新场景拓扑
+#  updateRoutingTopologyOnPathLockChange: true
+
+# 设备服务器配置项
+#synchronizer:
+#  # 门服务器地址
+#  doorRoute: "http://localhost:52000/devices/api/v1/"
+#  # 电梯服务器地址
+#  liftRoute: "http://localhost:52000/devices/api/v1/"
+#  # 交通管制区服务器地址
+#  mutexZoneRoute: "http://localhost:52000/devices/api/v1/"
+#  # 备用设备服务器地址
+#  locationRoute: "http://localhost:52000/devices/api/v1/"
+
+## 最短路径配置
+#shortestPath:
+#  # 最短路径算法
+#  algorithm: DIJKSTRA
+#  # 最短路径算法条件
+#  edgeEvaluators: [DISTANCE, EXPLICIT_PROPERTIES]
+
+## 自动前往当前节点
+#routeToCurrentPosition: false
+## 从 MySQL 数据库和 redis 自动恢复(已弃用)
+#recoverEnabled: false
+## 自动恢复阈值(已弃用)
+#recoveryEvaluatorThreshold: 0.7
+
+## 调度配置
+#dispatcher:
+#  # 是否自动舍弃 UNROUTABLE 状态的运单
+#  dismissUnroutableTransportOrders: false
+#  # 是否分配冗余运单
+#  assignRedundantOrders: false
+#  # 重新规划路径的触发条件 拓扑图改变(默认)
+#  rerouteTrigger: TOPOLOGY_CHANGE
+#  # 无法重新规划路径时的策略 立即暂停 reroute (默认)
+#  reroutingImpossibleStrategy: PAUSE_IMMEDIATELY
+#  # 是否调度子工程
+#  dispatchForSubprojects: true
+#  # 空闲机器人是否自动停靠
+#  parkIdleVehicles: true
+#  # 自动停靠时是否考虑停靠点优先级
+#  considerParkingPositionPriorities: false
+#  # 是否将机器人重新自动停靠到优先级更高的停靠点
+#  reparkVehiclesToHigherPriorityPositions: false
+#  # 空闲机器人是否自动充电
+#  rechargeIdleVehicles: true
+#  # 机器人达到满电量阈值之前是否可以离开充电桩
+#  keepRechargingUntilFullyCharged: false
+#  # 机器人达到满电量阈值之后是否自动回停靠点
+#  parkVehicleWhenFullyCharged: true
+#  # 空闲机器人重新参与调度任务的间隔时间
+#  idleVehicleRedispatchingInterval: 5000
+#  # 运单优先级标准
+#  orderPriorities: ["BY_DEADLINE"]
+#  # 运单匹配机器人时运单的的优先级参考标准
+#  orderCandidatePriorities: ["BY_INITIAL_ROUTING_COSTS", "BY_DEADLINE"]
+#  # 运单派遣挑选机器人时机器人的优先级标准
+#  vehiclePriorities: ["BY_ENERGY_LEVEL", "IDLE_FIRST"]
+#  # 执行运单时挑选机器人的优先级参考标准
+#  vehicleCandidatePriorities: ["BY_INITIAL_ROUTING_COSTS", "BY_ENERGY_LEVEL"]
+#  # 运单风险截止日期
+#  deadlineAtRiskPeriod: 60000
+
+## 调度适配器种类，默认 Redis，可选：Redis、Http、Tcp
+#commAdapterIO: Http
+## 命令队列长度
+#commandQueueCapacity: 2
+## 默认充电动作
+#rechargeOperation: "CHARGE"
+## 发送命令队列的长度
+#sentQueueCapacity: 2
+## 选择 Tcp 适配器时连接服务器的端口
+#vehicleAdapterTcpServerPort: 15400
+
+## redis 配置项
+#redis:
+#  # redis pool中允许的最大 jedis 实例个数
+#  maxTotal: 1000
+#  # redis pool中允许的最大空闲 jedis 实例个数
+#  maxIdle: 1000
+#  # 在使用 jedis 实例时是否均可用
+#  testOnBorrow: true
+#  # 当 redis pool 中无实例时是否阻塞
+#  blockWhenExhausted: true
+#  # 使用实例时的最大等待时间
+#  maxWaitMillis: 5000
+#  # redis 默认 IP
+#  ip: "localhost"
+#  # redis 默认端口
+#  port: 6379
+
+## 机器人仿真类型，可选：None、Http、Tcp
+#vehicleSimulation: Http
+

@@ -1,0 +1,296 @@
+httpPort: 7400
+mongodbUrl: mongodb://localhost:27017/srd-huaxin
+mongoMainDatabase: srd-huaxin
+uiPath: E:/gitrepo/seer-ui/custom/huaxin-kuerle/dist
+#uiPath: /Users/guoshaoshuai/gitRepo/seer-ui/level2/dist
+#commAdapterIO: Http
+#vehicleSimulation: Http
+#startFromDB: false
+
+operator:
+  workTypes:
+#    - id: PWToCircle
+#      label: 抛丸区—循环链
+#    - id: productToPrefix
+#      label: 转辙机成品区—转辙机待修品存放区
+#    - id: clearToFix
+#      label: 零部件清洗区—部件检修区
+#    - id: storeroomToFix
+#      label: 库房—部件检修区
+#    - id: storeToAssemble
+#      label: 部件存放区—转辙机装配区
+#    - id: checkToProduct
+#      label: 整机验收区—转辙机成品区
+    - id: default
+      label: 默认
+
+  workStations:
+    - id: default
+      label: 默认
+      type: default
+
+  orders:
+    - menuId: PWToCircle
+      label: 抛丸区—循环链
+#      menuItemBackground: "rgb(92, 167, 186)"
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      robotTaskDef: PWToCircle
+#      workTypes:
+#        - default
+      confirmMessage: 发起【抛丸区—循环链】任务吗?
+      params:
+        - name: PWToCircleFrom
+          input: select
+          label: 起点
+          options:
+            - value: PW-01
+              label: PW-01
+            - value: XH-05
+              label: XH-05
+        - name: PWToCircleTo
+          input: select
+          label: 终点
+          options:
+            - value: XH-05
+              label: XH-05
+        - name: PWToCircleTo
+          input: select
+          label: 终点
+          options:
+            - value: PW-01
+              label: PW-01
+
+    - menuId: productToPrefix
+      label: 转辙机成品区—转辙机待修品存放区
+#      menuItemBackground: "rgb(183, 77, 82)"
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      robotTaskDef: productToPrefix
+#      workTypes:
+#        - default
+      confirmMessage: 发起【转辙机成品区—待修品存放区】任务吗?
+      params:
+        - name: productToPrefixFrom
+          input: select
+          label: 起点
+          options:
+            - value: CP-20
+              label: CP-20
+            - value: DX-03
+              label: DX-03
+
+        - name: productToPrefixTo
+          input: select
+          label: 终点
+          options:
+
+            - value: CP-20
+              label: CP-20
+        - name: productToPrefixTo
+          input: select
+          label: 终点
+          options:
+            - value: DX-03
+              label: DX-03
+
+    - menuId: clearToFix
+      label: 零部件清洗区—部件检修区
+      menuItemBackground: "rgb(131, 175, 155)"
+#      menuItemBackground: "rgb(217, 116, 43)"
+      menuItemTextColor: white
+      robotTaskDef: clearToFix
+#      workTypes:
+#        - default
+      confirmMessage: 发起【零部件清洗区—部件检修区】任务吗?
+      params:
+        - name: clearToFixFrom
+          input: select
+          label: 起点
+          options:
+            - value: QX-02
+              label: QX-02
+            - value: JX-14
+              label: JX-14
+            - value: JX-15
+              label: JX-15
+            - value: JX-16
+              label: JX-16
+            - value: JX-17
+              label: JX-17
+            - value: JX-18
+              label: JX-18
+        - name: clearToFixTo
+          input: select
+          label: 终点
+          options:
+            - value: JX-14
+              label: JX-14
+            - value: JX-15
+              label: JX-15
+            - value: JX-16
+              label: JX-16
+            - value: JX-17
+              label: JX-17
+            - value: JX-18
+              label: JX-18
+        - name: clearToFixTo
+          input: select
+          label: 终点
+          options:
+            - value: QX-02
+              label: QX-02
+
+    - menuId: storeroomToFix
+      label: 库房—部件检修区
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      robotTaskDef: storeroomToFix
+#      workTypes:
+#        - default
+      confirmMessage: 发起【库房—部件检修区】任务吗?
+      params:
+        - name: storeroomToFixFrom
+          input: select
+          label: 起点
+          options:
+            - value: KF-04
+              label: KF-04
+            - value: JX-14
+              label: JX-14
+            - value: JX-15
+              label: JX-15
+            - value: JX-16
+              label: JX-16
+            - value: JX-17
+              label: JX-17
+            - value: JX-18
+              label: JX-18
+        - name: storeroomToFixTo
+          input: select
+          label: 终点
+          options:
+            - value: JX-14
+              label: JX-14
+            - value: JX-15
+              label: JX-15
+            - value: JX-16
+              label: JX-16
+            - value: JX-17
+              label: JX-17
+            - value: JX-18
+              label: JX-18
+        - name: storeroomToFixTo
+          input: select
+          label: 终点
+          options:
+            - value: KF-04
+              label: KF-04
+
+
+    - menuId: storeToAssemble
+      label: 部件存放区—转辙机装配区
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      robotTaskDef: storeToAssemble
+#      workTypes:
+#        - default
+      confirmMessage: 发起【部件存放区—转辙机装配区】任务吗?
+      params:
+        - name: storeToAssembleFrom
+          input: select
+          label: 起点
+          options:
+            - value: CF-19
+              label: CF-19
+            - value: ZP-06
+              label: ZP-06
+            - value: ZP-07
+              label: ZP-07
+            - value: ZP-08
+              label: ZP-08
+            - value: ZP-09
+              label: ZP-09
+            - value: ZP-10
+              label: ZP-10
+            - value: ZP-11
+              label: ZP-11
+            - value: ZP-12
+              label: ZP-12
+
+        - name: storeToAssembleTo
+          input: select
+          label: 终点
+          options:
+            - value: ZP-06
+              label: ZP-06
+            - value: ZP-07
+              label: ZP-07
+            - value: ZP-08
+              label: ZP-08
+            - value: ZP-09
+              label: ZP-09
+            - value: ZP-10
+              label: ZP-10
+            - value: ZP-11
+              label: ZP-11
+            - value: ZP-12
+              label: ZP-12
+
+        - name: storeToAssembleTo
+          input: select
+          label: 终点
+          options:
+            - value: CF-19
+              label: CF-19
+
+    - menuId: checkToProduct
+      label: 整机验收区—转辙机成品区
+      menuItemBackground: "rgb(131, 175, 155)"
+      menuItemTextColor: white
+      robotTaskDef: checkToProduct
+#      workTypes:
+#        - default
+      confirmMessage: 发起【整机验收区—转辙机成品区】任务吗?
+      params:
+        - name: checkToProductFrom
+          input: select
+          label: 起点
+          options:
+            - value: YS-13
+              label: YS-13
+            - value: CP-20
+              label: CP-20
+
+        - name: checkToProductTo
+          input: select
+          label: 终点
+          options:
+            - value: CP-20
+              label: CP-20
+        - name: checkToProductTo
+          input: select
+          label: 终点
+          options:
+            - value: YS-13
+              label: YS-13
+
+task:
+  PWToCircle:
+    site1: ["T01"]
+    site2: ["T05"]
+  productToPrefix:
+    site1: ["T03"]
+    site2: ["T20"]
+  clearToFix:
+    site1: ["T02"]
+    site2: ["T14","T15","T16","T17","T18"]
+  storeroomToFix:
+    site1: ["T04"]
+    site2: ["T14","T15","T16","T17","T18"]
+  storeToAssemble:
+    site1: ["T19"]
+    site2: ["T06","T07","T08","T09","T10","T11","T12"]
+  checkToProduct:
+    site1: ["T13"]
+    site2: ["T20"]

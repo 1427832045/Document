@@ -1,0 +1,8 @@
+outFtpHostname: tbicout.grundfos.com
+inFtpHostname: tbic.grundfos.com
+#outFtpHostname: 192.168.4.247
+#inFtpHostname: 192.168.4.247
+commAdapterIO: Tcp
+vehicleSimulation: Tcp
+mongodbUrl: mongodb://localhost:27017/srd-gelanfu
+mongoMainDatabase: srd-gelanfu

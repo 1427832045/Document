@@ -1,0 +1,671 @@
+httpPort: 7200
+mongodbUrl: mongodb://localhost:27017/srd-huaxinHb
+mongoMainDatabase: srd-huaxinHb
+#uiPath: E:/gitrepo/seer-ui/level2/dist
+uiPath: E:/gitrepo/seer-ui/custom/huaxin-hb/dist
+commAdapterIO: Tcp
+vehicleSimulation: Tcp
+startFromDB: false
+mesUrl: http://localhost:7100/api/
+
+operator:
+  workTypes:
+    - id: ""
+      label: ""
+    - id: AGV
+      label: AGV类型
+  workStations:
+    - id: ""
+      label: ""
+      type: ""
+    - id: 单辊筒
+      label: 单辊筒
+      type: AGV
+    - id: 双皮带
+      label: 双皮带
+      type: AGV
+  orders:
+    - menuId: HB_Load
+      label: 卸车区 <-> 装车区
+      menuItemBackground: "rgb(131, 175, 155)"
+      menuItemTextColor: white
+      robotTaskDef: HB_Load
+      workStations: ["单辊筒"]
+      confirmMessage: 发起【卸车区 <-> 装车区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options: &HB_Load
+            - value: ""
+              label: ""
+            - value: 卸车区
+              label: 卸车区
+            - value: 装车区
+              label: 装车区
+        - name: to
+          input: select
+          label: 终点
+          options: *HB_Load
+
+    - menuId: HB_JX2QX
+      label: 部件检修区 -> 清洗区
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      workStations: ["单辊筒"]
+      robotTaskDef: HB_JX2QX
+      confirmMessage: 发起【部件检修区 -> 清洗区】任务吗?
+      params:
+        - name: from
+          input: list
+          label: 起点
+          dataId: "HB_JX2QX_FROM"
+          multiple: 1
+          options:
+            - value: 分解区
+              label: 分解区
+            - value: 电机检修位
+              label: 电机检修位
+            - value: 开闭器检修位
+              label: 开闭器检修位
+            - value: 减速器检修位
+              label: 减速器检修位
+
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: ""
+              label: ""
+            - value: 清洗区
+              label: 清洗区
+
+    - menuId: HB_JX2CP
+      label: 部件检修区 <-> 部件成品区
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      workStations: ["单辊筒"]
+      robotTaskDef: HB_JX2CP
+      confirmMessage: 发起【部件检修区 <-> 部件成品区】任务吗?
+      params:
+        - name: from
+          input: list
+          label: 起点
+          multiple: 1
+          dataId: "HB_JX2CP_FROM"
+          options: &HB_JX2CP
+            - value: 分解区
+              label: 分解区
+            - value: 电机检修位
+              label: 电机检修位
+            - value: 开闭器检修位
+              label: 开闭器检修位
+            - value: 减速器检修位
+              label: 减速器检修位
+            - value: 接触器检修位
+              label: 接触器检修位
+            - value: 配线1位
+              label: 配线1位
+            - value: 配线2位
+              label: 配线2位
+            - value: 部件成品区
+              label: 部件成品区
+
+        - name: to
+          input: list
+          multiple: 1
+          label: 终点
+          dataId: "HB_JX2CP_TO"
+          options: *HB_JX2CP
+
+    - menuId: HB_ZP2YS
+      label: 整机装配区 -> 整机验收区
+      menuItemBackground: "rgb(39, 194, 126)"
+      menuItemTextColor: white
+      workStations: ["单辊筒"]
+      robotTaskDef: HB_ZP2YS
+      confirmMessage: 发起【整机装配区 -> 整机验收区】任务吗?
+      params:
+        - name: from
+          input: list
+          dataId: "HB_ZP2YS_FROM"
+          multiple: 1
+          label: 起点
+          options:
+            - value: 装配区1
+              label: 装配区1
+            - value: 装配区2
+              label: 装配区2
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: ""
+              label: ""
+            - value: 验收区
+              label: 验收区
+
+    - menuId: HB_FJ2PW
+      label: 整机分解区 -> 抛丸区
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      workStations: ["单辊筒"]
+      robotTaskDef: HB_FJ2PW
+      confirmMessage: 发起【整机分解区 -> 抛丸区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: 分解区
+              label: 分解区
+
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: ""
+              label: ""
+            - value: 抛丸区
+              label: 抛丸区
+
+    - menuId: HB_FJ2JX
+      label: 整机分解区 -> 部件检修区
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      workStations: ["单辊筒"]
+      robotTaskDef: HB_FJ2JX
+      confirmMessage: 发起【整机分解区 -> 部件检修区】任务吗?
+
+    - menuId: HB_PQ2ZP
+      label: 喷漆区 -> 整机装配区
+      menuItemBackground: "rgb(131, 175, 155)"
+      menuItemTextColor: white
+      workStations: ["单辊筒"]
+      robotTaskDef: HB_PQ2ZP
+      confirmMessage: 发起【喷漆区 -> 整机装配区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: 喷漆区
+              label: 喷漆区
+
+        - name: to
+          input: list
+          dataId: "HB_PQ2ZP_TO"
+          multiple: 1
+          label: 终点
+          options:
+            - value: 配线1位
+              label: 配线1位
+            - value: 配线2位
+              label: 配线2位
+
+    - menuId: HB_AS2FJ
+      label: 立库 -> 整机分解区
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      workStations: ["单辊筒"]
+      robotTaskDef: HB_AS2FJ
+      confirmMessage: 发起【立库 -> 整机分解区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: A接驳台
+              label: A接驳台
+            - value: B接驳台
+              label: B接驳台
+
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: ""
+              label: ""
+            - value: 分解区
+              label: 分解区
+
+    - menuId: HB_AS2ZC
+      label: 立库 -> 装车区
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      workStations: ["单辊筒"]
+      robotTaskDef: HB_AS2ZC
+      confirmMessage: 发起【立库 -> 装车区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: A接驳台
+              label: A接驳台
+
+        - name: to
+          input: select
+          label: 终点
+          options:
+            - value: ""
+              label: ""
+            - value: 装车区
+              label: 装车区
+
+    - menuId: HB_AS2GCS
+      label: 立库 <-> 工程测试区
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      workStations: ["单辊筒"]
+      robotTaskDef: HB_AS2GCS
+      confirmMessage: 发起【立库 <-> 工程测试区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options: &HB_AS2GCS
+            - value: ""
+              label: ""
+            - value: A接驳台
+              label: A接驳台
+            - value: B接驳台
+              label: B接驳台
+            - value: 工程测试区
+              label: 工程测试区
+        - name: to
+          input: select
+          label: 终点
+          options: *HB_AS2GCS
+
+    - menuId: HB_AS2ZCS
+      label: 立库 <-> 整机测试区
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      workStations: ["单辊筒"]
+      robotTaskDef: HB_AS2ZCS
+      confirmMessage: 发起【立库 <-> 整机测试区】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options: &HB_AS2ZCS
+            - value: ""
+              label: ""
+            - value: A接驳台
+              label: A接驳台
+            - value: B接驳台
+              label: B接驳台
+            - value: 验收区
+              label: 验收区
+        - name: to
+          input: select
+          label: 终点
+          options: *HB_AS2ZCS
+
+    - menuId: HB_D_FJ2LS
+      label: 分拣台 -> 流水线
+      menuItemBackground: "rgb(39, 194, 126)"
+      menuItemTextColor: white
+      workStations: ["双皮带"]
+      robotTaskDef: HB_D_FJ2LS
+      confirmMessage: 发起【分拣台 -> 流水线】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: 分拣台
+              label: 分拣台
+        - name: to
+          input: select
+          label: 终点
+          options: &LSX
+            - value: ""
+              label: ""
+            - value: 流水线
+              label: 流水线
+
+    - menuId: HB_D_GC2LS
+      label: 工程器材区 -> 流水线
+      menuItemBackground: "rgb(39, 194, 126)"
+      menuItemTextColor: white
+      workStations: ["双皮带"]
+      robotTaskDef: HB_D_GC2LS
+      confirmMessage: 发起【工程器材区 -> 流水线】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: 工程区存放区
+              label: 工程区存放区
+        - name: to
+          input: select
+          label: 终点
+          options: *LSX
+
+    - menuId: HB_D_HG2LS
+      label: 烘干区 -> 流水线
+      menuItemBackground: "rgb(39, 194, 126)"
+      menuItemTextColor: white
+      workStations: ["双皮带"]
+      robotTaskDef: HB_D_HG2LS
+      confirmMessage: 发起【烘干区 -> 流水线】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: ""
+              label: ""
+            - value: 烘干区
+              label: 烘干区
+
+        - name: to
+          input: select
+          label: 终点
+          options: *LSX
+
+    - menuId: HB_D_FJ2DZ
+      label: 分拣区 <-> 电子工区
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      workStations: ["双皮带"]
+      robotTaskDef: HB_D_FJ2DZ
+      confirmMessage: 发起【分拣区 <-> 电子工区】任务吗?
+      params:
+        - name: from
+          input: list
+          label: 起点
+          multiple: 1
+          dataId: "HB_D_FJ2DZ_FROM"
+          options: &HB_D_FJ2DZ
+            - value: 分拣台
+              label: 分拣台
+            - value: 电子1
+              label: 电子1
+            - value: 电子2
+              label: 电子2
+            - value: 电子3
+              label: 电子3
+            - value: 电子4
+              label: 电子4
+
+        - name: to
+          input: list
+          multiple: 1
+          label: 终点
+          dataId: "HB_D_FJ2DZ_TO"
+          options: *HB_D_FJ2DZ
+
+    - menuId: HB_D_FJ2ZH
+      label: 分拣区 <-> 综合工区
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      workStations: ["双皮带"]
+      robotTaskDef: HB_D_FJ2ZH
+      confirmMessage: 发起【分拣区 <-> 综合工区】任务吗?
+      params:
+        - name: from
+          input: list
+          label: 起点
+          multiple: 1
+          dataId: "HB_D_FJ2ZH_FROM"
+          options: &HB_D_FJ2ZH
+            - value: 分拣台
+              label: 分拣台
+            - value: 二元二位
+              label: 二元二位
+            - value: 3V化
+              label: 3V化
+            - value: 防护盒
+              label: 防护盒
+            - value: 变压器
+              label: 变压器
+
+        - name: to
+          input: list
+          multiple: 1
+          label: 终点
+          dataId: "HB_D_FJ2ZH_TO"
+          options: *HB_D_FJ2ZH
+
+    - menuId: HB_D_GC2ZH
+      label: 工程器材区 <-> 综合工区
+      menuItemBackground: "rgb(201, 138, 131)"
+      menuItemTextColor: white
+      workStations: ["双皮带"]
+      robotTaskDef: HB_D_GC2ZH
+      confirmMessage: 发起【工程器材区 <-> 综合工区】任务吗?
+      params:
+        - name: from
+          input: list
+          label: 起点
+          multiple: 1
+          dataId: "HB_D_GC2ZH_FROM"
+          options: &HB_D_GC2ZH
+            - value: 工程区存放区
+              label: 工程区存放区
+            - value: 二元二位
+              label: 二元二位
+            - value: 3V化
+              label: 3V化
+            - value: 防护盒
+              label: 防护盒
+            - value: 变压器
+              label: 变压器
+
+        - name: to
+          input: list
+          multiple: 1
+          label: 终点
+          dataId: "HB_D_GC2ZH_TO"
+          options: *HB_D_GC2ZH
+
+    - menuId: HB_BJ_AS2O
+      label: 单辊筒-立库接驳台任务
+      menuItemBackground: "rgb(131, 175, 155)"
+      menuItemTextColor: white
+      robotTaskDef: HB_BJ_AS2O
+      confirmMessage: 发起【单辊筒-立库任务】吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options: &HB_BJ_AS2O
+            - value: ""
+              label: ""
+            - value: 接驳台
+              label: 接驳台
+            - value: 清洗
+              label: 清洗
+            - value: 检修1
+              label: 检修1
+            - value: 检修2
+              label: 检修2
+            - value: 检修3
+              label: 检修3
+            - value: 检修4
+              label: 检修4
+            - value: 检修5
+              label: 检修5
+            - value: 检修6
+              label: 检修6
+            - value: 检修7
+              label: 检修7
+            - value: 喷漆
+              label: 喷漆
+            - value: 抛丸
+              label: 抛丸
+            - value: 电空
+              label: 电空
+            - value: 气缸
+              label: 气缸
+            - value: 打标
+              label: 打标
+            - value: 台钻
+              label: 台钻
+            - value: 铆压
+              label: 铆压
+            - value: 检测
+              label: 检测
+            - value: 研磨
+              label: 研磨
+            - value: 电机修
+              label: 电机修
+            - value: 电机测
+              label: 电机测
+            - value: 干燥
+              label: 干燥
+            - value: 配线
+              label: 配线
+            - value: 装卸
+              label: 装卸
+        - name: to
+          input: select
+          label: 终点
+          options: *HB_BJ_AS2O
+
+    - menuId: HB_BJ_UNIVERSAL
+      label: 单辊筒-非立库任务
+      menuItemBackground: "rgb(131, 175, 155)"
+      menuItemTextColor: white
+      robotTaskDef: HB_BJ_UNIVERSAL
+      confirmMessage: 发起【AMB150通用任务】吗?
+      params:
+        - name: from
+          input: list
+          label: 起点
+          multiple: 1
+          dataId: "HB_BJ_UNIVERSAL_FROM"
+          options: &HB_BJ_UNIVERSAL
+            - value: 清洗
+              label: 清洗
+            - value: 检修1
+              label: 检修1
+            - value: 检修2
+              label: 检修2
+            - value: 检修3
+              label: 检修3
+            - value: 检修4
+              label: 检修4
+            - value: 检修5
+              label: 检修5
+            - value: 检修6
+              label: 检修6
+            - value: 检修7
+              label: 检修7
+            - value: 喷漆
+              label: 喷漆
+            - value: 抛丸
+              label: 抛丸
+            - value: 电空
+              label: 电空
+            - value: 气缸
+              label: 气缸
+            - value: 打标
+              label: 打标
+            - value: 台钻
+              label: 台钻
+            - value: 铆压
+              label: 铆压
+            - value: 检测
+              label: 检测
+            - value: 研磨
+              label: 研磨
+            - value: 电机修
+              label: 电机修
+            - value: 电机测
+              label: 电机测
+            - value: 干燥
+              label: 干燥
+            - value: 配线
+              label: 配线
+            - value: 装卸
+              label: 装卸
+
+        - name: to
+          input: list
+          multiple: 1
+          label: 终点
+          dataId: "HB_BJ_UNIVERSAL_TO"
+          options: *HB_BJ_UNIVERSAL
+
+    - menuId: HB_BJ_O2LS
+      label: 双皮带-流水线任务
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      robotTaskDef: HB_BJ_O2LS
+      confirmMessage: 发起【流水线】任务吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options: &JDQ
+            - value: ""
+              label: ""
+            - value: 测试1
+              label: 测试1
+            - value: 测试2
+              label: 测试2
+            - value: 测试3
+              label: 测试3
+            - value: 测试4
+              label: 测试4
+            - value: 测试5
+              label: 测试5
+            - value: 测试6
+              label: 测试6
+            - value: 测试7
+              label: 测试7
+            - value: 测试8
+              label: 测试8
+            - value: 测试9
+              label: 测试9
+            - value: 测试10
+              label: 测试10
+            - value: 测试11
+              label: 测试11
+            - value: 计量
+              label: 计量
+            - value: 临放
+              label: 临放
+            - value: 分拣
+              label: 分拣
+        - name: to
+          input: select
+          label: 终点
+          options: *LSX
+
+    - menuId: HB_BJ_UNIVERSAL2
+      label: 双皮带-非流水线任务
+      menuItemBackground: "rgb(230, 180, 80)"
+      menuItemTextColor: white
+      robotTaskDef: HB_BJ_UNIVERSAL2
+      confirmMessage: 发起【双皮带-非流水线任务】吗?
+      params:
+        - name: from
+          input: list
+          label: 起点
+          multiple: 1
+          dataId: "HB_BJ_UNIVERSAL2_FROM"
+          options: *JDQ
+        - name: to
+          input: list
+          multiple: 1
+          label: 终点
+          dataId: "HB_BJ_UNIVERSAL2_TO"
+          options: *JDQ

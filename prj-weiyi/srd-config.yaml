@@ -1,0 +1,215 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-weiyi
+mongoMainDatabase: srd-weiyi
+#uiPath: D:\\Projects\\GitProjects\\pure-seer-ui\\level2\\dist\\
+uiPath: D:\Projects\GitProjects\pure-seer-ui\custom\weiyi\dist
+#startFromDB: false
+commAdapterIO: Tcp
+vehicleSimulation: Tcp
+
+syncVehiclesDetails: true
+
+#erpUrl: http://118.25.196.236:7100/api/ext/   # ERP接口
+erpUrl: http://localhost:7100/api/ext/mock/ # 本地测试接口
+
+# 理库任务尽量在闲时执行
+# 开始执行自动理库的时刻，格式为 HH:mm:ss， 当时刻为单个数字或者0时，需要补 0，以确保格式完整，例如：04:00:00
+startTime: 23:59:59
+endTime:
+  # 结束执行理库的时刻，格式要求同上述的 startTime
+  time: 08:00:00
+  # 设置的结束时间是否为第二天的时间？ true：是， false: 不是
+  nextDay: true
+
+# 启用/禁用自动理库的授权密码，默认值为 auth-weiyi
+authPwd: auth-weiyi
+
+# # 入库任务最多3辆车执行
+maxExecNumOfProductIn: 2
+# # 出库任务最多5辆车执行
+maxExecNumOfProductOut: 3
+
+########################################
+##### 库位定义变更之后，必须重启系统 #####
+########################################
+
+# E区 库位总数， default=20
+siteCountsOfE: 5
+
+# D区 每行库位的最大数量，default=60
+maxColumnCountsOfD: 5
+
+# D区 个行库位的实际数量，无特殊要求可不配置, map<columnId, counts>
+columnIdAndCountsOfD:
+  # 行号（大写的字母）: 实际的库位数量（非负整数, 不大于 maxColumnCountsOfD ）
+  A:
+    total: 5
+    # 当前行中，不存在的库位序号（被删除的那些库位）
+    # 例如 A行 中，1号、2号、3号库位已经被删除了
+    unusedIndexList:
+#      - 1
+#      - 2
+#      - 3
+  B:
+    total: 5
+#    unusedIndexList: [1, 2, 3]
+
+
+# #设置任务的优先级等级
+taskPriorities:
+  - name: 普通 - Lv0
+    value: 0
+  - name: 较高 - Lv1
+    value: 10
+  - name: 很高 - Lv2
+    value: 20
+  - name: 最高 - Lv3
+    value: 30
+
+# 设备服务器配置项
+synchronizer:
+  # 门服务器地址
+  liftRoute: http://localhost:7100/api/
+  doorRoute: http://localhost:7100/api/
+
+#doors:
+#  D1:
+#    host: 127.0.0.1           # 电控柜的IP
+#    port: 502                 # 端口号 默认为 502
+#    openAddr: 1280            # 控制开门的地址 默认为 1280
+#    closeAddr: 1281           # 控制关门的地址 默认为 1281
+#    feedback: true            # true: 这是个有开门到位信号的自动门， false: 这个门没有开门到位反馈
+#    openStatusAddr: 1024      # 读取开门到位信号的地址， 默认为 1024
+#    delayForOpened: 5         # 一定次数后，设置自动门状态为OPEN，当 feedback = false 时有效
+#    delayForCancelOpen: 500   # 一段时间后取消写入开门信号，单位为 ms    0: 不清空
+#    delayForCancelClose: 500  # 一段时间后取消写入关门信号，单位为 ms    0: 不清空
+
+#lifts:
+#  - name: wl1
+#    host: 127.0.0.1
+#    port: 60001
+#  - name: wl2
+#    host: 127.0.0.2
+#    port: 60001
+
+operator:
+  workTypes:
+    - id: WS
+      label: 成品暂入位置
+    - id: PS
+      label: 成品发货位置
+    - id: ADMIN
+      label: 管理员（未经领导授权，勿选）
+  workStations:
+    - id: A
+      label: 成品暂入位置A
+      type: WS
+    - id: B
+      label: 成品暂入位置B
+      type: WS
+    - id: F
+      label: 成品发货位置F
+      type: PS
+    - id: ADMIN
+      label: 管理员（未经领导授权，勿选）
+      type: ADMIN
+  orders:
+    - menuId: ProductIn
+      label: 成品入库
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: product-in
+      disabled: false
+      workTypes: [WS]
+      tip: 去待检区
+      confirmMessage: 确定要去待检区吗？
+      params:
+        - name: code
+          input: text
+          label: 请输入产品码
+          inputDetails: GetProductInfo
+        - name: fromSite
+          input: text
+          label: 请扫描库位码（起点）
+
+    - menuId: ProductOut
+      label: 成品出库
+      menuItemBackground: "#32CD32"
+      menuItemTextColor: black
+      robotTaskDef: build-product-out-task
+      disabled: false
+      workTypes: [PS]
+      tip: 去成品发货位置
+      confirmMessage: 确定要去成品发货位置吗？
+      params:
+        - name: productInfo
+          input: select
+          label: 请选择产品信息
+          optionsSource: UpdateProductOutInfos
+
+    - menuId: ReturnEmptyTray
+      label: 空托盘返回
+      menuItemBackground: "#F4A460"
+      menuItemTextColor: black
+      robotTaskDef: return-empty-tray
+      disabled: false
+      workTypes: [PS]
+      tip: 将空料架送回成品暂入位置
+      confirmMessage: 确定要去【空托盘返回】吗？
+
+    - menuId: SetFEmpty
+      label: 库 F 为空
+      menuItemBackground: "#F4A460"
+      menuItemTextColor: black
+      robotTaskDef: set-site-f-empty
+      disabled: false
+      workTypes: [PS]
+      tip: 空托盘已经从库 F 上被搬走
+      confirmMessage: 请确认库 F 上已经没有托盘！！！
+
+    - menuId: CancelProductOut
+      label: 取消出库任务
+      menuItemBackground: red
+      menuItemTextColor: white
+      robotTaskDef: cancel-product-out-task
+      disabled: false
+      workTypes: [PS]
+      tip: 取消指定的出库任务
+      confirmMessage: 确定要取消此条出库任务吗！！！
+      params:
+        - name: pwd
+          input: text
+          label: 请输入授权码
+        - name: productInfo
+          input: select
+          label: 请选择产品信息
+          optionsSource: UpdateProductOutInfos
+
+    - menuId: EnableAutoSort
+      label: 启用/禁用自动理库
+      menuItemBackground: red
+      menuItemTextColor: white
+      robotTaskDef: enable-auto-sort
+      disabled: false
+      workTypes: [ADMIN]
+      workStations: [ADMIN]
+      tip: 启用/禁用自动理库功能
+      confirmMessage: 确认要执行此操作吗？
+      params:
+        - name: currentStatus
+          input: select
+          label: 当前状态
+          optionsSource: CurrentStatus
+        - name: pwd
+          input: text
+          label: 请输入密码
+        - name: enabled
+          input: select
+          label: 当前操作
+          optionsSource: EnableAutoSort
+
+  taskNotice:
+    scope: by-work-type
+    noticeType: alert
+    when:
+      - created

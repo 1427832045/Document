@@ -1,0 +1,342 @@
+httpPort: 7200
+mongodbUrl: mongodb://localhost:27017/srd-moshi
+mongoMainDatabase: srd-moshi
+commAdapterIO: Http
+vehicleSimulation: Http
+#newCommAdapter: true
+#uiPath: E:/gitRepo/seer-ui/level2/dist-moshi-test
+#uiPath: E:/gitRepo/seer-ui/level2/dist
+uiPath: E:/gitRepo/seer-ui/custom/moshi/dist
+#startFromDB: false
+twinkle: 1000
+interval: 5
+#taskSentListCapacity: 1
+fireWaitTrigger: true
+enableMultiControl: true
+#checkBeforeFinal: true
+
+twinkleAllRed: true
+palletDef: &palletDef palletTransfer0112
+transferDef: &transferDef transfer1225
+
+#dispatcher:
+#  parkAndRechargeDelayMs: 10000
+
+palletTaskType:
+  - ST01
+  - ST02
+  - ST03
+  - M6-01
+  - M6-02
+  - MD05-01
+  - MD05-02
+  - W1
+  - W2
+  - W3
+  - W4
+  - W5
+
+
+noSensorList:
+  - W-01
+#  - 102-01
+#  - 102-02
+#  - 102-03
+#  - 102-04
+#  - 102-05
+  - 102-06
+  - 102-07
+  - 102-08
+  - 102-09
+  - 102-10
+#  - T-102-01
+  - Plating-01
+  - Plating-02
+  - Stamping-01
+  - MD2-02
+  - MD2-01
+  - MD5-01
+  - MD6-01
+  - MD6-02
+  - MD6-03
+operator:
+  orders:
+    - menuId: *transferDef
+      label: 栈板运输任务
+      menuItemBackground: "#0066cc"
+      menuItemTextColor: white
+      robotTaskDef: *transferDef
+      tip: 栈板运输任务
+      confirmMessage: 确定下发栈板运输任务吗？
+      params:
+        - name: from
+          input: selectField
+          label: 起点
+          options: &op
+            - value: MD2-01
+              label: MD2-01
+            - value: MD2-02
+              label: MD2-02
+            - value: MD2-03
+              label: MD2-03
+            - value: T-MD2-01
+              label: T-MD2-01
+            - value: MD5-01
+              label: MD5-01
+            - value: MD5-02
+              label: MD5-02
+            - value: MD5-03
+              label: MD5-03
+            - value: MD5-04
+              label: MD5-04
+            - value: MD5-05
+              label: MD5-05
+            - value: MD6-01
+              label: MD6-01
+            - value: MD6-02
+              label: MD6-02
+            - value: MD6-03
+              label: MD6-03
+            - value: MD6-04
+              label: MD6-04
+            - value: MD6-05
+              label: MD6-05
+            - value: MD6-06
+              label: MD6-06
+            - value: 102-01
+              label: 102-01
+            - value: 102-02
+              label: 102-02
+            - value: 102-03
+              label: 102-03
+            - value: 102-04
+              label: 102-04
+            - value: 102-05
+              label: 102-05
+            - value: 102-06
+              label: 102-06
+            - value: 102-07
+              label: 102-07
+            - value: 102-08
+              label: 102-08
+            - value: 102-09
+              label: 102-09
+            - value: 102-10
+              label: 102-10
+            - value: T-102-01
+              label: T-102-01
+            - value: 103-01
+              label: 103-01
+            - value: 103-02
+              label: 103-02
+            - value: 103-03
+              label: 103-03
+            - value: 103-04
+              label: 103-04
+            - value: 103-05
+              label: 103-05
+            - value: 103-06
+              label: 103-06
+            - value: 103-07
+              label: 103-07
+            - value: 103-08
+              label: 103-08
+            - value: 102-09
+              label: 102-09
+            - value: T-103-01
+              label: T-103-01
+            - value: Plating-01
+              label: Plating-01
+            - value: Plating-02
+              label: Plating-02
+            - value: Plating-03
+              label: Plating-03
+            - value: Plating-04
+              label: Plating-04
+            - value: Plating-05
+              label: Plating-05
+            - value: T-Plating-01
+              label: T-Plating-01
+            - value: Stamping-01
+              label: Stamping-01
+            - value: Stamping-02
+              label: Stamping-02
+            - value: Stamping-03
+              label: Stamping-03
+            - value: Stamping-04
+              label: Stamping-04
+            - value: Stamping-05
+              label: Stamping-05
+            - value: T-Stamping-01
+              label: T-Stamping-01
+            - value: T-Stamping-02
+              label: T-Stamping-02
+            - value: T-Stamping-03
+              label: T-Stamping-03
+
+        - name: to
+          input: selectField
+          label: 终点库区
+          options: &to
+            - value: 102
+              label: 102
+            - value: 注塑平台1
+              label: 注塑平台1
+            - value: MD2
+              label: MD2
+            - value: MD5
+              label: MD5
+            - value: MD6
+              label: MD6
+            - value: Stamping
+              label: Stamping
+            - value: Plating
+              label: Plating
+
+    - menuId: *palletDef
+      label: 栈板列运输
+      menuItemBackground: "#6bae71"
+      menuItemTextColor: white
+      robotTaskDef: *palletDef
+      confirmMessage: 确定运输栈板吗?
+      params:
+        - name: from
+          input: select
+          label: 起点
+          options:
+            - value: MD05-01
+              label: MD05-01整列
+            - value: MD05-02
+              label: MD05-02整列
+            - value: ST01
+              label: ST01整列
+            - value: ST02
+              label: ST02整列
+            - value: ST03
+              label: ST03整列
+            - value: M6-01
+              label: M6-01整列
+            - value: M6-02
+              label: M6-02整列
+        - name: num
+          input: select
+          label: 数量
+          options:
+            - value: ""
+              label: ""
+            - value: 5
+              label: 5
+            - value: 4
+              label: 4
+            - value: 3
+              label: 3
+            - value: 2
+              label: 2
+            - value: 1
+              label: 1
+        - name: to
+          input: select
+          label: 终点区域
+          options: *to
+
+    - menuId: updateSite
+      label: 更新报错库位
+      menuItemBackground: "#ff2626"
+      menuItemTextColor: white
+      robotTaskDef: updateSite
+      tip: 更新报错库位
+      confirmMessage: 确定更新库位信息吗?
+      params:
+        - name: type
+          input: select
+          label: 选择库位类型
+          options:
+            - value: default
+              label: ""
+            - value: from
+              label: 发货库位
+            - value: to
+              label: 收货库位
+        - name: siteId
+          input: selectField
+          label: 库位
+          options: *op
+areaToCabinet:
+  area4:
+#    host: 192.168.1.5
+    host: 127.0.0.1
+    port: 505
+    siteIdToAddress:
+      102-01:
+        index: 0
+        green: 1282
+        yellow: 1281
+        red: 1280
+        sensor1: 1024
+        sensor2: 1025
+      102-02:
+        index: 1
+        green: 1286
+        yellow: 1285
+        red: 1284
+        sensor1: 1026
+        sensor2: 1027
+      102-03:
+        index: 2
+        green: 1290
+        yellow: 1289
+        red: 1288
+        sensor1: 1028
+        sensor2: 1029
+      102-04:
+        index: 3
+        green: 1298
+        yellow: 1297
+        red: 1296
+        sensor1: 1030
+        sensor2: 1031
+      102-05:
+        index: 4
+        green: 1302
+        yellow: 1301
+        red: 1300
+        sensor1: 1032
+        sensor2: 1033
+      T-102-01:
+        index: 5
+        green: 1306
+        yellow: 1305
+        red: 1304
+        sensor1: 1034
+        sensor2: 1035
+#      ST01-01:
+#        index: 6
+#        green: 1298
+#        yellow: 1299
+#        red: 1300
+#        sensor1: 1036
+#        sensor2: 1037
+#      ST01-02:
+#        index: 7
+#        green: 1298
+#        yellow: 1299
+#        red: 1300
+#        sensor1: 1036
+#        sensor2: 1037
+#  area2:
+##    host: 192.168.1.5
+#    host: 127.0.0.1
+#    port: 504
+#    siteIdToAddress:
+#      Plating-01:
+#        green: 1280
+#        yellow: 1281
+#        red: 1282
+#        sensor1: 1024
+#        sensor2: 1025
+#      T-Plating-01:
+#        red: 1290
+#        yellow: 1291
+#        green: 1292
+#        sensor1: 1034
+#        sensor2: 1035

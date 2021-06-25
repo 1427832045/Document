@@ -1,0 +1,1 @@
+TCSObjectEvent 现在只有跟车相关的，有人监听：DefaultVehicleController 和 ImplicitDispatchTrigger

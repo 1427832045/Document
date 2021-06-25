@@ -1,0 +1,15 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-baoligen
+mongoMainDatabase: srd-baoligen
+uiPath: D:\Projects\GitProjects\pure-seer-ui\level2\dist\
+
+commAdapterIO: Tcp
+vehicleSimulation: Tcp
+
+# # 宝利根/瀚川 的上位机提供的 URL，注释掉之后，系统默使用协议中规定的URL
+# # 协议中规定的URL为  http://host:port/api/v1/srd/
+# # 本机的测试URL为  http://localhost:7100/api/ext/v1/srd/mock/
+# # 现场修改配置文件时，请按照【协议中规定的URL】的格式，只需要将 url 中的 host 和 port 修改为客户提供的参数即可，
+# # 例如客户现场的上位机的 ip 是 192.168.192.1，其上位机开放的端口是 9090，
+# # 则需要将 customUrl 修改为 http://192.168.192.1:9090/api/v1/srd/
+customUrl: http://localhost:7100/api/ext/v1/srd/mock/

@@ -1,0 +1,7 @@
+httpPort: 7200
+mongodbUrl: mongodb://localhost:27017/srd-siemens-cd
+mongoMainDatabase: srd-siemens-cd
+uiPath: E:/gitrepo/seer-ui/level2/dist
+commAdapterIO: Http
+vehicleSimulation: Http
+startFromDB: false

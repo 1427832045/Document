@@ -1,0 +1,15 @@
+.gradle
+build
+.idea
+logs
+historyCfg
+
+srd-standard/srd-config.yaml
+srd-standard/robot-tasks.ss
+srd-standard/data
+
+srd.au
+srd.gp
+
+out/
+prj-jinfeng/data

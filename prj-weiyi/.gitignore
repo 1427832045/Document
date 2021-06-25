@@ -1,0 +1,11 @@
+build
+data
+logs
+out
+
+../srd-standard/out
+../srd-common/out
+../srd-encrypt/out
+../prj-gelanfu/out
+../prj-manfulaide/out
+../prj-mingzhi/out

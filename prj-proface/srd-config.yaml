@@ -1,0 +1,474 @@
+httpPort: 7100
+mongodbUrl: mongodb://localhost:27017/srd-proface
+mongoMainDatabase: srd-proface
+uiPath: E:/gitrepo/seer-ui/custom/proface/dist
+commAdapterIO: Tcp
+#newCommAdapter: true
+vehicleSimulation: Tcp
+finsTrigger: false
+
+## 消防触发要访问的设备ip及端口
+fire: true
+#fireHost: 127.0.0.1
+#firePort: 502
+#triggerAddr: 0
+
+#  ""Box", "Display", Nova_CU", "Quantum", "JY", "HMI_N", "A2", "HMI_ETO", "HMI_CTO", "HMI_D", "HMI_SCU", "HMI_GXU",
+#  "HMI_ST", "Swift", "Universal_1", "Universal_2", "Actuator", "Monolis", "Mic", "P20", "P30", "P40", "SEPAM",
+#  "MN_MX", "Tesys_T", "Rock", "VAV", "VAMP", "VPIS", "Dimmer_1&2", "ULTI", "Infrascan", "Opal_1", "Opal_2", "Opal_3",
+#  "Opal_4", "Fan_Controller", "CBUS", "三楼仓库", "四楼仓库", "五楼仓库"
+operator:
+  workTypes:
+    - id: ""
+      label: ""
+    - id: "产线"
+      label: "产线"
+    - id: "仓库"
+      label: "仓库"
+  workStations:
+    - id: ""
+      label: ""
+    - id: "A2"
+      label: "A2"
+    - id: "Box"
+      label: "Box"
+    - id: "Display"
+      label: "Display"
+    - id: "Nova_CU"
+      label: "Nova_CU"
+    - id: "Quantum"
+      label: "Quantum"
+    - id: "JY"
+      label: "JY"
+    - id: "HMI_N"
+      label: "HMI_N"
+    - id: "HMI_ETO"
+      label: "HMI_ETO"
+    - id: "HMI_CTO"
+      label: "HMI_CTO"
+    - id: "HMI_D"
+      label: "HMI_D"
+    - id: "HMI_SCU"
+      label: "HMI_SCU"
+    - id: "HMI_GXU"
+      label: "HMI_GXU"
+    - id: "HMI_ST"
+      label: "HMI_ST"
+    - id: "Swift"
+      label: "Swift"
+    - id: "Universal_1"
+      label: "Universal_1"
+    - id: "Universal_2"
+      label: "Universal_2"
+    - id: "Actuator"
+      label: "Actuator"
+    - id: "Monolis"
+      label: "Monolis"
+    - id: "Mic"
+      label: "Mic"
+    - id: "P20"
+      label: "P20"
+    - id: "P30"
+      label: "P30"
+    - id: "P40"
+      label: "P40"
+    - id: "SEPAM"
+      label: "SEPAM"
+    - id: "MN-MX"
+      label: "MN-MX"
+    - id: "Tesys_T"
+      label: "Tesys_T"
+    - id: "Rock"
+      label: "Rock"
+    - id: "VAV"
+      label: "VAV"
+    - id: "VAMP"
+      label: "VAMP"
+    - id: "VPIS"
+      label: "VPIS"
+    - id: "Dimmer_1&2"
+      label: "Dimmer_1&2"
+    - id: "ULTI"
+      label: "ULTI"
+    - id: "Infrascan"
+      label: "Infrascan"
+    - id: "Opal_1"
+      label: "Opal_1"
+    - id: "Opal_2"
+      label: "Opal_2"
+    - id: "Opal_3"
+      label: "Opal_3"
+    - id: "Opal_4"
+      label: "Opal_4"
+    - id: "Fan_Controller"
+      label: "Fan_Controller"
+    - id: "CBUS"
+      label: "CBUS"
+    - id: "三楼仓库"
+      label: "三楼仓库"
+    - id: "四楼仓库"
+      label: "四楼仓库"
+    - id: "五楼仓库"
+      label: "五楼仓库"
+  orders:
+    - menuId: transfer
+      label: 产线叫料
+      menuItemBackground: "#0066cc"
+      menuItemTextColor: white
+      robotTaskDef: transfer
+      workTypes: ["产线"]
+      confirmMessage: 确定叫料吗?
+    - menuId: updateSite
+      label: 库位管理
+      menuItemBackground: "#6bae71"
+      menuItemTextColor: white
+      robotTaskDef: updateSite
+      workTypes: ["仓库"]
+      confirmMessage: 确定更新库位吗?
+      params:
+        - name: siteId
+          input: select
+          label: 库位名称
+          options:
+            - value: ""
+              label: ""
+            - value: "S3-1"
+              label: "S3-1"
+            - value: "S3-2"
+              label: "S3-2"
+            - value: "S3-3"
+              label: "S3-3"
+            - value: "S3-4"
+              label: "S3-4"
+            - value: "S3-5"
+              label: "S3-5"
+            - value: "S3-6"
+              label: "S3-6"
+            - value: "S3-7"
+              label: "S3-7"
+            - value: "S3-8"
+              label: "S3-8"
+            - value: "S3-9"
+              label: "S3-9"
+            - value: "S4-1"
+              label: "S4-1"
+            - value: "S4-2"
+              label: "S4-2"
+            - value: "S4-3"
+              label: "S4-3"
+            - value: "S4-4"
+              label: "S4-4"
+            - value: "S4-5"
+              label: "S4-5"
+            - value: "S4-6"
+              label: "S4-6"
+            - value: "S4-7"
+              label: "S4-7"
+            - value: "S4-8"
+              label: "S4-8"
+            - value: "S4-9"
+              label: "S4-9"
+        - name: type
+          input: select
+          label: 库位状态
+          options:
+            - value: ""
+              label: ""
+            - value: "fill"
+              label: "补料"
+            - value: "clear"
+              label: "清空"
+        - name: ps
+          input: select
+          label: 更换绑定产线
+          options:
+            - value: ""
+              label: ""
+            - value: "A2"
+              label: "A2"
+            - value: "Box"
+              label: "Box"
+            - value: "Display"
+              label: "Display"
+            - value: "Nova_CU"
+              label: "Nova_CU"
+            - value: "Quantum"
+              label: "Quantum"
+            - value: "JY"
+              label: "JY"
+            - value: "HMI_N"
+              label: "HMI_N"
+            - value: "HMI_ETO"
+              label: "HMI_ETO"
+            - value: "HMI_CTO"
+              label: "HMI_CTO"
+            - value: "HMI_D"
+              label: "HMI_D"
+            - value: "HMI_SCU"
+              label: "HMI_SCU"
+            - value: "HMI_GXU"
+              label: "HMI_GXU"
+            - value: "HMI_ST"
+              label: "HMI_ST"
+            - value: "Swift"
+              label: "Swift"
+            - value: "Universal_1"
+              label: "Universal_1"
+            - value: "Universal_2"
+              label: "Universal_2"
+            - value: "Actuator"
+              label: "Actuator"
+            - value: "Monolis"
+              label: "Monolis"
+            - value: "Mic"
+              label: "Mic"
+            - value: "P20"
+              label: "P20"
+            - value: "P30"
+              label: "P30"
+            - value: "P40"
+              label: "P40"
+            - value: "SEPAM"
+              label: "SEPAM"
+            - value: "MN-MX"
+              label: "MN-MX"
+            - value: "Tesys_T"
+              label: "Tesys_T"
+            - value: "Rock"
+              label: "Rock"
+            - value: "VAV"
+              label: "VAV"
+            - value: "VAMP"
+              label: "VAMP"
+            - value: "VPIS"
+              label: "VPIS"
+            - value: "Dimmer_1&2"
+              label: "Dimmer_1&2"
+            - value: "ULTI"
+              label: "ULTI"
+            - value: "Infrascan"
+              label: "Infrascan"
+            - value: "Opal_1"
+              label: "Opal_1"
+            - value: "Opal_2"
+              label: "Opal_2"
+            - value: "Opal_3"
+              label: "Opal_3"
+            - value: "Opal_4"
+              label: "Opal_4"
+            - value: "Fan_Controller"
+              label: "Fan_Controller"
+            - value: "CBUS"
+              label: "CBUS"
+
+
+# SRD服务器IP，端口和IP最后一个字节的16进制数
+srcHost: 192.168.9.230
+#srcPort: 9900
+srcNetAddr: 0       # 不要修改
+srcNodeAddr: 0xe6
+srcUnitAddr: 0      # 不要修改
+
+# 欧凯AGV配置
+finsClients:
+  # AGV唯一名称，SRD记录使用
+  agv1:
+    srcPort: 9600
+    desHost: 192.168.15.198      # IP
+    desPort: 9601            # 端口
+    desNetAddr: 0            # 不要修改
+#    desNodeAddr: 0xe6           # IP最后一个字节
+    desNodeAddr: 0xc6           # IP最后一个字节
+    desUnitAddr: 0           # 不要修改
+    info:
+      area: 0x82             # 访问内存区域DM。默认值，不修改
+      readAddr: 3000          # 读取起始地址。默认值，不修改
+      readOffset: 0           # 读取地址偏移。默认值，不修改
+      writeAddr: 3001        # 写入起始地址。默认值，不修改
+      writeOffset: 0          # 写入地址偏移。默认值，不修改
+
+  agv2:
+    srcPort: 9700
+    desHost: 192.168.9.230      # IP
+    desPort: 9601            # 端口
+    desNetAddr: 0            # 不要修改
+    desNodeAddr: 0xe6           # IP最后一个字节
+#    desNodeAddr: 0xc6           # IP最后一个字节
+    desUnitAddr: 0           # 不要修改
+    info:
+      area: 0x82             # 访问内存区域DM。默认值，不修改
+      readAddr: 3000          # 读取起始地址。默认值，不修改
+      readOffset: 0           # 读取地址偏移。默认值，不修改
+      writeAddr: 3001         # 写入起始地址。默认值，不修改
+      writeOffset: 0          # 写入地址偏移。默认值，不修改
+
+# 设备服务器配置项
+synchronizer:
+  # 交通管制区服务器地址；不配置此项，将无法正常使用交通管制区的功能，不要修改
+  mutexZoneRoute: http://localhost:7100/api/
+  liftRoute: http://localhost:7100/api/
+
+lifts:
+  - name: wl        # 电梯名称，唯一值。
+    host: 127.0.0.1         # 梯控服务的IP，由客户提供，视实际情况而定。
+    port: 502             # 梯控服务开发的端口号，默认为61000。
+    mode: ModbusTcp    # 支持AioTcp、ModbusTcp
+    modbusConfig:     # 当mode=ModbusTcp时，需要配置此项。
+      unitId: 0
+  #    delayForCancelOpen: 5
+  #    delayForCancelClose: 5
+      openDoor:
+        type: "4x"
+        addrNo: 1
+      closeDoor:
+        type: "4x"
+        addrNo: 2
+      destFloor:
+        type: "4x"
+        addrNo: 3
+      liftFloor:
+        type: "3x"
+        addrNo: 1
+      moveStatus:
+        type: "3x"
+        addrNo: 2
+      liftDoorStatus:
+        type: "3x"
+        addrNo: 3
+      emergency:
+        type: "3x"
+        addrNo: 4
+
+# 交通管制区域的配置
+zones:
+#  # 第一个管制区域的名称，不能重名
+  M1:
+    boxes:
+      - standAlone: true
+#    # 参与交通管制的调度系统信息【系统名称：系统IP】；唯一的【系统名称】对应维艺的【系统IP】，未被记录相关信息的设备/系统，无法通过 API 参与交通管制
+    involvedSystems:
+#      # 第一个参与交通管制的系统信息 self: 127.0.0.1 为服务器自身信息。 此项必填！！！
+      self: 127.0.0.1
+#      # 第二个参与交通管制的系统信息
+      OK: 200.200.200.200   # 随便一个ip地址
+  M2:
+    boxes:
+      - standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      OK: 200.200.200.200
+  M3:
+    boxes:
+      - standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      OK: 200.200.200.200
+  M4:
+    boxes:
+      - standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      OK: 200.200.200.200
+  M5:
+    boxes:
+      - standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      OK: 200.200.200.200
+  M6:
+    boxes:
+      - standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      OK: 200.200.200.200
+  M7:
+    boxes:
+      - standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      OK: 200.200.200.200
+  M8:
+    boxes:
+      - standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      OK: 200.200.200.200
+  M9:
+    boxes:
+      - standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      OK: 200.200.200.200
+  M10:
+    boxes:
+      - standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      OK: 200.200.200.200
+  M11:
+    boxes:
+      - standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      OK: 200.200.200.200
+  M12:
+    boxes:
+      - standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      OK: 200.200.200.200
+  M13:
+    boxes:
+      - standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      OK: 200.200.200.200
+  M14:
+    boxes:
+      - standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      OK: 200.200.200.200
+  M15:
+    boxes:
+      - standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      OK: 200.200.200.200
+  M16:
+    boxes:
+      - standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      OK: 200.200.200.200
+  M17:
+    boxes:
+      - standAlone: true
+    involvedSystems:
+      self: 127.0.0.1
+      OK: 200.200.200.200
+
+# 交通管制区映射，SRD配置了几个管制区，这里就写几个管制区
+# [222]表示欧凯AGV在这个管制区的点
+# 同一个点不能出现在多个管制区内
+mzToLoc:
+  M1: [222]      # M1是SRD交通管制区的名称，见本配置文件中上面交通管制区域的配置名称
+  M2: [223]
+  M3: [224, 232]
+  M4: [225, 236]
+  M5: [226]
+  M6: [227]
+  M7: [228]
+  M8: [229]
+  M9: [233]
+  M10: [234,235]
+  M11: [221]
+  M12: [174,231,176]
+  M13: [230]
+  M14: [160,152]
+  M15: [155,154,50]
+  M16: [30]
+  M17: [40,159]
+#mzToLoc:
+#  M1: [222]      # M1是SRD交通管制区的名称
+#  M16: [240, 159]
