@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap
 
 private val LOG = LoggerFactory.getLogger("com.seer.srd.robottask")
 
-//数据类，机器人任务的定义
+//数据类，机器人任务的详情的定义类
 data class RobotTaskDef(
     var id: ObjectId? = null,
     var name: String = "",
@@ -40,6 +40,7 @@ data class RobotTaskDef(
 )
 
 
+//机器人运单详情的定义类
 data class RobotTransportDef(
     var refName: String = "",
     var description: String = "",
@@ -79,21 +80,25 @@ class RobotTaskHttpApiDef(
 }
 
 
-//
+//将每个任务的详情数据，存储在map中
 private val taskDefs: MutableMap<String, RobotTaskDef> = ConcurrentHashMap()
 
+//将每个任务的详情数据从map中取出，转化为list
 fun listRobotTaskDefs(): List<RobotTaskDef> {
     return taskDefs.values.sortedBy { it.name }.toList()
 }
 
+//返回指定任务名的任务详情
 fun getRobotTaskDef(name: String): RobotTaskDef? {
     return taskDefs[name]
 }
 
+//将新创建的一个任务详情数据，保存到map里面，set
 fun registerStaticRobotTaskDef(def: RobotTaskDef) {
     taskDefs[def.name] = def
 }
 
+//
 @Synchronized
 fun loadRobotTaskDefs() {
     val defs = collection<RobotTaskDef>().find().toList()
@@ -101,11 +106,16 @@ fun loadRobotTaskDefs() {
     defs.forEach { def -> taskDefs[def.name] = def }
 }
 
+
+//更新任务详情的数据
 @Synchronized
 fun updateRobotTaskDefs(defs: List<RobotTaskDef>) {
     val c = collection<RobotTaskDef>()
 
+    //获取到任务标识的list
     val dupNames = defs.map { it.name }.toMutableList()
+    //利用distinctBy找到任务标识中所有标识并去重，然后通过foreach遍历，并去除distinctBy中找到的所有标识
+    //例子，原本{1,1,2,3,3,3}，去重之后{1,2,3}，然后减去去重之后的标识为{1,3,3}
     dupNames.distinctBy { it }.forEach { name -> dupNames.remove(name) }
     if (dupNames.isNotEmpty()) throw BusinessError("""导入数据存在相同任务标识: "${dupNames[0]}"""")
 
